@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a48463ba-85ba-43dd-a03d-6eb5f9020dba" name="Changes" comment="">
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/HTML/User_Page/shopping_cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/admin_managemnt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/shopping_cart.html" beforeDir="false" />
-=======
       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/CSS/header.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/HTML/header.php" afterDir="false" />
@@ -20,7 +14,6 @@
       <change afterPath="$PROJECT_DIR$/phpFunctions/queryProducts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTML/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/index.php" afterDir="false" />
->>>>>>> origin/main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,19 +65,7 @@
       &quot;mariadb&quot;
     ]
   }
-<<<<<<< HEAD
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Polyu\Year4\COMP3421\HTML\Admin_Page" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Polyu\Year4\COMP3421\HTML\User_Page" />
-    </key>
-  </component>
-=======
 }</component>
->>>>>>> origin/main
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -93,17 +74,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678441311315</updated>
-<<<<<<< HEAD
-      <workItem from="1678441312480" duration="3502000" />
-      <workItem from="1678706305787" duration="9920000" />
-=======
       <workItem from="1678441312480" duration="1923000" />
       <workItem from="1678706378733" duration="182000" />
       <workItem from="1678706918168" duration="461000" />
       <workItem from="1678707411303" duration="5935000" />
       <workItem from="1678713391936" duration="1863000" />
       <workItem from="1678715539668" duration="340000" />
->>>>>>> origin/main
     </task>
     <servers />
   </component>

@@ -59,15 +59,9 @@
         </div>
     </div>
 </main>
-
-<footer class="text-muted py-5">
-    <div class="container">
-        <a class="float-end mb-1 btn btn-outline-primary" href="#">
-            Back to top
-        </a>
-        <p class="mb-1"> &copy; PolyFood</p>
-    </div>
-</footer>
+ <?php
+include_once 'footer.php';
+?>
 
 <script>
     getFoods();
