@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a48463ba-85ba-43dd-a03d-6eb5f9020dba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CSS/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HTML/register.html" afterDir="false" />
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/HTML/User_Page/shopping_cart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/admin_managemnt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/shopping_cart.html" beforeDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CSS/header.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HTML/header.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/getProducts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phpFunctions/getDBConnection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phpFunctions/queryImage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phpFunctions/queryProducts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/index.php" afterDir="false" />
+>>>>>>> origin/main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -26,21 +45,46 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="2MokRDdmkGC1WrBKReqDwOO03LG" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Polyu/Year4/COMP3421",
-    "list.type.of.created.stylesheet": "CSS"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/php/php.exe&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
+    ]
   }
+<<<<<<< HEAD
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Polyu\Year4\COMP3421\HTML\Admin_Page" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Polyu\Year4\COMP3421\HTML\User_Page" />
+    </key>
+  </component>
+=======
+}</component>
+>>>>>>> origin/main
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -49,7 +93,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678441311315</updated>
+<<<<<<< HEAD
+      <workItem from="1678441312480" duration="3502000" />
+      <workItem from="1678706305787" duration="9920000" />
+=======
       <workItem from="1678441312480" duration="1923000" />
+      <workItem from="1678706378733" duration="182000" />
+      <workItem from="1678706918168" duration="461000" />
+      <workItem from="1678707411303" duration="5935000" />
+      <workItem from="1678713391936" duration="1863000" />
+      <workItem from="1678715539668" duration="340000" />
+>>>>>>> origin/main
     </task>
     <servers />
   </component>

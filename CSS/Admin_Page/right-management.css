@@ -1,0 +1,46 @@
+/* Right Menu Management */
+#right-content > div {
+    padding: 20px;
+}
+
+#right-content caption {
+    color: black;
+    font-weight: bold;
+}
+
+#right-content th {
+    background-color: #ff9800;
+    color: white;
+
+}
+
+
+#right-content td:hover {
+    cursor: pointer;
+}
+
+#right-content tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+i{
+    margin-right: 5px;
+}
+
+#table-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+    align-items: center;
+    font-weight: bold;
+}
+#table-header i{
+    font-size: 150%;
+    cursor: pointer;
+}
+
+#table-header i:hover{
+    font-size: 150%;
+    cursor: pointer;
+    color: #ff9800;
+}
