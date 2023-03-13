@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a48463ba-85ba-43dd-a03d-6eb5f9020dba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CSS/Admin_Page/left-menu.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSS/Admin_Page/right-management.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HTML/Admin_Page/OrderManagement.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HTML/Admin_Page/ProductManagement.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HTML/Admin_Page/UserManagement.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/admin_managemnt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/shopping_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/User_Page/shopping_cart.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +45,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Polyu\Year4\COMP3421\HTML\Admin_Page" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Polyu\Year4\COMP3421\HTML\User_Page" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -60,7 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1678441311315</updated>
       <workItem from="1678441312480" duration="3502000" />
-      <workItem from="1678706305787" duration="9214000" />
+      <workItem from="1678706305787" duration="9861000" />
     </task>
     <servers />
   </component>
