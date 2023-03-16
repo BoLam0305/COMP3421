@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a48463ba-85ba-43dd-a03d-6eb5f9020dba" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTML/User_Page/shopping_cart.html" beforeDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/CSS/Admin_Page/add_modam.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JS/Admin_Page/ProductManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/Admin_Page/OrderManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/Admin_Page/OrderManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/Admin_Page/ProductManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/Admin_Page/ProductManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/Admin_Page/UserManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/Admin_Page/UserManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/User_Page/shopping_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/User_Page/shopping_cart.html" afterDir="false" />
+>>>>>>> origin/main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +56,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
     "last_opened_file_path": "C:/Polyu/Year4/COMP3421/Asm1",
+=======
+    "last_opened_file_path": "C:/Users/lamwa/OneDrive - The Hong Kong Polytechnic University/Year4/Web/Project/.idea",
+>>>>>>> origin/main
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -60,6 +75,7 @@
     ]
   }
 }]]></component>
+<<<<<<< HEAD
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Polyu\Year4\COMP3421\Asm1" />
@@ -68,6 +84,8 @@
       <recent name="C:\Polyu\Year4\COMP3421\Asm1" />
     </key>
   </component>
+=======
+>>>>>>> origin/main
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -82,7 +100,11 @@
       <workItem from="1678707411303" duration="5935000" />
       <workItem from="1678713391936" duration="1863000" />
       <workItem from="1678715539668" duration="340000" />
+<<<<<<< HEAD
       <workItem from="1678856170551" duration="24522000" />
+=======
+      <workItem from="1678896958927" duration="6057000" />
+>>>>>>> origin/main
     </task>
     <servers />
   </component>
