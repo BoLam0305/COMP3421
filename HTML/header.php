@@ -33,7 +33,7 @@ session_start();
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm header">
         <div class="container">
-            <a href="NFTshowcase.php" class="navbar-brand d-flex align-items-center">
+            <a href="/HTML/index.php" class="navbar-brand d-flex align-items-center">
                 <i class="fa-solid fa-cubes headerCubes"></i>
                 <strong>PolyFood</strong>
             </a>
@@ -48,8 +48,8 @@ session_start();
             // Show the login and register button if the user is not logged in
             if (!isset($email)) {
                 echo '<div class="navbarButtonSet justify-content-end">
-                        <a type="button" class="btn btn-secondary loginBtn" href="login2.php">Login</a>
-                        <a type="button" class="btn btn-secondary registerBtn" href="userRegister.php">Register</a>
+                        <a type="button" class="btn btn-secondary loginBtn" href="/HTML/User_Page/login.php">Login</a>
+                        <a type="button" class="btn btn-secondary registerBtn" href="/HTML/User_Page/sign_up.php">Register</a>
                       </div> ';
             } else if (!$isGoogle){ // not oauth sign in
                 echo "<div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
