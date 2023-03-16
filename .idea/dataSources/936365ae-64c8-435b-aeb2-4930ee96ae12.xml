@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="21026633d@mysql.comp.polyu.edu.hk">
-  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.43">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.32">
     <root id="1">
       <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -774,10 +774,10 @@ SAKILA|schema||21026633d||SELECT|G</Grants>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
     <column id="239" parent="234" name="orderID">
-      <AutoIncrement>1</AutoIncrement>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="240" parent="234" name="userID">
       <DataType>int(10)|0s</DataType>
@@ -825,9 +825,9 @@ SAKILA|schema||21026633d||SELECT|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="249" parent="234" name="PRIMARY">
+      <ColNames>orderID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>orderID</UnderlyingIndexColNames>
     </key>
     <column id="250" parent="235" name="otp_id">
       <DataType>varchar(127)|0s</DataType>
@@ -865,18 +865,19 @@ SAKILA|schema||21026633d||SELECT|G</Grants>
       <Unique>1</Unique>
     </index>
     <key id="257" parent="235" name="PRIMARY">
+      <ColNames>otp_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>otp_id</UnderlyingIndexColNames>
     </key>
     <key id="258" parent="235" name="otp_user_unique_key">
+      <ColNames>otp_req_user</ColNames>
       <UnderlyingIndexName>otp_user_unique_key</UnderlyingIndexName>
     </key>
     <column id="259" parent="236" name="productID">
-      <AutoIncrement>1</AutoIncrement>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="260" parent="236" name="productName">
       <DataType>varchar(127)|0s</DataType>
@@ -918,11 +919,12 @@ SAKILA|schema||21026633d||SELECT|G</Grants>
       <Unique>1</Unique>
     </index>
     <key id="268" parent="236" name="PRIMARY">
+      <ColNames>productID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>productID</UnderlyingIndexColNames>
     </key>
     <key id="269" parent="236" name="product_name_unique_key">
+      <ColNames>productName</ColNames>
       <UnderlyingIndexName>product_name_unique_key</UnderlyingIndexName>
     </key>
     <column id="270" parent="237" name="userTypeID">
@@ -941,18 +943,19 @@ SAKILA|schema||21026633d||SELECT|G</Grants>
       <Unique>1</Unique>
     </index>
     <key id="273" parent="237" name="PRIMARY">
+      <ColNames>userTypeID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>userTypeID</UnderlyingIndexColNames>
     </key>
     <key id="274" parent="237" name="user_type_unique_key">
+      <ColNames>userType</ColNames>
       <UnderlyingIndexName>user_type_unique_key</UnderlyingIndexName>
     </key>
     <column id="275" parent="238" name="userID">
-      <AutoIncrement>1</AutoIncrement>
       <DataType>int(100)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="276" parent="238" name="email">
       <DataType>varchar(127)|0s</DataType>
@@ -983,42 +986,49 @@ SAKILA|schema||21026633d||SELECT|G</Grants>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <foreign-key id="282" parent="238" name="users_userType_fk">
+    <column id="282" parent="238" name="status">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>8</Position>
+    </column>
+    <foreign-key id="283" parent="238" name="users_userType_fk">
       <ColNames>userTypeID</ColNames>
       <RefColNames>userTypeID</RefColNames>
       <RefTableName>user_type</RefTableName>
     </foreign-key>
-    <index id="283" parent="238" name="users_email_unique_key">
+    <index id="284" parent="238" name="users_email_unique_key">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="284" parent="238" name="users_userName_unique_key">
+    <index id="285" parent="238" name="users_userName_unique_key">
       <ColNames>userName</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="285" parent="238" name="users_phone_unique_key">
+    <index id="286" parent="238" name="users_phone_unique_key">
       <ColNames>phone</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="286" parent="238" name="users_userType_fk">
+    <index id="287" parent="238" name="users_userType_fk">
       <ColNames>userTypeID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="287" parent="238" name="PRIMARY">
+    <key id="288" parent="238" name="PRIMARY">
+      <ColNames>userID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>userID</UnderlyingIndexColNames>
     </key>
-    <key id="288" parent="238" name="users_email_unique_key">
+    <key id="289" parent="238" name="users_email_unique_key">
+      <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_unique_key</UnderlyingIndexName>
     </key>
-    <key id="289" parent="238" name="users_userName_unique_key">
+    <key id="290" parent="238" name="users_userName_unique_key">
+      <ColNames>userName</ColNames>
       <UnderlyingIndexName>users_userName_unique_key</UnderlyingIndexName>
     </key>
-    <key id="290" parent="238" name="users_phone_unique_key">
+    <key id="291" parent="238" name="users_phone_unique_key">
+      <ColNames>phone</ColNames>
       <UnderlyingIndexName>users_phone_unique_key</UnderlyingIndexName>
     </key>
   </database-model>

@@ -1,6 +1,5 @@
 <?php
-//$env = parse_ini_file('../.env');
-//$host = $env['DB_HOST'];
+
 
 function getDBConnection(){
     $host = 'mysql.comp.polyu.edu.hk';
@@ -16,3 +15,4 @@ function getDBConnection(){
         return $conn;
     }
 }
+
