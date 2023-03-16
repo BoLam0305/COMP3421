@@ -57,7 +57,8 @@
                     <td class="align-middle">Sold Out</td>
                     <td class="align-middle">Disable</td>
                     <td class="align-middle">
-                        <button class="btn btn-warning">View</button>
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#detailModal">View
+                        </button>
                     </td>
                 </tr>
                 <tr>
@@ -103,15 +104,15 @@
 </div>
 </div>
 
-<!-- Modal -->
+<!-- Add Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add an item <i class="fas fa-hamburger"></i></h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add a user <i class="fas fa-hamburger"></i></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="item-form">
+            <div class="modal-body modal-form" id="item-form">
                 <div class="row">
                     <div>Name</div>
                     <div>
@@ -163,9 +164,60 @@
     </div>
 </div>
 
+<!-- Detail Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Item Detail<i class="fas fa-hamburger"></i></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-form" id="detail-form">
+                <div class="row text-end modal-form-edit-btn">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+                <div class="row">
+                    <div class="modal-form-img-div">
+                        <img src="../../img/TestImage01.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>Name</div>
+                    <div>
+                        <input type="text" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>Category</div>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Select a type
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Food</a></li>
+                            <li><a class="dropdown-item" href="#">Drink</a></li>
+                            <li><a class="dropdown-item" href="#">Main</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>Price</div>
+                    <div>
+                        <input type="text" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <style>
-
 
 
 </style>

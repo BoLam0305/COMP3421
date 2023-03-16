@@ -48,18 +48,39 @@
         font-weight: bold;
     }
 
-    #item-form input {
+    .modal-form input {
         width: 100%;
         height: 40px;
     }
 
-    #item-form input:focus {
+    .modal-form input:focus {
         outline: none !important;
         border: 1px solid red;
         box-shadow: 0 0 10px #ff9800;
 
     }
 
-    #item-form > div {
+    .modal-form > div {
         margin-top: 10px;
+    }
+
+    .modal-form img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .modal-form-img-div{
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-form-edit-btn{
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    .modal-form-edit-btn:hover{
+        color: #FF9800;
     }

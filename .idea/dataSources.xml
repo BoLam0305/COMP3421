@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="f3e458bd-7b3f-4895-ada9-925a3be3c18b">
+    <data-source source="LOCAL" name="21026633d@mysql.comp.polyu.edu.hk" uuid="936365ae-64c8-435b-aeb2-4930ee96ae12">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://mysql.comp.polyu.edu.hk:3306/21026633d</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MariaDB - @localhost" uuid="81cd5261-83a6-4302-abe4-281032f6ed84">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
