@@ -23,9 +23,17 @@
                         <div class="card-body p-4 p-md-5">
                             <h3 class="mb-2 pb-2 pb-md-0 mb-md-4 px-md-2">Sign up</h3>
 
-                            <form class="px-md-2">
-
-                                <div class="form-group">
+                            <form action="../../phpFunctions/signUp.php" method="post" name="SignUpForm">
+                            <?php
+                                if (isset($_GET['Empty'])) {
+                                ?>
+                                    <div style="color:red;"><?php
+                                            echo $_GET['Empty'];
+                                            ?></div><br>
+                                <?php
+                                }
+                                ?>
+                            <div class="form-group">
                                     <label for="Name1">Name</label>
                                     <input type="text" id="Name1" class="form-control" />
 
