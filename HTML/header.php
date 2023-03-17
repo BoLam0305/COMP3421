@@ -33,7 +33,7 @@ session_start();
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm header">
         <div class="container">
-            <a href="/HTML/index.php" class="navbar-brand d-flex align-items-center">
+            <a href="/HTML/home.php" class="navbar-brand d-flex align-items-center">
                 <i class="fa-solid fa-cubes headerCubes"></i>
                 <strong>PolyFood</strong>
             </a>
@@ -62,7 +62,7 @@ session_start();
                                 </a>
                                 <ul class=\"dropdown-menu dropdown-menu-dark\" aria-labelledby=\"navbarDarkDropdownMenuLink\">
                                   <li>
-                                    <a class=\"dropdown-item\" href=\"personalData.php\">My Profile</a>
+                                    <a class=\"dropdown-item\" href=\"/HTML/User_Page/userProfile.php\">My Profile</a>
                                   </li>
                                   <li>
                                     <a class=\"dropdown-item\" href=\"createNFT.php\">Create NFT</a>
