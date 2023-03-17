@@ -3,7 +3,7 @@ error_reporting(-1);
 
 session_start();
 
-include 'getDBConnection.php';
+include 'getDBConnection_bo.php';
 date_default_timezone_set('Asia/Hong_Kong');
 getAllProducts();
 

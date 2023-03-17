@@ -35,19 +35,19 @@
                                 ?>
                             <div class="form-group">
                                     <label for="Name1">Name</label>
-                                    <input type="text" id="Name1" class="form-control" />
+                                    <input type="username" id="Name1" class="form-control" name="username"/>
 
                                     <label class="mt-4" for="Email1">Email address</label>
-                                    <input type="text" id="Email1" class="form-control" />
+                                    <input type="email" id="Email1" class="form-control" name="email" />
 
                                     <label class="mt-4" for="Password1">Password</label>
-                                    <input type="text" id="Password1" class="form-control" />
+                                    <input type="password" id="Password1" class="form-control" name="password" />
 
                                     <label class="mt-4" for="Password2">Password Confirm</label>
-                                    <input type="text" id="Password2" class="form-control" />
+                                    <input type="password" id="Password2" class="form-control" name="password2"/>
 
                                     <label class="mt-4" for="Phone1">Phone</label>
-                                    <input type="text" id="Phone1" class="form-control" />
+                                    <input type="number" id="Phone1" class="form-control" name="phone"/>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mt-4"
