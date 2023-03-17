@@ -6,9 +6,8 @@ extract($_SESSION);
 $SQL = "SELECT * FROM `users` WHERE `userID` = '$ID'";
 $result = mysqli_query($conn, $SQL);
 $row = mysqli_fetch_assoc($result);
-extract($_POST);/*to check is it empty*/
-echo json_encode($row);
-echo json_encode($_POST);
+extract($_POST);
+
 if (empty($name) || empty($phone)) {
     $warning = "Please enter";
     if (empty($name)) {

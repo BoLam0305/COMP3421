@@ -753,5 +753,277 @@ SAKILA|schema||21026633d||SELECT|G</Grants>
       <CollationName>utf8_general_ci</CollationName>
     </schema>
     <user id="233" parent="1" name="21026633d"/>
+    <table id="234" parent="231" name="order">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="235" parent="231" name="otp">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="236" parent="231" name="product">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="237" parent="231" name="user_type">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="238" parent="231" name="users">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <column id="239" parent="234" name="orderID">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="240" parent="234" name="userID">
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="241" parent="234" name="orderDate">
+      <DasType>datetime|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="242" parent="234" name="phone">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="243" parent="234" name="address">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="244" parent="234" name="total">
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="245" parent="234" name="status">
+      <DasType>varchar(127)|0s</DasType>
+      <DefaultExpression>&apos;Pending&apos;</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="246" parent="234" name="products">
+      <DasType>longtext|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <foreign-key id="247" parent="234" name="order_userID_fk">
+      <ColNames>userID</ColNames>
+      <RefColNames>userID</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="248" parent="234" name="order_userID_fk">
+      <ColNames>userID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="249" parent="234" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexColNames>orderID</UnderlyingIndexColNames>
+    </key>
+    <column id="250" parent="235" name="otp_id">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="251" parent="235" name="otp_req_user">
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="252" parent="235" name="otp_pwd">
+      <DasType>int(6)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="253" parent="235" name="otp_createTime">
+      <DasType>datetime|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="254" parent="235" name="otp_expireTime">
+      <DasType>datetime|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="255" parent="235" name="otp_userID_fk">
+      <ColNames>otp_req_user</ColNames>
+      <RefColNames>userID</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="256" parent="235" name="otp_user_unique_key">
+      <ColNames>otp_req_user</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="257" parent="235" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexColNames>otp_id</UnderlyingIndexColNames>
+    </key>
+    <key id="258" parent="235" name="otp_user_unique_key">
+      <UnderlyingIndexName>otp_user_unique_key</UnderlyingIndexName>
+    </key>
+    <column id="259" parent="236" name="productID">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="260" parent="236" name="productName">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="261" parent="236" name="Price">
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="262" parent="236" name="Stock">
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="263" parent="236" name="status">
+      <DasType>varchar(127)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="264" parent="236" name="isPromoted">
+      <DasType>int(1)|0s</DasType>
+      <DefaultExpression>0</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="265" parent="236" name="icon">
+      <DasType>blob|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="266" parent="236" name="category">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <index id="267" parent="236" name="product_name_unique_key">
+      <ColNames>productName</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="268" parent="236" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexColNames>productID</UnderlyingIndexColNames>
+    </key>
+    <key id="269" parent="236" name="product_name_unique_key">
+      <UnderlyingIndexName>product_name_unique_key</UnderlyingIndexName>
+    </key>
+    <column id="270" parent="237" name="userTypeID">
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="271" parent="237" name="userType">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <index id="272" parent="237" name="user_type_unique_key">
+      <ColNames>userType</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="273" parent="237" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexColNames>userTypeID</UnderlyingIndexColNames>
+    </key>
+    <key id="274" parent="237" name="user_type_unique_key">
+      <UnderlyingIndexName>user_type_unique_key</UnderlyingIndexName>
+    </key>
+    <column id="275" parent="238" name="userID">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>int(100)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="276" parent="238" name="email">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="277" parent="238" name="password">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="278" parent="238" name="userName">
+      <DasType>varchar(127)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="279" parent="238" name="icon">
+      <DasType>blob|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="280" parent="238" name="userTypeID">
+      <DasType>int(10)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="281" parent="238" name="phone">
+      <DasType>int(12)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="282" parent="238" name="status">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <foreign-key id="283" parent="238" name="users_userType_fk">
+      <ColNames>userTypeID</ColNames>
+      <RefColNames>userTypeID</RefColNames>
+      <RefTableName>user_type</RefTableName>
+    </foreign-key>
+    <index id="284" parent="238" name="users_email_unique_key">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="285" parent="238" name="users_userName_unique_key">
+      <ColNames>userName</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="286" parent="238" name="users_phone_unique_key">
+      <ColNames>phone</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="287" parent="238" name="users_userType_fk">
+      <ColNames>userTypeID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="288" parent="238" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexColNames>userID</UnderlyingIndexColNames>
+    </key>
+    <key id="289" parent="238" name="users_email_unique_key">
+      <UnderlyingIndexName>users_email_unique_key</UnderlyingIndexName>
+    </key>
+    <key id="290" parent="238" name="users_userName_unique_key">
+      <UnderlyingIndexName>users_userName_unique_key</UnderlyingIndexName>
+    </key>
+    <key id="291" parent="238" name="users_phone_unique_key">
+      <UnderlyingIndexName>users_phone_unique_key</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

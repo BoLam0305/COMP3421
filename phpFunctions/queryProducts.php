@@ -45,11 +45,14 @@ function getAllProducts()
         header('Content-Type: application/json;');
 
         $json = json_encode($products, JSON_PRETTY_PRINT);
+        echo $json == "";
 
-        if ($json) {
+        if ($json !== "") {
             echo $json;
         } else {
-            echo json_last_error_msg();
+            $noProducts = array();
+            $noProducts['error'] = 'No products found';
+            echo json_encode($noProducts, JSON_PRETTY_PRINT);
         }
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
