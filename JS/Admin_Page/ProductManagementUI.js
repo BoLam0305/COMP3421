@@ -9,3 +9,4 @@ function fileValue(value) {
         alert("File not supported. Kindly Upload the Image of below given extension ")
     }
 }
+

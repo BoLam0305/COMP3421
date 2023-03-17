@@ -15,7 +15,6 @@ function getFoods() {
     fetch('../phpFunctions/queryProducts.php', {
         method: 'POST'
     }).then(response => response.text()).then(response => {
-        console.log(response);
         // Parse the response
         let json = JSON.parse(response);
         console.log(json);
@@ -40,6 +39,27 @@ function getFoods() {
                 foodName = json[i].productName;
                 foodID = json[i].productID;
                 foodPrice = json[i].Price;
+
+                // reset all stock labels
+                cardClone.querySelector('#label-InStock').setAttribute('style', 'display: none');
+                cardClone.querySelector('#label-LowStock').setAttribute('style', 'display: none');
+                cardClone.querySelector('#label-SoldOut').setAttribute('style', 'display: none');
+                cardClone.querySelector('#viewBtn').classList.remove('disabled');
+                cardClone.querySelector('#viewBtn').innerText = 'Order';
+
+                // set the product's stock label
+                if (json[i].Stock === 'In Stock') {
+                    console.log(`${json[i].productName} is in stock`);
+                    cardClone.querySelector('#label-InStock').setAttribute('style', 'display: block');
+                } else if (json[i].Stock === 'Low Stock') {
+                    console.log(`${json[i].productName} is low in stock`);
+                    cardClone.querySelector('#label-LowStock').setAttribute('style', 'display: block');
+                } else {
+                    console.log(`${json[i].productName} is out of stock`);
+                    cardClone.querySelector('#viewBtn').classList.add('disabled');
+                    cardClone.querySelector('#label-SoldOut').setAttribute('style', 'display: block');
+                    cardClone.querySelector('#viewBtn').innerText = 'Sold Out';
+                }
 
                 // append the image to the card independently
                 getImageByID(json[i].productID, cardClone, json.length);

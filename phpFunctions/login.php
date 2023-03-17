@@ -31,7 +31,7 @@ if ($_POST['email'] != "" && $_POST['password'] != "") {
         }
     }else{
         header("location:/HTML/User_Page/login.php?Empty= Your account has been disabled");
-    
+
     }
 } else {
     header("location:/HTML/User_Page/login.php?Empty= Please input Email/ID or Password");

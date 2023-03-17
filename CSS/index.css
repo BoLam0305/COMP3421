@@ -41,5 +41,18 @@
 .navBar ul li a:hover {
     color: blue;
     transition: .4s;
+}
 
+.highLightContainer{
+    min-height: 5rem;
+    margin-top: 1.5rem;
+}
+
+.nameContainer, #label-InStock, #label-SoldOut, #label-LowStock {
+    font-size: 1.1rem;
+    font-weight: normal;
+}
+
+.nameContainer, .statusContainer{
+    margin-bottom: 1rem;
 }
