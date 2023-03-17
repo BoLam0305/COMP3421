@@ -35,7 +35,7 @@
                         <div class="card-body">
                             <p class="card-text">
                             <div class="collectionName text-center">
-                                <a id="foodName"></a> &bull; HK$ <a href="" id="price"></a>
+                                <a id="foodName"></a> &bull; HK$ <a id="price"></a>
                             </div>
                             </p>
                             <div class="viewButton">

@@ -1,0 +1,8 @@
+# Env files
+.env
+
+# IntelliJ
+.idea/
+
+# vscode
+.vscode/
