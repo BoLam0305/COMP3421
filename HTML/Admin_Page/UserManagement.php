@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!--local Js-->
     <script src="../../JS/Admin_Page/UserManagementUI.js"></script>
+    <script src="../../JS/Admin_Page/addUserFormValidation.js"></script>
 
 
     <!--Bosstrap-->
@@ -84,48 +85,53 @@
                     <div>
                         <input type="text" id="add_userName">
                     </div>
+                    <div id="add-name-msg" class="text-danger"></div>
                 </div>
                 <div class="row">
                     <div>Password</div>
                     <div>
                         <input type="password" id="add_password">
                     </div>
+                    <div id="add-password-msg" class="text-danger"></div>
                 </div>
                 <div class="row">
                     <div>Email</div>
                     <div>
                         <input type="email" id="add_email">
                     </div>
+                    <div id="add-email-msg" class="text-danger"></div>
                 </div>
                 <div class="row">
                     <div>Phone</div>
                     <div>
                         <input type="number" id="add_phone">
                     </div>
+                    <div id="add-number-msg" class="text-danger"></div>
                 </div>
                 <div class="row">
                     <div>Status</div>
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false" id="add_status">Select a Status</a>
+                           aria-expanded="false" id="add_status">Enable</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item add-status-dropdown" href="#">Enable</a></li>
                             <li><a class="dropdown-item add-status-dropdown" href="#">Disable</a></li>
                         </ul>
                     </div>
+                    <div id="add-status-msg" class="text-danger"></div>
                 </div>
                 <div class="row">
                     <div>User Type</div>
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false" id="add_userType">
-                            Select a User Type
-                        </a>
+                           aria-expanded="false" id="add_userType">User</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item add-userType-dropdown" href="#">Admin</a></li>
                             <li><a class="dropdown-item add-userType-dropdown" href="#">User</a></li>
                         </ul>
                     </div>
+                    <div id="add-type-msg" class="text-danger"></div>
+
                 </div>
 
 
@@ -143,7 +149,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-user"></i>User Detail #<span id="user_id"></span></h5>
+                <h5 class="modal-title"><i class="fas fa-user"></i>User Detail #<span id="modal-user_id"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-form" id="detail-form">
