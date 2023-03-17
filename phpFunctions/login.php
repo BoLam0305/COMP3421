@@ -13,7 +13,7 @@ if ($_POST['email'] != "" && $_POST['password'] != "") {
         $_SESSION['ID'] = $row['userID'];
         $_SESSION['email'] = $email;
         $_SESSION['Identity'] = "customer";
-        header("location:/HTML/index.php");
+        header("location:/HTML/homehome.php");
     } else if ($row['userTypeID' == 1]) {
         // $SQL = "SELECT * FROM `tenant` WHERE `tenantID` = '$ID' and `password` = '$password'";
         // $result = mysqli_query($conn,$SQL);

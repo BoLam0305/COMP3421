@@ -33,7 +33,7 @@ session_start();
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm header">
         <div class="container">
-            <a href="/HTML/index.php" class="navbar-brand d-flex align-items-center">
+            <a href="/HTML/home.php" class="navbar-brand d-flex align-items-center">
                 <i class="fa-solid fa-cubes headerCubes"></i>
                 <strong>PolyFood</strong>
             </a>

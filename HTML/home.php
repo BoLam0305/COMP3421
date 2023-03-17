@@ -12,9 +12,9 @@
 
 <body>
 <main>
-    <section class="py-5 text-center container">
+    <section class="py-5 text-center container highLightContainer">
         <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
+            <div class="col-lg-6 col-md-8 mx-auto menuHighlight">
                 <h1 class="fw-light">Welcome</h1>
                 <h1 class="lead text-muted">
                     Browse through our collection of foods and buy them securely.
@@ -35,7 +35,14 @@
                         <div class="card-body">
                             <p class="card-text">
                             <div class="collectionName text-center">
-                                <a id="foodName"></a> &bull; HK$ <a id="price"></a>
+                                <div class="row-9 justify-content-center nameContainer">
+                                    <a id="foodName"></a> &bull; HK$ <a id="price"></a>
+                                </div>
+                                <div class="row-3 justify-content-center statusContainer">
+                                    <span class="badge bg-success" id="label-InStock">In Stock</span>
+                                    <span class="badge bg-warning text-dark" id="label-LowStock">Almost Sold Out</span>
+                                    <span class="badge bg-danger" id="label-SoldOut">Sold Out</span>
+                                </div>
                             </div>
                             </p>
                             <div class="viewButton">
