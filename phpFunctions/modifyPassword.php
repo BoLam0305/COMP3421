@@ -6,7 +6,7 @@ extract($_SESSION);
 $SQL = "SELECT * FROM `users` WHERE `userID` = '$ID'";
 $result = mysqli_query($conn, $SQL);
 $row = mysqli_fetch_assoc($result);
-extract($_POST);/*to check is it empty*/
+extract($_POST);
 if (empty($oPassword) || empty($nPassword) || empty($cPassword)) {
     $warning = "Please enter";
     if (empty($oPassword)) {
