@@ -62,7 +62,7 @@ session_start();
                                 </a>
                                 <ul class=\"dropdown-menu dropdown-menu-dark\" aria-labelledby=\"navbarDarkDropdownMenuLink\">
                                   <li>
-                                    <a class=\"dropdown-item\" href=\"personalData.php\">My Profile</a>
+                                    <a class=\"dropdown-item\" href=\"/HTML/User_Page/userProfile.php\">My Profile</a>
                                   </li>
                                   <li>
                                     <a class=\"dropdown-item\" href=\"createNFT.php\">Create NFT</a>
