@@ -18,7 +18,7 @@ class User
         if ($userType == 'Admin') {
             $this->type = 1;
         } else {
-            $this->type = 2;
+            $this->type = 0;
         }
 
     }

@@ -15,4 +15,4 @@ function getDBConnection(){
         return $conn;
     }
 }
-
+?>

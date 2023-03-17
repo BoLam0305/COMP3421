@@ -55,17 +55,23 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-12"></div>
-            <div class="col-md-12">
-                <div class="pull-right">
-                    <h2>Total:$103</h2>
+
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div>
+                        <h2>Total:$103</h2>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="pull-right">
-                    <a href="#" class="btn btn-danger">Pay now!</a>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div>
+                        <a href="#" class="btn btn-danger">Pay now!</a>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </body>

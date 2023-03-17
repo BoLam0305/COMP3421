@@ -25,7 +25,7 @@ function get_all_users()
                 $user->email = $email;
                 $user->userName = $userName;
                 $user->phone = $phone;
-                $user->status = $user->getStatus($status);
+                $user->status = $status;
                 $user->type = $user->getType($userTypeID);
                 $user_lists[] = $user;
             }

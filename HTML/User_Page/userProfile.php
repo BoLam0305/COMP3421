@@ -13,12 +13,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- <link rel="stylesheet" href="../CSS/index.css"> -->
-    <link rel="stylesheet" href="../CSS/userProfile.css">
-    <?php include_once 'header.php'; ?>
+    <?php include_once '../header.php'; ?>
+    <link rel="stylesheet" href="../../CSS/profile.css">
 </head>
 
 <body>
+    <?php
+    session_start();
+    require_once("../../phpFunctions/getDBConnection_bo.php");
+    $conn = getDBConnection();
+    extract($_SESSION);
+    $_STATEMENT = $conn->prepare("SELECT * FROM users WHERE userID = ? and email = ?;");
+    $_STATEMENT->bind_param('is', $ID, $email);
+    // $SQL = "SELECT * FROM `users` WHERE `userID` = '$ID' and `email` = '$email'";
+    // $result = mysqli_query($conn, $SQL);
+    $_STATEMENT->execute();
+    $result = $_STATEMENT->get_result();
+    $result = $result->fetch_array();
+    $_STATEMENT->free_result();
+    $_STATEMENT->close();
+    extract($result);
+    // extract($row);
+    ?>
     <div class="content">
         <section style="background-color: #eee;">
             <div class="container py-5">
@@ -27,21 +43,46 @@
                     <div class="col-lg-3">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 100%;">
-                                <h5 class="my-3">John Smith</h5>
-                                <p class="text-muted mb-1">Full Stack Developer</p>
-                                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                                <?php
+                                if ($icon == "") {
+                                    echo '<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 100%;">';
+                                } else {
+                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($profilePic) . '" alt="avatar" class="rounded-circle img-fluid" style="width: 100%;">';
+                                }
+                                ?>
+                                <h5 class="my-3"><?php echo $userName ?></h5>
+                                <!-- <p class="text-muted mb-1">Full Stack Developer</p>
+                                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->
 
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <form action="" class="form_control">
+                        <form action="../../phpFunctions/modifyProfile.php" class="form_control" method="post">
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h6 class="text-center">Your Information</h6>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    if (isset($_GET['Empty'])) {
+                                    ?>
+                                        <div class="text-center text-danger"><?php
+                                                                                echo $_GET['Empty'];
+                                                                                ?></div><br>
+                                    <?php
+                                    }
+                                    ?>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-2">
+                                            <label class="mb-0">Email</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input class="text-muted mb-0" type="text" name="email" value="<?php echo $email ?>" disabled>
                                         </div>
                                     </div>
                                     <hr>
@@ -51,17 +92,7 @@
                                             <label class="mb-0">Full Name</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input class="text-muted mb-0" type="text" name="1">
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-2">
-                                            <label class="mb-0">Email</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input class="text-muted mb-0" type="text" name="2">
+                                            <input class="text-muted mb-0" type="text" name="name" value="<?php echo $userName ?>">
                                         </div>
                                     </div>
                                     <hr>
@@ -71,33 +102,69 @@
                                             <label class="mb-0">Phone</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input class="text-muted mb-0" type="text" name="3">
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-2">
-                                            <label class="mb-0">Mobile</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input class="text-muted mb-0" type="text" name="4">
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-2">
-                                            <label class="mb-0">Address</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input class="text-muted mb-0" type="text" name="5">
+                                            <input class="text-muted mb-0" type="number" name="phone" value="<?php echo $phone ?>">
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button type="submit" value="Submit" class="button-36" role="button">Submit</button>
+                                            <button type="submit" value="Submit" class="button-36" role="button">Modify</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="../../phpFunctions/modifyPassword.php" class="form_control" method="post">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h6 class="text-center">Change Password</h6>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    if (isset($_GET['EmptyPassword'])) {
+                                    ?>
+                                        <div class="text-center text-danger"><?php
+                                                                                echo $_GET['EmptyPassword'];
+                                                                                ?></div><br>
+                                    <?php
+                                    }
+                                    ?>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-2">
+                                            <label class="mb-0">Old Password</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input class="text-muted mb-0" type="password" name="oPassword" value="" required>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-2">
+                                            <label class="mb-0">New Password</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input class="text-muted mb-0" type="password" name="nPassword" value="">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-2">
+                                            <label class="mb-0">Confirm Password</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input class="text-muted mb-0" type="password" name="cPassword" value="">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" value="Submit" class="button-36" role="button">Modify</button>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +175,7 @@
             </div>
         </section>
         <?php
-        include_once 'footer.php';
+        include_once '../footer.php';
         ?>
     </div>
 </body>

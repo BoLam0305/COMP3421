@@ -1,6 +1,3 @@
-.content{
-    margin-top: 5%;
-}
 
 .form_control {
 	position: relative;
@@ -14,18 +11,6 @@
 	font-size: 18px;
 	font-family: 'Muli', sans-serif;
 	transition: 0.1s ease-in;
-}
-
-.form_control input:focus, 
-.form_control input:valid {
-	border-bottom-color: darksalmon;
-	outline: none;
-}
-
-.form_control input:focus + label span ,
-.form_control input:valid + label span{
-	color: darksalmon;
-	transform: translateY(-30px);
 }
 
 .form_control label {
@@ -73,4 +58,16 @@
   .button-36 {
     padding: 0 2.6rem;
   }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
