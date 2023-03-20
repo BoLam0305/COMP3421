@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Product Management</title>
@@ -8,7 +9,8 @@
     <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/right-management.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
-
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!--local Js-->
     <script src="../../JS/Admin_Page/ProductManagementUI.js"></script>
 
@@ -18,207 +20,210 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-<div>Menu-bar</div>
-<div id="main-container" class="row">
-    <div class="col-2 h-100" id="left-menu">
-        <div class="row-3 left-menu-target">Menu Management</div>
-        <div class="row-3">Order Management</div>
-        <div class="row-3">User Management</div>
-    </div>
-    <div id="right-content" class="col-10">
-        <div class="container">
-            <table class="table caption-top table-hover">
-                <div id="table-header">
-                    <div>Items Management</div>
-                    <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                            class="fas fa-plus-square"></i></div>
-                </div>
-
-                <thead>
-                <tr>
-                    <th scope="col">#ID</th>
-                    <th scope="col"><i class="fas fa-hamburger"></i>Name</th>
-                    <th scope="col"><i class="fas fa-utensils"></i>Category</th>
-                    <th scope="col">$ Price</th>
-                    <th scope="col">Promotion</th>
-                    <th scope="col"><i class="fas fa-warehouse"></i>Stock</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Details</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="align-middle">1</td>
-                    <td class="align-middle">Chicken Wing</td>
-                    <td class="align-middle">Food</td>
-                    <td class="align-middle">20</td>
-                    <td class="align-middle"><input type="checkbox"></td>
-                    <td class="align-middle">Sold Out</td>
-                    <td class="align-middle">Disable</td>
-                    <td class="align-middle">
-                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#detailModal">View
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="align-middle">2</td>
-                    <td class="align-middle">Hot Dog</td>
-                    <td class="align-middle">Food</td>
-                    <td class="align-middle">30</td>
-                    <td class="align-middle"><input type="checkbox"></td>
-                    <td class="align-middle">Sold Out</td>
-                    <td class="align-middle">Disable</td>
-                    <td class="align-middle">
-                        <button class="btn btn-warning">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="align-middle">3</td>
-                    <td class="align-middle">Milk Tea</td>
-                    <td class="align-middle">Drink</td>
-                    <td class="align-middle">40</td>
-                    <td class="align-middle"><input type="checkbox"></td>
-                    <td class="align-middle">Sold Out</td>
-                    <td class="align-middle">Disable</td>
-                    <td class="align-middle">
-                        <button class="btn btn-warning">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="align-middle">3</td>
-                    <td class="align-middle">Fuck Kin Fire Rice</td>
-                    <td class="align-middle">Main</td>
-                    <td class="align-middle">40</td>
-                    <td class="align-middle"><input type="checkbox"></td>
-                    <td class="align-middle">20</td>
-                    <td class="align-middle">Available</td>
-                    <td class="align-middle">
-                        <button class="btn btn-warning">View</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <div>Menu-bar</div>
+    <div id="main-container" class="row">
+        <div class="col-2 h-100" id="left-menu">
+            <div class="row-3 left-menu-target">Menu Management</div>
+            <div class="row-3">Order Management</div>
+            <div class="row-3">User Management</div>
         </div>
-    </div>
-</div>
-</div>
+        <div id="right-content" class="col-10">
+            <div class="container">
+                <table class="table caption-top table-hover">
+                    <div id="table-header">
+                        <div>Items Management</div>
+                        <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                class="fas fa-plus-square"></i></div>
+                    </div>
 
-<!-- Add Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add a user <i class="fas fa-hamburger"></i></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body modal-form" id="item-form">
-                <div class="row">
-                    <div>Name</div>
-                    <div>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div>Category</div>
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Select a type
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Food</a></li>
-                            <li><a class="dropdown-item" href="#">Drink</a></li>
-                            <li><a class="dropdown-item" href="#">Main</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div>Price</div>
-                    <div>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div>Image</div>
-                    <div class="image-upload">
-                        <input type="file" name="" id="logo" onchange="fileValue(this)">
-                        <label for="logo" class="upload-field" id="file-label">
-                            <div class="file-thumbnail">
-                                <img id="image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png"
-                                     alt="">
-                                <h3 id="filename">
-                                    Drag and Drop
-                                </h3>
-                                <p>Supports JPG, PNG, SVG</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                    <thead>
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col"><i class="fas fa-hamburger"></i>Name</th>
+                            <th scope="col"><i class="fas fa-utensils"></i>Category</th>
+                            <th scope="col">$ Price</th>
+                            <th scope="col">Promotion</th>
+                            <th scope="col"><i class="fas fa-warehouse"></i>Stock</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="align-middle">1</td>
+                            <td class="align-middle">Chicken Wing</td>
+                            <td class="align-middle">Food</td>
+                            <td class="align-middle">20</td>
+                            <td class="align-middle"><input type="checkbox"></td>
+                            <td class="align-middle">Sold Out</td>
+                            <td class="align-middle">Disable</td>
+                            <td class="align-middle">
+                                <button class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#detailModal">View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">2</td>
+                            <td class="align-middle">Hot Dog</td>
+                            <td class="align-middle">Food</td>
+                            <td class="align-middle">30</td>
+                            <td class="align-middle"><input type="checkbox"></td>
+                            <td class="align-middle">Sold Out</td>
+                            <td class="align-middle">Disable</td>
+                            <td class="align-middle">
+                                <button class="btn btn-warning">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">3</td>
+                            <td class="align-middle">Milk Tea</td>
+                            <td class="align-middle">Drink</td>
+                            <td class="align-middle">40</td>
+                            <td class="align-middle"><input type="checkbox"></td>
+                            <td class="align-middle">Sold Out</td>
+                            <td class="align-middle">Disable</td>
+                            <td class="align-middle">
+                                <button class="btn btn-warning">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">3</td>
+                            <td class="align-middle">Fuck Kin Fire Rice</td>
+                            <td class="align-middle">Main</td>
+                            <td class="align-middle">40</td>
+                            <td class="align-middle"><input type="checkbox"></td>
+                            <td class="align-middle">20</td>
+                            <td class="align-middle">Available</td>
+                            <td class="align-middle">
+                                <button class="btn btn-warning">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-<!-- Detail Modal -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Item Detail<i class="fas fa-hamburger"></i></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body modal-form" id="detail-form">
-                <div class="row text-end modal-form-edit-btn">
-                    <i class="fa-solid fa-pen-to-square"></i>
+    <!-- Add Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add a user <i class="fas fa-hamburger"></i></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="row">
-                    <div class="modal-form-img-div">
-                        <img src="../../img/Rice.jpeg" alt="">
+                <div class="modal-body modal-form" id="item-form">
+                    <div class="row">
+                        <div>Name</div>
+                        <div>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Category</div>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Select a type
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Food</a></li>
+                                <li><a class="dropdown-item" href="#">Drink</a></li>
+                                <li><a class="dropdown-item" href="#">Main</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Price</div>
+                        <div>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Image</div>
+                        <div class="image-upload">
+                            <input type="file" name="" id="logo" onchange="fileValue(this)">
+                            <label for="logo" class="upload-field" id="file-label">
+                                <div class="file-thumbnail">
+                                    <img id="image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png"
+                                        alt="">
+                                    <h3 id="filename">
+                                        Drag and Drop
+                                    </h3>
+                                    <p>Supports JPG, PNG, SVG</p>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div>Name</div>
-                    <div>
-                        <input type="text" disabled>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
-                <div class="row">
-                    <div>Category</div>
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Select a type
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Food</a></li>
-                            <li><a class="dropdown-item" href="#">Drink</a></li>
-                            <li><a class="dropdown-item" href="#">Main</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div>Price</div>
-                    <div>
-                        <input type="text" disabled>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Detail Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Item Detail<i class="fas fa-hamburger"></i></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-form" id="detail-form">
+                    <div class="row text-end modal-form-edit-btn">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <div class="row">
+                        <div class="modal-form-img-div">
+                            <img src="../../img/TestImage01.jpeg" alt="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Name</div>
+                        <div>
+                            <input type="text" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Category</div>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Select a type
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Food</a></li>
+                                <li><a class="dropdown-item" href="#">Drink</a></li>
+                                <li><a class="dropdown-item" href="#">Main</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Price</div>
+                        <div>
+                            <input type="text" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 <style>
 
 
 </style>
+
 </html>
