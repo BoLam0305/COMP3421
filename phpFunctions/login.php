@@ -30,7 +30,7 @@ if ($_POST['email'] != "" && $_POST['password'] != "") {
                 $_SESSION['ID'] = $userID;
                 $_SESSION['email'] = $email;
                 $_SESSION['Identity'] = "admin";
-                header("location:/HTML/Admin_Page/adminPage.php");
+                header("location:/HTML/Admin_Page/ProductManagement.php");
             } else {
                 header("location:/HTML/User_Page/login.php?Empty= Incorrect Email/ID or Password");
             }

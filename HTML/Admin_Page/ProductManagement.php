@@ -19,6 +19,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,8 +41,7 @@
                 <table class="table caption-top table-hover">
                     <div id="table-header">
                         <div>Items Management</div>
-                        <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                class="fas fa-plus-square"></i></div>
+                        <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus-square"></i></div>
                     </div>
 
                     <thead>
@@ -51,56 +57,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="align-middle">1</td>
-                            <td class="align-middle">Chicken Wing</td>
-                            <td class="align-middle">Food</td>
-                            <td class="align-middle">20</td>
-                            <td class="align-middle"><input type="checkbox"></td>
-                            <td class="align-middle">Sold Out</td>
-                            <td class="align-middle">Disable</td>
-                            <td class="align-middle">
-                                <button class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#detailModal">View
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">2</td>
-                            <td class="align-middle">Hot Dog</td>
-                            <td class="align-middle">Food</td>
-                            <td class="align-middle">30</td>
-                            <td class="align-middle"><input type="checkbox"></td>
-                            <td class="align-middle">Sold Out</td>
-                            <td class="align-middle">Disable</td>
-                            <td class="align-middle">
-                                <button class="btn btn-warning">View</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">3</td>
-                            <td class="align-middle">Milk Tea</td>
-                            <td class="align-middle">Drink</td>
-                            <td class="align-middle">40</td>
-                            <td class="align-middle"><input type="checkbox"></td>
-                            <td class="align-middle">Sold Out</td>
-                            <td class="align-middle">Disable</td>
-                            <td class="align-middle">
-                                <button class="btn btn-warning">View</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">3</td>
-                            <td class="align-middle">Fuck Kin Fire Rice</td>
-                            <td class="align-middle">Main</td>
-                            <td class="align-middle">40</td>
-                            <td class="align-middle"><input type="checkbox"></td>
-                            <td class="align-middle">20</td>
-                            <td class="align-middle">Available</td>
-                            <td class="align-middle">
-                                <button class="btn btn-warning">View</button>
-                            </td>
-                        </tr>
+                        <?php
+                        include_once('../../phpFunctions/getProduct.php');
+                        $productes = json_decode(get_all_prodcut(), false);
+                        for ($i = 0; $i < count($productes); $i++) {
+                            echo '<tr>';
+                            echo ' <td class="align-middle">' . $productes[$i]->id . '</td>';
+                            echo ' <td class="align-middle">' . $productes[$i]->productName . '</td>';
+                            echo ' <td class="align-middle">' . $productes[$i]->category . '</td>';
+                            echo ' <td class="align-middle">' . $productes[$i]->Price . '</td>';
+                            echo ' <td class="align-middle">' . $productes[$i]->isPromoted . '</td>';
+                            echo ' <td class="align-middle">' . $productes[$i]->Stock . '</td>';
+                            echo ' <td class="align-middle">' . $productes[$i]->status . '</td>';
+                            echo '<td class="align-middle"><button value="' . $productes[$i]->id . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
+                            echo '</tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -126,8 +98,7 @@
                     <div class="row">
                         <div>Category</div>
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Select a type
                             </a>
                             <ul class="dropdown-menu">
@@ -149,8 +120,7 @@
                             <input type="file" name="" id="logo" onchange="fileValue(this)">
                             <label for="logo" class="upload-field" id="file-label">
                                 <div class="file-thumbnail">
-                                    <img id="image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png"
-                                        alt="">
+                                    <img id="image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png" alt="">
                                     <h3 id="filename">
                                         Drag and Drop
                                     </h3>
@@ -173,7 +143,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Item Detail<i class="fas fa-hamburger"></i></h5>
+                    <h5 class="modal-title"><i class="fas fa-hamburger"></i>Product Detail#<span id="modal-product_id"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body modal-form" id="detail-form">
@@ -186,29 +156,58 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div>Name</div>
+                        <div>Product Name</div>
                         <div>
-                            <input type="text" disabled>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>Category</div>
-                        <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Select a type
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Food</a></li>
-                                <li><a class="dropdown-item" href="#">Drink</a></li>
-                                <li><a class="dropdown-item" href="#">Main</a></li>
-                            </ul>
+                            <input type="text" disabled id="detail-productName">
                         </div>
                     </div>
                     <div class="row">
                         <div>Price</div>
                         <div>
-                            <input type="text" disabled>
+                            <input type="number" disabled id="detail-price">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Stock</div>
+                        <div>
+                            <input type="text" disabled id="detail-stock">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Is Promoted</div>
+                        <div class="dropdown">
+                            <button disabled id="detail-promote" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown button
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item detail-promote-dropdown" href="#">Promoting</a></li>
+                                <li><a class="dropdown-item detail-promote-dropdown" href="#">Not Promoting</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Status</div>
+                        <div class="dropdown">
+                            <button disabled id="detail-status" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown button
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item detail-status-dropdown" href="#">Enable</a></li>
+                                <li><a class="dropdown-item detail-status-dropdown" href="#">Disable</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>Category</div>
+                        <div class="dropdown">
+                            <button disabled id="detail-category" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown button
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item detail-category-dropdown" href="#">Main</a></li>
+                                <li><a class="dropdown-item detail-category-dropdown" href="#">Category 2</a></li>
+                                <li><a class="dropdown-item detail-category-dropdown" href="#">Category 3</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
