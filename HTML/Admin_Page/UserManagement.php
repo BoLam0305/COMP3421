@@ -89,7 +89,7 @@
                                 <label for="imageUpload"></label>
                             </div>
                             <div class="avatar-preview">
-                                <img id="imagePreview" src="../../img/TestImage01.jpeg" alt="">
+                                <img id="imagePreview" src="../../img/Rice.jpeg" alt="">
                             </div>
                         </div>
                     </div>
