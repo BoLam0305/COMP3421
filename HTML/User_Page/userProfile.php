@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
@@ -13,11 +14,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <?php include_once '../header.php'; ?>
+
     <link rel="stylesheet" href="../../CSS/profile.css">
+
+
 </head>
 
 <body>
+    <script type="text/javascript">
+        document.write("Hello World!")
+        $(document).ready(function() {
+            console.log("hi");
+            $("#imageUpload").change(function() {
+                readURL(this);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
     <?php
     session_start();
     require_once("../../phpFunctions/getDBConnection_bo.php");
@@ -43,12 +67,23 @@
                     <div class="col-lg-3">
                         <div class="card mb-4">
                             <div class="card-body text-center">
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 100%;"> -->
                                 <?php
-                                if ($icon == "") {
-                                    echo '<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 100%;">';
-                                } else {
-                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($profilePic) . '" alt="avatar" class="rounded-circle img-fluid" style="width: 100%;">';
-                                }
+                                // if ($icon == "") {
+                                //     echo '<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 100%;">';
+                                // } else {
+                                //     echo '<img src="data:image/jpeg;base64,' . base64_encode($profilePic) . '" alt="avatar" class="rounded-circle img-fluid" style="width: 100%;">';
+                                // }
                                 ?>
                                 <h5 class="my-3"><?php echo $userName ?></h5>
                                 <!-- <p class="text-muted mb-1">Full Stack Developer</p>
@@ -92,7 +127,7 @@
                                             <label class="mb-0">Full Name</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input class="text-muted mb-0" type="text" name="name" value="<?php echo $userName ?>">
+                                            <input class="text-muted mb-0 nameQWE" type="text" value="<?php echo $userName ?>">
                                         </div>
                                     </div>
                                     <hr>
