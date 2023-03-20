@@ -13,7 +13,8 @@ $user->userName = $_POST['userName'];
 $user->phone = $_POST['phone'];
 $user->setType($_POST['userType']);
 $user->status = $_POST['status'];
-echo $user->type;
+$user->icon = $_POST['icon'];
+
 add_user($user);
 
 

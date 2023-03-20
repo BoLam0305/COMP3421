@@ -31,6 +31,8 @@ $(document).ready(function () {
     // Detail Modal Get User By ID
     $(".detail-modal-btn").click(function () {
         let userID = $(this).attr("value");
+        $("#detail-email-msg").text("");
+        $("#detail-phone-msg").text("");
         let data = {
             userID: userID
         }
@@ -51,33 +53,22 @@ $(document).ready(function () {
         }).catch(error => console.log(error));
     });
 
-    // Detail Modal Update User By ID
-    $("#detain-save-btn").click(function () {
-        let userID = $("#modal-user_id").text();
-        let userName = $("#detail-name").val();
-        let email = $("#detail-email").val();
-        let phone = $("#detail-phone").val();
-        let status = $("#detail-status").text();
 
-        let data = {
-            userID: userID,
-            userName: userName,
-            email: email,
-            phone: phone,
-            status: status
-        };
-
-        fetch('../../phpFunctions/updateUserByID.php', {
-            method: 'POST',
-            body: JSON.stringify(data),
-
-        }).then(response => response.text()).then(response => {
-            if (response == 'success') {
-                location.reload();
-            } else {
-                console.log('fail');
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr("src",e.target.result);
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
             }
-        }).catch(error => console.log(error));
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imageUpload").change(function () {
+        readURL(this);
     });
+
 
 });

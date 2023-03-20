@@ -13,6 +13,7 @@
     <!--local Js-->
     <script src="../../JS/Admin_Page/UserManagementUI.js"></script>
     <script src="../../JS/Admin_Page/addUserFormValidation.js"></script>
+    <script src="../../JS/Admin_Page/updateUserVaildation.js"></script>
 
 
     <!--Bosstrap-->
@@ -53,14 +54,14 @@
                 <?php
                 include_once('../../phpFunctions/getUsers.php');
                 $users = json_decode(get_all_users(), false);
-                for ($i = 0; $i < count($users); $i++){
+                for ($i = 0; $i < count($users); $i++) {
                     echo '<tr>';
-                    echo ' <td class="align-middle">'.$users[$i]->id.'</td>';
-                    echo ' <td class="align-middle">'.$users[$i]->userName.'</td>';
-                    echo ' <td class="align-middle">'.$users[$i]->email.'</td>';
-                    echo ' <td class="align-middle">'.$users[$i]->phone.'</td>';
-                    echo ' <td class="align-middle">'.$users[$i]->status.'</td>';
-                    echo '<td class="align-middle"><button value="'.$users[$i]->id.'" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
+                    echo ' <td class="align-middle">' . $users[$i]->id . '</td>';
+                    echo ' <td class="align-middle">' . $users[$i]->userName . '</td>';
+                    echo ' <td class="align-middle">' . $users[$i]->email . '</td>';
+                    echo ' <td class="align-middle">' . $users[$i]->phone . '</td>';
+                    echo ' <td class="align-middle">' . $users[$i]->status . '</td>';
+                    echo '<td class="align-middle"><button value="' . $users[$i]->id . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
                     echo '</tr>';
                 }
                 ?>
@@ -80,6 +81,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-form" id="item-form">
+                <div class="row">
+                    <div>
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' name="image" id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <img id="imagePreview" src="../../img/TestImage01.jpeg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div>Name</div>
                     <div>
@@ -167,17 +181,20 @@
                     <div>
                         <input type="email" disabled id="detail-email">
                     </div>
+                    <div id="detail-email-msg" class="text-danger"></div>
                 </div>
                 <div class="row">
                     <div>Phone</div>
                     <div>
                         <input type="number" disabled id="detail-phone">
                     </div>
+                    <div id="detail-phone-msg" class="text-danger"></div>
                 </div>
                 <div class="row">
                     <div>Status</div>
                     <div class="dropdown">
-                        <button disabled id="detail-status" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button disabled id="detail-status" class="btn btn-secondary dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown button
                         </button>
                         <ul class="dropdown-menu">
