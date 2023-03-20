@@ -12,16 +12,14 @@
 
 <body>
 <main>
-    <section class="py-5 text-center container highLightContainer">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto menuHighlight">
-                <h1 class="fw-light">Welcome</h1>
-                <h1 class="lead text-muted">
-                    Browse through our collection of foods and buy them securely.
-                </h1>
-                <p>
-                    <a href="#collectionHead" class="btn btn-primary my-2 disabled" id="allBtn">Loading...</a>
-                </p>
+    <section class="text-center container highLightContainer">
+        <div class="row">
+            <div class="col mx-auto menuHighlight">
+                <div id="hlCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-indicators" id="hlCarousel-indicators"></div>
+                    <div class="carousel-inner" id="hlCarousel-inner"></div>
+                </div>
+
             </div>
         </div>
     </section>

@@ -41,3 +41,4 @@ if ($_POST['email'] != "" && $_POST['password'] != "") {
         header("location:/HTML/User_Page/login.php?Empty= Indevial email or password");
     }
 }
+mysqli_close($conn);
