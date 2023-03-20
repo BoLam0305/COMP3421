@@ -6,14 +6,14 @@
     <title>PolyFood | Order Food Securely</title>
 
     <link href="../CSS/index.css" rel="stylesheet">
-    <script src="../js/getProducts.js"></script>
+    <script src="../JS/getProducts.js"></script>
     <?php include_once 'header.php'; ?>
 </head>
 
 <body>
 <main>
     <section class="text-center container highLightContainer">
-        <div class="row">
+        <div class="row" id="hlCarouselWrapper" style="display: block">
             <div class="col mx-auto menuHighlight">
                 <div id="hlCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-indicators" id="hlCarousel-indicators"></div>
@@ -29,7 +29,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 cardWrapper" id="cardWrapper">
                 <div class="col foodCard" id="foodCard0">
                     <div class="card shadow-sm">
-                        <img src="../img/TestImage01.jpeg" id="foodImage" width="100%" height="100%" alt="foodImage">
+                        <img id="foodImage" width="420" height="420" alt="foodImage">
                         <div class="card-body">
                             <p class="card-text">
                             <div class="collectionName text-center">
@@ -44,9 +44,17 @@
                             </div>
                             </p>
                             <div class="viewButton">
-                                <a type="button" class="btn btn-outline-secondary viewBtn w-100" id='viewBtn' href="#">
-                                    Order
-                                </a>
+                                <?php
+                                    if (!isset($_SESSION['email'])) {
+                                        echo "<button class='btn btn-outline-secondary viewBtn w-100' id='LoginBtn' href='login.php'>
+                                                Login to Order
+                                              </button>";
+                                    }
+                                    else {
+                                        echo "<a type='button' class='btn btn-outline-secondary viewBtn w-100' id='OrderBtn' href=''>
+                                                Order
+                                              </a>";
+                                    } ?>
                             </div>
                         </div>
                     </div>
@@ -55,10 +63,12 @@
         </div>
     </div>
 
-    <div class="loadingWrapper d-flex justify-content-center" id="loadingWrapper" style="display: block">
+    <div class="loadingWrapper d-flex align-items-center justify-content-center" id="loadingWrapper" style="display: block">
         <div class="row">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <div class="spinner-border text-primary" style="width: 5rem; height: 5rem;" role="status"></div>
+                <div class="spinner-border text-primary" style="width: 5rem; height: 5rem; margin-bottom: 1rem;" role="status"></div>
+                    <span class="visually-hidden">Loading...</span>
+                </div>
                 <h1 class="fw-light loadingText d-flex justify-content-center">Loading...</h1>
             </div>
         </div>

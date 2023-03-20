@@ -1,5 +1,5 @@
 <?php
-include 'getDBConnection.php';
+include 'getDBConnection_bo.php';
 
 $productID = $_POST['productID'];
 
