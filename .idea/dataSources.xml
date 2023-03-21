@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="21026633d@mysql.comp.polyu.edu.hk" uuid="936365ae-64c8-435b-aeb2-4930ee96ae12">
-      <driver-ref>mariadb</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://mysql.comp.polyu.edu.hk:3306/21026633d</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="MariaDB - @localhost" uuid="81cd5261-83a6-4302-abe4-281032f6ed84">
-      <driver-ref>mariadb</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="21026633d@mysql.comp.polyu.edu.hk [2]" uuid="b030f386-a6ed-4707-b0c4-d1086e0c4032">
+    <data-source source="LOCAL" name="21026633d@mysql.comp.polyu.edu.hk" uuid="e4dfc7ef-3154-4a59-a3ec-5f1db25a3305">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>

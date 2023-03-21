@@ -171,6 +171,19 @@
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
                 <div class="row">
+                    <div>
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' name="image" id="imageOnLoad" accept=".png, .jpg, .jpeg"/>
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <img id="detail_imagePreview" src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div>Name</div>
                     <div>
                         <input type="text" disabled id="detail-name">

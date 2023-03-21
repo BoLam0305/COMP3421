@@ -1,22 +1,39 @@
 $(document).ready(function () {
+    function getBase64(file, onLoadCallback) {
+        return new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
 
     // Detail Modal Update User By ID
-    $("#detain-save-btn").click(function () {
+    $("#detain-save-btn").click(async function () {
         let userID = $("#modal-user_id").text();
         let userName = $("#detail-name").val();
         let email = $("#detail-email").val();
         let phone = $("#detail-phone").val();
         let status = $("#detail-status").text();
 
+        let file = document.getElementById("imageOnLoad").files[0];
+        var promise = getBase64(file);
+        promise.then(function (result) {
+
+        });
+        var my_pdf_file_as_base64 = await promise;
         let data = {
             userID: userID,
             userName: userName,
             email: email,
             phone: phone,
-            status: status
+            status: status,
+            icon:my_pdf_file_as_base64
         };
 
-        if (formValidation(data)){
+        if (formValidation(data)) {
             fetch('../../phpFunctions/updateUserByID.php', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -111,6 +128,22 @@ $(document).ready(function () {
             });
         }
 
+    });
+
+    function readURL_Detail(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#detail_imagePreview').attr("src", e.target.result);
+                $('#detail_imagePreview').hide();
+                $('#detail_imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imageUpload").change(function () {
+        readURL_Detail(this);
     });
 
 

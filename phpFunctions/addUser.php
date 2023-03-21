@@ -17,17 +17,15 @@ $user->icon = $_POST['icon'];
 
 add_user($user);
 
-
 function add_user($user)
 {
     $conn = getDBConnection();
-    $sql = "INSERT INTO users (email, password, userName, icon, userTypeID, phone,status)
+    $sql = "INSERT INTO users (email, password, userName, icon, userTypeID, phone, status)
         VALUES (?,?,?,?,?,?,?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssiis", $user->email, $user->password, $user->userName, $user->icon, $user->type, $user->phone, $user->status);
     $stmt->execute();
     mysqli_close($conn);
-
 }
 
 

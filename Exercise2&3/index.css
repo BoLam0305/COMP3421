@@ -1,0 +1,103 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+    height: 90vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mainContainer {
+    width: 350px;
+    height: 350px;
+    border: 0.8em #fff solid;
+    overflow: hidden;
+}
+
+.imageBig-container {
+    position: relative;
+    height: 100%;
+}
+
+.imageBig-container img {
+    position: relative;
+    left: -100px;
+    object-fit: contain;
+    height: 100%;
+
+}
+
+.thumbnails  {
+    display: flex;
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    padding-top: 25px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.imageSmall-container img {
+    margin: 5px;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    object-position: center;
+    border: 0.1em #fff solid;
+}
+
+.semi-opaque-box {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1.2rem;
+}
+
+.active img {
+    border: 0.4em white solid;
+}
+
+#arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid gray;
+
+}
+
+#arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid gray;
+}
+
+.arrow:hover{
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.imageBig-container img{
+    display: none;
+}
+
+.left-container {
+    position: relative;
+    padding-right: 15px;
+}
+
+.right-container {
+    position: relative;
+    padding-left: 15px;
+}
+

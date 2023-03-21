@@ -1,18 +1,33 @@
-
 $(document).ready(function () {
+    function getBase64(file, onLoadCallback) {
+        return new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+
+            reader.readAsDataURL(file);
+        });
+    }
 
     // Add user
-    $("#add-btn").click(function () {
+    $("#add-btn").click(async function () {
+        console.log('b call');
         let userName = document.getElementById("add_userName").value;
         let password = document.getElementById("add_password").value;
         let email = document.getElementById("add_email").value;
         let phone = document.getElementById("add_phone").value;
         let userType = document.getElementById("add_userType").textContent;
-
-        let file = document.getElementById("imageUpload").files[0];
-
-
         let status = $("#add_status").text();
+        let file = document.getElementById("imageUpload").files[0];
+        if (file != null) {
+            var promise = getBase64(file);
+            promise.then(function (result) {
+
+            });
+            var my_pdf_file_as_base64 = await promise;
+        }
         let data = {
             method: 'add_user',
             userName: userName,
@@ -21,12 +36,11 @@ $(document).ready(function () {
             phone: phone,
             userType: userType,
             status: status,
-            icon: file
+            icon: my_pdf_file_as_base64
         };
 
-        console.log(data);
-        //formValidation(data)
-        if (true) {
+
+        if (formValidation(data)) {
             console.log(data);
             fetch('../../phpFunctions/addUser.php', {
                 method: 'POST',
@@ -41,19 +55,10 @@ $(document).ready(function () {
 
     });
 
-    function getBase64(file) {
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            console.log(reader.result);
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-    }
 
     // form validation
     function formValidation(data) {
+        console.log('f call');
         let form = true;
         let add_email_msg = $("#add-email-msg").text();
         let add_number_msg = $("#add-number-msg").text();
@@ -129,11 +134,21 @@ $(document).ready(function () {
 
     });
 
-    function toBase64(file) {
-        var base64 = '';
-
-        return base64;
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr("src", e.target.result);
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
     }
+
+    $("#imageUpload").change(function () {
+        readURL(this);
+    });
 
 
 });

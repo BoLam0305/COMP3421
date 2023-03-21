@@ -27,47 +27,39 @@ $(document).ready(function () {
 
     });
 
+    //Add modal open
+    $("#add-item-btn").click(function () {
+        $("#add-email-msg").text("");
+        $("#add-phone-msg").text("");
+    });
 
     // Detail Modal Get User By ID
     $(".detail-modal-btn").click(function () {
         let userID = $(this).attr("value");
         $("#detail-email-msg").text("");
         $("#detail-phone-msg").text("");
+        console.log(userID);
         let data = {
             userID: userID
         }
+        console.log(data);
         fetch('../../phpFunctions/getUserByID.php', {
             method: 'POST',
             body: JSON.stringify(data),
 
-        }).then(response => response.text()).then(response => {
-            let user = JSON.parse(response);
-            console.log(user);
+        }).then(response => response.json()).then(response => {
+            console.log(response);
+            let json = JSON.parse(response);
             $("#detail-form input").prop('disabled', true);
             $("#detail-status").prop('disabled', true);
-            $("#detail-name").val(user.userName);
-            $("#detail-email").val(user.email);
-            $("#detail-phone").val(user.phone);
-            $("#detail-status").text(user.status);
-            $("#modal-user_id").text(user.id);
+            $("#detail-name").val(json.userName);
+            $("#detail-email").val(json.email);
+            $("#detail-phone").val(json.phone);
+            $("#detail-status").text(json.status);
+            $("#modal-user_id").text(json.id);
+
+            console.log(json);
         }).catch(error => console.log(error));
-    });
-
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#imagePreview').attr("src",e.target.result);
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#imageUpload").change(function () {
-        readURL(this);
     });
 
 
