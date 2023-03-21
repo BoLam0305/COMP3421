@@ -1,29 +1,44 @@
 <?php
 include_once('getDBConnection_bo.php');
 include_once('User.php');
+include_once('LocalPath.php');
 date_default_timezone_set('Asia/Hong_Kong');
 
-$_POST = json_decode(file_get_contents('php://input'), true);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fileName = '';
+    if (isset($_FILES["file"])) {
+        $file = $_FILES["file"];
+        $fileName = $file["name"];
+        $fileType = $file["type"];
+        $fileSize = $file["size"];
+        $fileTmpName = $file["tmp_name"];
+        $fileName = uniqid() . $fileName;
+        move_uploaded_file($fileTmpName, getProfilePath() . $fileName);
+        echo "File uploaded successfully.";
+    } else {
+        $fileName = $_POST['file'];
+    }
+    $user = new  User();
+    $user->id = $_POST['userID'];
+    $user->email = $_POST['email'];
+    $user->userName = $_POST['userName'];
+    $user->phone = $_POST['phone'];
+    $user->status = $_POST['status'];
+    $user->img_path = $fileName;
+    echo updateUserByID($user);
 
+}
 
-$user = new  User();
-$user->id = $_POST['userID'];
-$user->email = $_POST['email'];
-$user->userName = $_POST['userName'];
-$user->phone = $_POST['phone'];
-$user->status = $_POST['status'];
-
-echo updateUserByID($user);
 function updateUserByID($user)
 {
     $conn = getDBConnection();
     $arr['msg'] = '';
     try {
         $sql = "UPDATE users 
-                SET email = ?, userName = ?, icon = ?, phone = ?, status = ?
+                SET email = ?, userName = ?, phone = ?, status = ?, imgPath = ?
                 WHERE userID = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssisi", $user->email, $user->userName, $user->icon, $user->phone, $user->status, $user->id);
+        $stmt->bind_param("ssissi", $user->email, $user->userName, $user->phone, $user->status, $user->img_path, $user->id);
         $stmt->execute();
         mysqli_close($conn);
         $arr['msg'] = 'success';

@@ -1,67 +1,57 @@
 $(document).ready(function () {
-    function getBase64(file, onLoadCallback) {
-        return new Promise(function (resolve, reject) {
-            var reader = new FileReader();
-            reader.onload = function () {
-                resolve(reader.result);
-            };
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-        });
-    }
+
 
     // Detail Modal Update User By ID
-    $("#detain-save-btn").click(async function () {
+    $("#detain-save-btn").click(function () {
         let userID = $("#modal-user_id").text();
         let userName = $("#detail-name").val();
         let email = $("#detail-email").val();
         let phone = $("#detail-phone").val();
         let status = $("#detail-status").text();
 
-        let file = document.getElementById("imageOnLoad").files[0];
-        var promise = getBase64(file);
-        promise.then(function (result) {
-
-        });
-        var my_pdf_file_as_base64 = await promise;
-        let data = {
-            userID: userID,
-            userName: userName,
-            email: email,
-            phone: phone,
-            status: status,
-            icon:my_pdf_file_as_base64
-        };
-
-        if (formValidation(data)) {
-            fetch('../../phpFunctions/updateUserByID.php', {
-                method: 'POST',
-                body: JSON.stringify(data),
-
-            }).then(response => response.text()).then(response => {
-                if (response == 'success') {
-                    location.reload();
-                } else {
-                    console.log('fail');
-                }
-            }).catch(error => console.log(error));
+        let file = document.getElementById("imageUpload").files[0];
+        if (file==null) {
+            file = $('#detail_img_name').text();
+            console.log('No file selected');
         }
+
+        if (formValidation(email, phone)) {
+            var form_data = new FormData();
+            form_data.append("userID", userID);
+            form_data.append("userName", userName);
+            form_data.append("email", email);
+            form_data.append("phone", phone);
+            form_data.append("status", status);
+            form_data.append("file", file);
+
+            $.ajax({
+                type: "POST",
+                url: '../../phpFunctions/updateUserByID.php',
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
 
     });
 
     // form validation
-    function formValidation(data) {
+    function formValidation(email, phone) {
         let form = true;
         let detail_email_msg = $("#detail-email-msg").text();
         let detail_number_msg = $("#detail-phone-msg").text();
 
-        if (detail_email_msg !== '' || data.email === '') {
+        if (detail_email_msg !== '' || email === '') {
             $("#detail-email-msg").text('please enter an valid email');
             console.log('detail_email_msg');
             form = false;
         }
 
-        if (detail_number_msg !== '' || data.phone === '') {
+        if (detail_number_msg !== '' || phone === '') {
             $("#detail-phone-msg").text('please enter an valid phone number');
             console.log('detail_number_msg');
             form = false;
@@ -130,7 +120,7 @@ $(document).ready(function () {
 
     });
 
-    function readURL_Detail(input) {
+    function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -143,7 +133,7 @@ $(document).ready(function () {
     }
 
     $("#imageUpload").change(function () {
-        readURL_Detail(this);
+        readURL(this);
     });
 
 

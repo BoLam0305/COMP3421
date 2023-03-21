@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 
     // add-status-dropdown on click
@@ -60,6 +58,7 @@ $(document).ready(function () {
                 $("#detail-status").text(json.status);
                 $("#modal-user_id").text(json.id);
                 $("#detail_imagePreview").attr("src", "../../img/Profile/" + json.img_path);
+                $("#detail_img_name").text(json.img_path);
             }
         });
 
@@ -67,22 +66,19 @@ $(document).ready(function () {
 
 
     //DataTable
-    $(document).ready(function() {
 
+    var table = $('#myTable').DataTable({
+        select: false,
+        "columnDefs": [{
+            className: "Name",
+            "targets": [0],
+            "visible": false,
+            "searchable": false
+        }]
+    });//End of create main table
+    $('#example tbody').on('click', 'tr', function () {
+        alert(table.row(this).data()[0]);
 
-
-        var table = $('#myTable').DataTable({
-            select: false,
-            "columnDefs": [{
-                className: "Name",
-                "targets":[0],
-                "visible": false,
-                "searchable":false
-            }]
-        });//End of create main table
-        $('#example tbody').on( 'click', 'tr', function () {
-            alert(table.row( this ).data()[0]);
-
-        } );
     });
+
 });

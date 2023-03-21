@@ -170,6 +170,7 @@
                 <div class="row text-end modal-form-edit-btn">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
+                <div id="detail_img_name" style="display: none"></div>
                 <div class="row">
                     <div>
                         <div class="avatar-upload">

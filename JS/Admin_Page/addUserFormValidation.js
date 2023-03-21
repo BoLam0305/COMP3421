@@ -75,7 +75,7 @@ $(document).ready(function () {
         let userType = document.getElementById("add_userType").textContent;
         let status = $("#add_status").text();
         let file = document.getElementById("imageUpload").files[0];
-
+        console.log(file);
 
         if (formValidation(email, phone)) {
             var form_data = new FormData();
@@ -87,7 +87,6 @@ $(document).ready(function () {
             form_data.append("userType", userType);
             form_data.append("status", status);
             form_data.append("file", file);
-
 
             $.ajax({
                 type: "POST",

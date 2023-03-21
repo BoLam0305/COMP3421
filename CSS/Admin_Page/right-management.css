@@ -1,9 +1,7 @@
 /* Right Menu Management */
-#myTable_length{
-    display: none;
-}
+
 #myTable_filter{
-    display: none;
+    margin-bottom: 5px;
 }
 #right-content > div {
     padding: 10px;
