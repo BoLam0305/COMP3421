@@ -10,6 +10,9 @@
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
     <!--local Js-->
     <script src="../../JS/Admin_Page/UserManagementUI.js"></script>
     <script src="../../JS/Admin_Page/addUserFormValidation.js"></script>
@@ -33,42 +36,39 @@
         <div class="row-3  left-menu-target">User Management</div>
     </div>
     <div id="right-content" class="col-10">
-        <div class="container">
-            <table class="table caption-top table-hover">
-                <div id="table-header">
-                    <div>User Management</div>
-                    <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                class="fas fa-plus-square"></i></div>
-                </div>
-                <thead>
-                <tr>
-                    <th scope="col">#ID</th>
-                    <th scope="col"><i class="fas fa-user"></i>Name</th>
-                    <th scope="col"><i class="fas fa-envelope"></i>Email</th>
-                    <th scope="col"><i class="fas fa-phone"></i>Phone</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Details</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                include_once('../../phpFunctions/getUsers.php');
-                $users = json_decode(get_all_users(), false);
-                for ($i = 0; $i < count($users); $i++) {
-                    echo '<tr>';
-                    echo ' <td class="align-middle">' . $users[$i]->id . '</td>';
-                    echo ' <td class="align-middle">' . $users[$i]->userName . '</td>';
-                    echo ' <td class="align-middle">' . $users[$i]->email . '</td>';
-                    echo ' <td class="align-middle">' . $users[$i]->phone . '</td>';
-                    echo ' <td class="align-middle">' . $users[$i]->status . '</td>';
-                    echo '<td class="align-middle"><button value="' . $users[$i]->id . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
-                    echo '</tr>';
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>
-
+        <table class="table caption-top table-hover" id="myTable">
+            <div id="table-header">
+                <div>User Management</div>
+                <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                            class="fas fa-plus-square"></i></div>
+            </div>
+            <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col"><i class="fas fa-user"></i>Name</th>
+                <th scope="col"><i class="fas fa-envelope"></i>Email</th>
+                <th scope="col"><i class="fas fa-phone"></i>Phone</th>
+                <th scope="col">Status</th>
+                <th scope="col">Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            include_once('../../phpFunctions/getUsers.php');
+            $users = json_decode(get_all_users(), false);
+            for ($i = 0; $i < count($users); $i++) {
+                echo '<tr>';
+                echo ' <td class="align-middle">' . $users[$i]->id . '</td>';
+                echo ' <td class="align-middle">' . $users[$i]->userName . '</td>';
+                echo ' <td class="align-middle">' . $users[$i]->email . '</td>';
+                echo ' <td class="align-middle">' . $users[$i]->phone . '</td>';
+                echo ' <td class="align-middle">' . $users[$i]->status . '</td>';
+                echo '<td class="align-middle"><button value="' . $users[$i]->id . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
+                echo '</tr>';
+            }
+            ?>
+            </tbody>
+        </table>
     </div>
 </div>
 </div>
@@ -89,7 +89,7 @@
                                 <label for="imageUpload"></label>
                             </div>
                             <div class="avatar-preview">
-                                <img id="imagePreview" src="../../img/Rice.jpeg" alt="">
+                                <img id="imagePreview" src="../../img/Profile/default_profile.jpg" alt="">
                             </div>
                         </div>
                     </div>

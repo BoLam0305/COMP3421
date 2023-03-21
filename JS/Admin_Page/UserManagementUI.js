@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
 
     // add-status-dropdown on click
@@ -38,29 +40,49 @@ $(document).ready(function () {
         let userID = $(this).attr("value");
         $("#detail-email-msg").text("");
         $("#detail-phone-msg").text("");
-        console.log(userID);
-        let data = {
-            userID: userID
-        }
-        console.log(data);
-        fetch('../../phpFunctions/getUserByID.php', {
-            method: 'POST',
-            body: JSON.stringify(data),
 
-        }).then(response => response.json()).then(response => {
-            console.log(response);
-            let json = JSON.parse(response);
-            $("#detail-form input").prop('disabled', true);
-            $("#detail-status").prop('disabled', true);
-            $("#detail-name").val(json.userName);
-            $("#detail-email").val(json.email);
-            $("#detail-phone").val(json.phone);
-            $("#detail-status").text(json.status);
-            $("#modal-user_id").text(json.id);
+        var form_data = new FormData();
+        form_data.append("userID", userID);
 
-            console.log(json);
-        }).catch(error => console.log(error));
+        $.ajax({
+            type: "POST",
+            url: '../../phpFunctions/getUserByID.php',
+            data: form_data,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                let json = JSON.parse(response);
+                $("#detail-form input").prop('disabled', true);
+                $("#detail-status").prop('disabled', true);
+                $("#detail-name").val(json.userName);
+                $("#detail-email").val(json.email);
+                $("#detail-phone").val(json.phone);
+                $("#detail-status").text(json.status);
+                $("#modal-user_id").text(json.id);
+                $("#detail_imagePreview").attr("src", "../../img/Profile/" + json.img_path);
+            }
+        });
+
     });
 
 
+    //DataTable
+    $(document).ready(function() {
+
+
+
+        var table = $('#myTable').DataTable({
+            select: false,
+            "columnDefs": [{
+                className: "Name",
+                "targets":[0],
+                "visible": false,
+                "searchable":false
+            }]
+        });//End of create main table
+        $('#example tbody').on( 'click', 'tr', function () {
+            alert(table.row( this ).data()[0]);
+
+        } );
+    });
 });

@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    function getBase64(file, onLoadCallback) {
+    /**
+     function getBase64(file, onLoadCallback) {
         return new Promise(function (resolve, reject) {
             var reader = new FileReader();
             reader.onload = function () {
@@ -9,11 +10,64 @@ $(document).ready(function () {
 
             reader.readAsDataURL(file);
         });
-    }
+    }**/
 
     // Add user
-    $("#add-btn").click(async function () {
-        console.log('b call');
+    // $("#add-btn").click(function () {
+    //     console.log('b call');
+    //     let userName = document.getElementById("add_userName").value;
+    //     let password = document.getElementById("add_password").value;
+    //     let email = document.getElementById("add_email").value;
+    //     let phone = document.getElementById("add_phone").value;
+    //     let userType = document.getElementById("add_userType").textContent;
+    //     let status = $("#add_status").text();
+    //     let file = document.getElementById("imageUpload").files[0];
+    //
+    //     /**
+    //      if (file != null) {
+    //         var promise = getBase64(file);
+    //         promise.then(function (result) {
+    //
+    //         });
+    //         var my_pdf_file_as_base64 = await promise;
+    //     }**/
+    //     let data = {
+    //         method: 'add_user',
+    //         userName: userName,
+    //         password: password,
+    //         email: email,
+    //         phone: phone,
+    //         userType: userType,
+    //         status: status,
+    //         icon: file
+    //     };
+    //
+    //     //formValidation(data)
+    //     if (true) {
+    //         var form_data = new FormData();
+    //
+    //         form_data.append("userName", data.userName);
+    //         form_data.append("password", data.password);
+    //         form_data.append("email", data.email);
+    //         form_data.append("phone", data.phone);
+    //         form_data.append("userType", data.userType);
+    //         form_data.append("status", data.status);
+    //         form_data.append("file", data.icon);
+    //         console.log(data);
+    //         $.ajax({
+    //             type: "POST",
+    //             url: '../../phpFunctions/addUser.php',
+    //             data: form_data,
+    //             success: function (response) {
+    //
+    //                 console.log(response);
+    //             }
+    //         });
+    //     }
+    // });
+
+    // Add user
+    $("#add-btn").click(function () {
         let userName = document.getElementById("add_userName").value;
         let password = document.getElementById("add_password").value;
         let email = document.getElementById("add_email").value;
@@ -21,55 +75,46 @@ $(document).ready(function () {
         let userType = document.getElementById("add_userType").textContent;
         let status = $("#add_status").text();
         let file = document.getElementById("imageUpload").files[0];
-        if (file != null) {
-            var promise = getBase64(file);
-            promise.then(function (result) {
 
+
+        if (formValidation(email, phone)) {
+            var form_data = new FormData();
+
+            form_data.append("userName", userName);
+            form_data.append("password", password);
+            form_data.append("email", email);
+            form_data.append("phone", phone);
+            form_data.append("userType", userType);
+            form_data.append("status", status);
+            form_data.append("file", file);
+
+
+            $.ajax({
+                type: "POST",
+                url: '../../phpFunctions/addUser.php',
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                }
             });
-            var my_pdf_file_as_base64 = await promise;
         }
-        let data = {
-            method: 'add_user',
-            userName: userName,
-            password: password,
-            email: email,
-            phone: phone,
-            userType: userType,
-            status: status,
-            icon: my_pdf_file_as_base64
-        };
-
-
-        if (formValidation(data)) {
-            console.log(data);
-            fetch('../../phpFunctions/addUser.php', {
-                method: 'POST',
-                body: JSON.stringify(data),
-
-            }).then(response => response.text()).then(response => {
-                console.log(response);
-            }).catch(error => console.log(error));
-        } else {
-            console.log('form false');
-        }
-
     });
 
-
     // form validation
-    function formValidation(data) {
-        console.log('f call');
+    function formValidation(email, phone) {
         let form = true;
         let add_email_msg = $("#add-email-msg").text();
         let add_number_msg = $("#add-number-msg").text();
 
-        if (add_email_msg !== '' || data.email === '') {
+        if (add_email_msg !== '' || email === '') {
             $("#add-email-msg").text('please enter your email');
             console.log('add_email_msg');
             form = false;
         }
 
-        if (add_number_msg !== '' || data.phone === '') {
+        if (add_number_msg !== '' || phone === '') {
             $("#add-number-msg").text('please enter your email');
             console.log('add_number_msg');
             form = false;
@@ -80,6 +125,7 @@ $(document).ready(function () {
 
     // email checking If Exist
     $("#add_email").keyup(function () {
+
         let enter_text = $(this).val();
         if (enter_text == "") {
             $("#add-email-msg").text('please enter your email');

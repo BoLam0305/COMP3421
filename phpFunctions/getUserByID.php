@@ -3,9 +3,10 @@ include_once('getDBConnection_bo.php');
 include_once('User.php');
 date_default_timezone_set('Asia/Hong_Kong');
 
-$_POST = json_decode(file_get_contents('php://input'), true);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo getUserByID($_POST['userID']);
+}
 
-echo getUserByID(84);
 
 function getUserByID($userID)
 {
@@ -27,8 +28,8 @@ function getUserByID($userID)
         $user->userName = $userName;
         $user->phone = $phone;
         $user->status = $status;
-        $user->icon = $icon;
         $user->status = $user->getStatus($status);
+        $user->img_path = $imgPath;
 
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();

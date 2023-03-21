@@ -1,6 +1,12 @@
 /* Right Menu Management */
+#myTable_length{
+    display: none;
+}
+#myTable_filter{
+    display: none;
+}
 #right-content > div {
-    padding: 20px;
+    padding: 10px;
 }
 
 #right-content caption {
@@ -30,7 +36,7 @@ i{
 #table-header{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2px;
+
     align-items: center;
     font-weight: bold;
 }

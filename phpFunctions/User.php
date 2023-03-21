@@ -11,6 +11,7 @@ class User
     public $icon;
     public $type;
     public $status;
+    public $img_path;
 
 
     public function setType($userType)
