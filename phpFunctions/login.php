@@ -10,13 +10,13 @@ if ($_POST['email'] != "" && $_POST['password'] != "") {
     $_STATEMENT->bind_param('ss', $_POST['email'], $_POST['password']);
     $_STATEMENT->execute();
     $result = $_STATEMENT->get_result();
-    if($result->num_rows == 1)
-    {
-         $result = $result->fetch_array();
-         $_STATEMENT->free_result();
-         $_STATEMENT->close();
-         extract($result);
-         if ($status != "Disable") {
+    if ($result->num_rows == 1) {
+        $result = $result->fetch_array();
+        $_STATEMENT->free_result();
+        $_STATEMENT->close();
+        extract($result);
+        mysqli_close($conn);
+        if ($status != "Disable") {
             if ($userTypeID == 0) {
                 $_SESSION['ID'] = $userID;
                 $_SESSION['email'] = $email;
@@ -30,7 +30,7 @@ if ($_POST['email'] != "" && $_POST['password'] != "") {
                 $_SESSION['ID'] = $userID;
                 $_SESSION['email'] = $email;
                 $_SESSION['Identity'] = "admin";
-                header("location:/HTML/Admin_Page/adminPage.php");
+                header("location:/HTML/Admin_Page/ProductManagement.php");
             } else {
                 header("location:/HTML/User_Page/login.php?Empty= Incorrect Email/ID or Password");
             }
@@ -38,7 +38,6 @@ if ($_POST['email'] != "" && $_POST['password'] != "") {
             header("location:/HTML/User_Page/login.php?Empty= Your account has been disabled");
         }
     } else {
-        header("location:/HTML/User_Page/login.php?Empty= Indevial email or password");
+        header("location:/HTML/User_Page/login.php?Empty= Invalid email or password");
     }
 }
-mysqli_close($conn);

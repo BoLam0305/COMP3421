@@ -18,7 +18,6 @@ async function getFoods() {
         console.log(response);
         // Parse the response
         let json = JSON.parse(response);
-        console.log(json);
         let foodName, foodID, foodImage, foodPrice;
 
         if (Object.keys(json).length === 0) {
@@ -37,6 +36,10 @@ async function getFoods() {
                     cardClone = card.cloneNode(true);
                 }
 
+                // check whether the card has a login button or an order button
+                let isLoginButtonExist = cardClone.querySelector('#LoginBtn');
+                let isOrderButtonExist = cardClone.querySelector('#OrderBtn');
+
                 // Put the json's element into variables
                 foodName = json[i].productName;
                 foodID = json[i].productID;
@@ -46,8 +49,14 @@ async function getFoods() {
                 cardClone.querySelector('#label-InStock').setAttribute('style', 'display: none');
                 cardClone.querySelector('#label-LowStock').setAttribute('style', 'display: none');
                 cardClone.querySelector('#label-SoldOut').setAttribute('style', 'display: none');
-                cardClone.querySelector('#viewBtn').classList.remove('disabled');
-                cardClone.querySelector('#viewBtn').innerText = 'Add to Cart';
+
+                if (isLoginButtonExist){
+                    cardClone.querySelector('#LoginBtn').classList.remove('disabled');
+                    cardClone.querySelector('#LoginBtn').innerText = 'Login to Order';
+                } else if (isOrderButtonExist) {
+                    cardClone.querySelector('#OrderBtn').classList.remove('disabled');
+                    cardClone.querySelector('#OrderBtn').innerText = 'Order';
+                }
 
                 // set the product's stock label
                 if (json[i].Stock === 'In Stock') {
@@ -55,9 +64,14 @@ async function getFoods() {
                 } else if (json[i].Stock === 'Low Stock') {
                     cardClone.querySelector('#label-LowStock').setAttribute('style', 'display: block');
                 } else {
-                    cardClone.querySelector('#viewBtn').classList.add('disabled');
                     cardClone.querySelector('#label-SoldOut').setAttribute('style', 'display: block');
-                    cardClone.querySelector('#viewBtn').innerText = 'Sold Out';
+                    if (isLoginButtonExist){
+                        cardClone.querySelector('#LoginBtn').classList.add('disabled');
+                        cardClone.querySelector('#LoginBtn').innerText = 'Sold Out';
+                    } else if (isOrderButtonExist) {
+                        cardClone.querySelector('#OrderBtn').classList.add('disabled');
+                        cardClone.querySelector('#OrderBtn').innerText = 'Sold Out';
+                    }
                 }
 
                 // append the image to the card independently
@@ -69,7 +83,9 @@ async function getFoods() {
                 cardClone.querySelector('#foodName').innerText = foodName;
                 cardClone.querySelector('#price').innerText = foodPrice;
 
-                cardClone.querySelector('#viewBtn').href = `foodDetails.php?foodID=${foodID}`;
+                if (isOrderButtonExist)
+                    cardClone.querySelector('#OrderBtn').href = `foodDetails.php?foodID=${foodID}`;
+
                 wrapper.appendChild(cardClone);
             }
         }
@@ -79,6 +95,7 @@ async function getFoods() {
 function getImageByID(productID, cardClone, totalImageCount) {
     let loader = document.getElementById('loadingWrapper');
     let outerWrapper = document.getElementById('foodOuterWrapper');
+    let carousel = document.getElementById('hlCarouselWrapper');
     const searchParams = new URLSearchParams();
     searchParams.append('productID', productID);
 
@@ -97,6 +114,7 @@ function getImageByID(productID, cardClone, totalImageCount) {
         if (imgCount === totalImageCount) {
             loader.remove();
             outerWrapper.setAttribute('style', 'display: block');
+            carousel.setAttribute('style', 'display: block');
         }
     }).catch(error => console.log(error));
 }
@@ -116,6 +134,8 @@ async function setCarouselHighLight(items) {
     // loop over the highlighted items and set the carousel indicators and items
     for (let i in highLightedItems) {
         let index = Number(i);
+        let banner = await getHLBanner(highLightedItems[i].productID);
+        console.log(banner)
 
         // create a new indicator and append it to the indicators
         let indicator = document.createElement('button');
@@ -142,19 +162,25 @@ async function setCarouselHighLight(items) {
         if (index === 0) {
             carouselItem.classList.add('active');
         }
-        // img.setAttribute('src', `data:image/png;base64,${highLightedItems[i].productImage}`);
-        img.setAttribute('src', `sample-image.jpg`);
-        img.classList.add('d-block');
-        img.classList.add('w-100');
-        img.classList.add('hlImage');
+        img.setAttribute('src', `data:image/png;base64,${banner}`);
+        img.classList.add('d-block', 'w-100', 'h-50', 'hlImage');
         carouselItem.appendChild(img);
 
-        caption.classList.add('carousel-caption');
-        caption.classList.add('d-none');
-        caption.classList.add('d-md-block');
+        caption.classList.add('carousel-caption', 'd-none', 'd-md-block');
         captionTitle.innerText = `Featured: ${highLightedItems[i].productName}`;
         caption.appendChild(captionTitle);
         carouselItem.appendChild(caption);
         carouselItems.appendChild(carouselItem);
     }
+}
+
+async function getHLBanner(id){
+    let searchParams = new URLSearchParams();
+    searchParams.append('productID', id);
+    return await fetch('../phpFunctions/queryImage.php', {
+        method: 'POST',
+        body: searchParams
+    }).then(response => response.text()).then(response => {
+        return response;
+    }).catch(error => console.log(error));
 }

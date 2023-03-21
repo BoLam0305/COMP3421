@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="dataSourceStorageLocal" created-in="PS-213.7172.28">
     <data-source name="21026633d@mysql.comp.polyu.edu.hk" uuid="e4dfc7ef-3154-4a59-a3ec-5f1db25a3305">
+=======
+  <component name="dataSourceStorageLocal" created-in="IU-223.8617.56">
+    <data-source name="21026633d@mysql.comp.polyu.edu.hk" uuid="936365ae-64c8-435b-aeb2-4930ee96ae12">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MARIADB" exact-version="0" />
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="MariaDB - @localhost" uuid="81cd5261-83a6-4302-abe4-281032f6ed84">
+      <database-info product="MariaDB" version="10.4.27-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.0.7" dbms="MARIADB" exact-version="10.4.27" exact-driver-version="3.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="comp3421_project" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="21026633d@mysql.comp.polyu.edu.hk [2]" uuid="b030f386-a6ed-4707-b0c4-d1086e0c4032">
+>>>>>>> origin/main
       <database-info product="MariaDB" version="10.0.26-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.0.7" dbms="MARIADB" exact-version="10.0.26" exact-driver-version="3.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>

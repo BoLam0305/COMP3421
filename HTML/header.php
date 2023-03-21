@@ -51,7 +51,7 @@ session_start();
                         <a type="button" class="btn btn-secondary loginBtn" href="/HTML/User_Page/login.php">Login</a>
                         <a type="button" class="btn btn-secondary registerBtn" href="/HTML/User_Page/sign_up.php">Register</a>
                       </div> ';
-            } else if (!$isGoogle){ // not oauth sign in
+            } else { // signed in
                 echo "<div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
                         <ul class=\"navbar-nav\">
                             <li class=\"nav-item dropdown\">
@@ -65,7 +65,7 @@ session_start();
                                     <a class=\"dropdown-item\" href=\"/HTML/User_Page/userProfile.php\">My Profile</a>
                                   </li>
                                   <li>
-                                    <a class=\"dropdown-item\" href=\"createNFT.php\">Create NFT</a>
+                                    <a class=\"dropdown-item\" href=\"../HTML/User_Page/shopping_cart.php\">Cart</a>
                                   </li>
                                   <li><hr class=\"dropdown-divider\"></li>
                                   <li><a class=\"dropdown-item\" href=\"/phpFunctions/logout.php\">Logout</a></li>
