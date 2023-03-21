@@ -48,3 +48,46 @@ i{
     cursor: pointer;
     color: #ff9800;
 }
+
+.detail-item-container-header{
+    width: 100%;
+    text-align: end;
+    border-bottom: 1px slategrey solid;
+    margin-bottom: 10px;
+}
+.price-col{
+    width: 100%;
+    text-align: end;
+}
+
+.detail-same-row{
+    display: flex;
+}
+
+.detail-price-end{
+    text-align: end;
+    width: 20%;
+}
+
+#detail-item-container > div{
+    margin-bottom: 5px;
+}
+#detail-item-container  span, .detail-price-end{
+    font-weight: bold;
+}
+
+#detail-total{
+    width: 100%;
+    text-align: end;
+    border-top:1px slategrey solid;
+    margin-top: 10px;
+}
+
+#detail-total-text{
+    font-weight: bold;
+}
+
+#myTable_info{
+    color: #FF9800;
+    font-weight: bold;
+}

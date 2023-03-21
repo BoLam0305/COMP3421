@@ -171,3 +171,7 @@ h1 small {
     justify-content: center;
     align-items: center;
 }
+
+#detail-status{
+    margin-left: 10px;
+}

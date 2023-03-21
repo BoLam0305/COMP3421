@@ -11,6 +11,7 @@
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <!--local Js-->
     <script src="../../JS/Admin_Page/ProductManagementUI.js"></script>
 

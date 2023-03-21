@@ -66,7 +66,6 @@ $(document).ready(function () {
 
 
     //DataTable
-
     var table = $('#myTable').DataTable({
         select: false,
         "columnDefs": [{
