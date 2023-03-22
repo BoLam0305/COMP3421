@@ -180,7 +180,7 @@
     </div>
 </div>
 
-
+<!-- Detail Modal -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -188,7 +188,7 @@
                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-hamburger"></i>Product #<span id="modal-product_id"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body modal-form" id="item-form">
+            <div class="modal-body modal-form" id="detail-item-form">
             <div class="row text-end modal-form-edit-btn">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
@@ -258,12 +258,12 @@
                 <div class="row">
                     <div>Image</div>
                     <div class="image-upload">
-                        <input type="file" name="" id="logo" onchange="fileValue(this)">
-                        <label for="logo" class="upload-field" id="file-label">
+                        <input type="file" name="logo" id="logo2" onchange="fileValue2(this)">
+                        <label for="logo" class="upload-field" id="file-label2">
                             <div class="file-thumbnail">
                                 <img id="detail-image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png"
                                      alt="">
-                                <h3 id="filename">
+                                <h3 id="detail-filename">
                                     Drag and Drop
                                 </h3>
                                 <p>Supports JPG, PNG, SVG</p>

@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     // Edit btn on click
     $(".modal-form-edit-btn").click(function () {
-        $("#item-form input").prop('disabled', false);
+        $("#detail-item-form input").prop('disabled', false);
         $("#detail-selected-status").prop('disabled', false);
         $("#detail-selected-promotion").prop('disabled', false);
         $("#detail-selected-category").prop('disabled', false);
@@ -54,7 +54,7 @@ $(document).ready(function () {
         }).then(response => response.text()).then(response => {
             let product = JSON.parse(response);
             console.log(product.productName);
-            $("#item-form input").prop('disabled', true);
+            $("#detail-item-form input").prop('disabled', true);
             $("#detail-selected-status").prop('disabled', true);
             $("#detail-selected-category").prop('disabled', true);
             $("#detail-selected-promotion").prop('disabled', true);
@@ -69,33 +69,36 @@ $(document).ready(function () {
     });
 
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#imagePreview').attr("src", e.target.result);
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#imageUpload").change(function () {
-        readURL(this);
-    });
-
-
-    function fileValue(value) {
-        var path = value.value;
-        var extenstion = path.split('.').pop();
-        if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
-            document.getElementById('image-preview').src = window.URL.createObjectURL(value.files[0]);
-            var filename = path.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
-            document.getElementById("filename").innerHTML = filename;
-        } else {
-            alert("File not supported. Kindly Upload the Image of below given extension ")
-        }
-    }
 
 });
+function fileValue2(value) {
+    console.log('hi');
+    var path = value.value;
+    console.log(path);
+    var extenstion = path.split('.').pop();
+    if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
+        document.getElementById('detail-image-preview').src = window.URL.createObjectURL(value.files[0]);
+        var filename = path.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
+        document.getElementById("detail-filename").innerHTML = filename;
+    } else {
+        alert("File not supported. Kindly Upload the Image of below given extension ")
+    }
+}
+
+function fileValue(value) {
+    console.log('hi2');
+
+    var path = value.value;
+    var extenstion = path.split('.').pop();
+    if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
+        document.getElementById('detail-image-preview').src = window.URL.createObjectURL(value.files[0]);
+        var filename = path.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
+        document.getElementById("detail-filename").innerHTML = filename;
+    } else {
+        alert("File not supported. Kindly Upload the Image of below given extension ")
+    }
+}
+
+
+
+
