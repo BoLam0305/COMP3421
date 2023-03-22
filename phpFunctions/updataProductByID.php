@@ -7,10 +7,10 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 
 
 $product = new  Product();
-$product->id = $_POST['userID'];
-$product->Price = $_POST['email'];
-$product->Stock = $_POST['userName'];
-$product->isPromoted = $_POST['phone'];
+$product->id = $_POST['productID'];
+$product->Price = $_POST['price'];
+$product->Stock = $_POST['stock'];
+$product->isPromoted = $_POST['promote'];
 $product->status = $_POST['status'];
 $product->category = $_POST['category'];
 $product->productName = $_POST['productName'];
@@ -23,19 +23,18 @@ $product->productName = $_POST['productName'];
 // $product->isPromoted = $product->getIsPromoted($isPromoted);
 // $product->category = $category;
 // $product->status = $product->getStatus($status);
-echo json_encode($product);
 
-// echo updateUserByID($product);
+echo updateProductByID($product);
 function updateProductByID($product)
 {
     $conn = getDBConnection();
     $arr['msg'] = '';
     try {
-        $sql = "UPDATE users 
-                SET email = ?, userName = ?, icon = ?, phone = ?, status = ?
-                WHERE userID = ?";
+        $sql = "UPDATE product 
+                SET productName = ?, Price = ?, Stock = ?, status = ?, isPromoted = ?, category = ?
+                WHERE productID = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssisi", $product->email, $product->userName, $product->icon, $product->phone, $product->status, $product->id);
+        $stmt->bind_param("siisisi", $product->productName, $product->Price, $product->Stock, $product->status, $product->isPromoted, $product->category, $product->id);
         $stmt->execute();
         mysqli_close($conn);
         $arr['msg'] = 'success';
