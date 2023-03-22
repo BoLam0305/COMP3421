@@ -66,8 +66,8 @@
 
 #hlCarousel-inner img{
     margin: auto !important;
-    width: 70% !important;
-    height: 50% !important;
+    width: 30rem !important;
+    height: 30rem !important;
 }
 
 .hlImage{

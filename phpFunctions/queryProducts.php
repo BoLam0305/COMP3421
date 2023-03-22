@@ -33,6 +33,7 @@ function getAllProducts()
                 $products[$count]['category'] = $rc['category'];
                 $products[$count]['Stock'] = $stockLevel;
                 $products[$count]['isPromoted'] = $rc['isPromoted'];
+                $products[$count]['productImage'] = $rc['icon'];
                 $count++;
             }
         } else {

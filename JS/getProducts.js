@@ -8,6 +8,7 @@ async function getFoods() {
     let allfoodBtn = document.getElementById('allBtn');
     let cardClone = card.cloneNode(true);
     let collectionHead = document.getElementById('collectionHead');
+    let carousel = document.getElementById('hlCarouselWrapper');
 
     card.setAttribute('style', 'display: none');
 
@@ -44,11 +45,14 @@ async function getFoods() {
                 foodName = json[i].productName;
                 foodID = json[i].productID;
                 foodPrice = json[i].Price;
+                foodImage = json[i].productImage;
 
                 // reset all stock labels
                 cardClone.querySelector('#label-InStock').setAttribute('style', 'display: none');
                 cardClone.querySelector('#label-LowStock').setAttribute('style', 'display: none');
                 cardClone.querySelector('#label-SoldOut').setAttribute('style', 'display: none');
+
+                cardClone.querySelector('#foodImage').src = `../img/${foodImage}`;
 
                 if (isLoginButtonExist){
                     cardClone.querySelector('#LoginBtn').classList.remove('disabled');
@@ -74,9 +78,6 @@ async function getFoods() {
                     }
                 }
 
-                // append the image to the card independently
-                getImageByID(json[i].productID, cardClone, json.length);
-
                 // Append the food card to the cardWrapper
                 cardClone.setAttribute('id', 'foodCard' + i);
                 cardClone.setAttribute('style', 'display: block');
@@ -88,30 +89,7 @@ async function getFoods() {
 
                 wrapper.appendChild(cardClone);
             }
-        }
-    }).catch(error => console.log(error));
-}
 
-function getImageByID(productID, cardClone, totalImageCount) {
-    let loader = document.getElementById('loadingWrapper');
-    let outerWrapper = document.getElementById('foodOuterWrapper');
-    let carousel = document.getElementById('hlCarouselWrapper');
-    const searchParams = new URLSearchParams();
-    searchParams.append('productID', productID);
-
-    // fetch only the image from the database
-    fetch('../phpFunctions/queryImage.php', {
-        method: 'POST',
-        body: searchParams
-    }).then(response => response.text()).then(response => {
-        // append the image to the card
-        cardClone.querySelector('#foodImage').src = `data:image/png;base64,${response}`;
-
-        // increment the image count
-        imgCount++;
-
-        // if the image count is equal to the total image count, remove the loader and enable the view all button
-        if (imgCount === totalImageCount) {
             loader.remove();
             outerWrapper.setAttribute('style', 'display: block');
             carousel.setAttribute('style', 'display: block');
@@ -134,7 +112,7 @@ async function setCarouselHighLight(items) {
     // loop over the highlighted items and set the carousel indicators and items
     for (let i in highLightedItems) {
         let index = Number(i);
-        let banner = await getHLBanner(highLightedItems[i].productID);
+        let banner = highLightedItems[i].productImage;
         console.log(banner)
 
         // create a new indicator and append it to the indicators
@@ -162,7 +140,7 @@ async function setCarouselHighLight(items) {
         if (index === 0) {
             carouselItem.classList.add('active');
         }
-        img.setAttribute('src', `data:image/png;base64,${banner}`);
+        img.setAttribute('src', `../img/${banner}`);
         img.classList.add('d-block', 'w-100', 'h-50', 'hlImage');
         carouselItem.appendChild(img);
 
@@ -172,15 +150,4 @@ async function setCarouselHighLight(items) {
         carouselItem.appendChild(caption);
         carouselItems.appendChild(carouselItem);
     }
-}
-
-async function getHLBanner(id){
-    let searchParams = new URLSearchParams();
-    searchParams.append('productID', id);
-    return await fetch('../phpFunctions/queryImage.php', {
-        method: 'POST',
-        body: searchParams
-    }).then(response => response.text()).then(response => {
-        return response;
-    }).catch(error => console.log(error));
 }
