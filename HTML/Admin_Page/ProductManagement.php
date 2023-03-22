@@ -11,6 +11,8 @@
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
     <!--local Js-->
     <script src="../../JS/Admin_Page/ProductManagementUI.js"></script>
@@ -35,20 +37,20 @@
 <div>Menu-bar</div>
 <div id="main-container" class="row">
     <div class="col-2 h-100" id="left-menu">
-        <div class="row-3 left-menu-target">Menu Management</div>
-        <div class="row-3">Order Management</div>
-        <div class="row-3">User Management</div>
+        <div class="row-3 left-menu-target"><a href="./ProductManagement.php"> Menu Management</a></div>
+        <div class="row-3"> <a href="./OrderManagement.php">Order Management</a></div>
+        <div class="row-3"><a href="./UserManagement.php">User Management</a></div>
     </div>
     <div id="right-content" class="col-10">
         <div class="container">
-            <table class="table caption-top table-hover">
+            <table class="table caption-top table-hover" id="myTable">
                 <div id="table-header">
                     <div>Items Management</div>
                     <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus-square"></i></div>
                 </div>
-
                 <thead>
                 <tr>
+                    <th scope="col">#ID</th>
                     <th scope="col">#ID</th>
                     <th scope="col"><i class="fas fa-hamburger"></i>Name</th>
                     <th scope="col"><i class="fas fa-utensils"></i>Category</th>
@@ -66,12 +68,13 @@
                 for ($i = 0; $i < count($productes); $i++) {
                     echo '<tr>';
                     echo ' <td class="align-middle">' . $productes[$i]->id . '</td>';
+                    echo ' <td class="align-middle">' . $productes[$i]->id . '</td>';
                     echo ' <td class="align-middle">' . $productes[$i]->productName . '</td>';
                     echo ' <td class="align-middle">' . $productes[$i]->category . '</td>';
                     echo ' <td class="align-middle">' . $productes[$i]->Price . '</td>';
                     echo ' <td class="align-middle">' . $productes[$i]->isPromoted . '</td>';
                     echo ' <td class="align-middle">' . $productes[$i]->Stock . '</td>';
-                    echo ' <td class="align-middle">' . $productes[$i]->status . '</td>';
+                    echo ' <td class="align-middle td-status">' . $productes[$i]->status . '</td>';
                     echo '<td class="align-middle"><button value="' . $productes[$i]->id . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
                     echo '</tr>';
                 }
@@ -88,10 +91,23 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add a user <i class="fas fa-hamburger"></i></h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add a Product <i class="fas fa-hamburger"></i></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-form" id="item-form">
+                <div class="row">
+                    <div>
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' name="image" id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <img id="imagePreview" src="../../img/Product/default_product.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div>Name</div>
                     <div>
@@ -155,21 +171,7 @@
                     </div>
 
                 </div>
-                <div class="row">
-                    <div>Image</div>
-                    <div class="image-upload">
-                        <input type="file" name="" id="logo" onchange="fileValue(this)">
-                        <label for="logo" class="upload-field" id="file-label">
-                            <div class="file-thumbnail">
-                                <img id="image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png" alt="">
-                                <h3 id="filename">
-                                    Drag and Drop
-                                </h3>
-                                <p>Supports JPG, PNG, SVG</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -190,6 +192,19 @@
             <div class="modal-body modal-form" id="detail-item-form">
                 <div class="row text-end modal-form-edit-btn">
                     <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+                <div class="row">
+                    <div>
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' name="image" id="imageOnLoad" accept=".png, .jpg, .jpeg"/>
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <img id="detail_imagePreview" src="" alt="">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div>Name</div>
@@ -254,21 +269,7 @@
                     </div>
 
                 </div>
-                <div class="row">
-                    <div>Image</div>
-                    <div class="image-upload">
-                        <input type="file" name="logo" id="logo2" onchange="fileValue2(this)">
-                        <label for="logo" class="upload-field" id="file-label2">
-                            <div class="file-thumbnail">
-                                <img id="detail-image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png" alt="">
-                                <h3 id="detail-filename">
-                                    Drag and Drop
-                                </h3>
-                                <p>Supports JPG, PNG, SVG</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

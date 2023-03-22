@@ -99,3 +99,12 @@ i{
 #voidReason{
     margin-bottom: 10px;
 }
+
+.status-disable{
+    color: red;
+    font-weight: bold;
+}
+.status-enable{
+    color: limegreen;
+    font-weight: bold;
+}

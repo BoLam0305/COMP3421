@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($fileTmpName, getProductPath() . $fileName);
         echo "File uploaded successfully.";
     } else {
-        $fileName = 'default_profile.jpg';
+        $fileName = 'default_product.png';
     }
 
 

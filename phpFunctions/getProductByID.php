@@ -31,7 +31,7 @@ function getProductByID($productID)
         $product->isPromoted = $product->getIsPromoted($isPromoted);
         $product->category = $category;
         $product->status = $product->getStatus($status);
-
+        $product->img_path = $img_path;
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }

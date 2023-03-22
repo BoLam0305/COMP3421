@@ -1,4 +1,16 @@
 $(document).ready(function () {
+    $(".td-status").each(function() {
+        let status = $(this).text();
+        console.log(status);
+        if (status==='Disable'){
+            $(this).addClass("status-disable");
+        }
+
+        if (status==='Enable'){
+            $(this).addClass("status-enable");
+        }
+    });
+
     $(".category-dropdown-item").click(function () {
         let selected_category = $(this).text();
         $("#detail-selected-category").text(selected_category);
@@ -41,8 +53,6 @@ $(document).ready(function () {
     // Detail Modal Get Product By ID
     $(".detail-modal-btn").click(function () {
         let productID = $(this).attr("value");
-        // $("#detail-email-msg").text("");
-        // $("#detail-phone-msg").text("");
         let data = {
             productID: productID
         }
@@ -52,6 +62,7 @@ $(document).ready(function () {
 
         }).then(response => response.text()).then(response => {
             let product = JSON.parse(response);
+            console.log(product);
             $("#detail-item-form input").prop('disabled', true);
             $("#detail-selected-status").prop('disabled', true);
             $("#detail-selected-category").prop('disabled', true);
@@ -63,35 +74,30 @@ $(document).ready(function () {
             $("#detail-selected-category").text(product.category);
             $("#detail-selected-promotion").text(product.isPromoted);
             $("#modal-product_id").text(product.id);
+            $("#detail_imagePreview").attr("src", "../../img/Product/" + product.img_path);
+
+
         }).catch(error => console.log(error));
     });
 
 
+    //DataTable
+    var table = $('#myTable').DataTable({
+        select: false,
+        "columnDefs": [{
+            className: "Name",
+            "targets": [0],
+            "visible": false,
+            "searchable": false
+        }]
+    });//End of create main table
+    $('#example tbody').on('click', 'tr', function () {
+        alert(table.row(this).data()[0]);
+
+    });
+
 
 });
-function fileValue2(value) {
-    var path = value.value;
-    var extenstion = path.split('.').pop();
-    if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
-        document.getElementById('detail-image-preview').src = window.URL.createObjectURL(value.files[0]);
-        var filename = path.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
-        document.getElementById("detail-filename").innerHTML = filename;
-    } else {
-        alert("File not supported. Kindly Upload the Image of below given extension ")
-    }
-}
-
-function fileValue(value) {
-    var path = value.value;
-    var extenstion = path.split('.').pop();
-    if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
-        document.getElementById('detail-image-preview').src = window.URL.createObjectURL(value.files[0]);
-        var filename = path.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
-        document.getElementById("detail-filename").innerHTML = filename;
-    } else {
-        alert("File not supported. Kindly Upload the Image of below given extension ")
-    }
-}
 
 
 

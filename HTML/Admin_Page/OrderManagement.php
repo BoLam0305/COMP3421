@@ -43,6 +43,7 @@
                 <thead>
                 <tr>
                     <th scope="col">#ID</th>
+                    <th scope="col">#ID</th>
                     <th scope="col"><i class="fas fa-user"></i>Buyer ID</th>
                     <th scope="col"><i class="fas fa-user"></i>Buyer</th>
                     <th scope="col">$ Price</th>
@@ -57,6 +58,7 @@
                 $orders = json_decode(get_all_products(), false);
                 for ($i = 0; $i < count($orders); $i++) {
                     echo '<tr>';
+                    echo ' <td class="align-middle">' . $orders[$i]->orderID . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->orderID . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->userID . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->userName . '</td>';

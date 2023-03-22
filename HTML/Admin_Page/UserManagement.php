@@ -5,9 +5,10 @@
     <title>User Management</title>
 
     <!--local CSS-->
-    <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
+
     <link href="../../CSS/Admin_Page/right-management.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
+    <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
@@ -44,6 +45,7 @@
             </div>
             <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope="col">#ID</th>
                 <th scope="col"><i class="fas fa-user"></i>Name</th>
                 <th scope="col"><i class="fas fa-envelope"></i>Email</th>
@@ -58,6 +60,7 @@
             $users = json_decode(get_all_users(), false);
             for ($i = 0; $i < count($users); $i++) {
                 echo '<tr>';
+                echo ' <td class="align-middle">' . $users[$i]->id . '</td>';
                 echo ' <td class="align-middle">' . $users[$i]->id . '</td>';
                 echo ' <td class="align-middle">' . $users[$i]->userName . '</td>';
                 echo ' <td class="align-middle">' . $users[$i]->email . '</td>';
