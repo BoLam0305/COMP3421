@@ -10,9 +10,9 @@ $(document).ready(function () {
         let status = $("#detail-selected-status").text();
         let category = $("#detail-selected-category").text();
 
-        if(promote == 'Promoting'){
+        if (promote == 'Promoting') {
             promote = 1;
-        }else{
+        } else {
             promote = 0;
         }
 
@@ -27,7 +27,7 @@ $(document).ready(function () {
         };
         console.log(data);
 
-        if (formValidation(data)){
+        if (formValidation(data)) {
             fetch('../../phpFunctions/updataProductByID.php', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -55,12 +55,12 @@ $(document).ready(function () {
 
             form = false;
         }
-        if (detail_price_msg !== '' || data.price === '') {
+        if (detail_price_msg !== '' || data.price === '' || data.price < 0) {
             $("#detail-productName-msg").text('Please enter an valid Price');
 
             form = false;
         }
-        if (detail_stock_msg !== '' || data.stock === '') {
+        if (detail_stock_msg !== '' || data.stock === '' || data.stock < 0) {
             $("#detail-productName-msg").text('Please enter an valid Stock');
 
             form = false;
@@ -102,8 +102,11 @@ $(document).ready(function () {
 
     $("#detail-productPrice").keyup(function () {
         let enter_text = $(this).val();
+
         if (enter_text == "") {
             $("#detail-price-msg").text('Please enter Price');
+        } else if (enter_text <= 0) {
+            $("#detail-price-msg").text('Please enter a valid Price');
         } else {
             $("#detail-price-msg").text('');
         }
@@ -114,6 +117,8 @@ $(document).ready(function () {
         let enter_text = $(this).val();
         if (enter_text == "") {
             $("#detail-stock-msg").text('Please enter Stock');
+        } else if (enter_text <= 0) {
+            $("#detail-stock-msg").text('Please enter a valid Stock');
         } else {
             $("#detail-stock-msg").text('');
         }
