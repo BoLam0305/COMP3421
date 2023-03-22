@@ -91,3 +91,11 @@ i{
     color: #FF9800;
     font-weight: bold;
 }
+
+.err-msg{
+    color: red;
+}
+
+#voidReason{
+    margin-bottom: 10px;
+}
