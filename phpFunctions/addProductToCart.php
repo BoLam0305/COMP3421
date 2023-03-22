@@ -32,6 +32,7 @@ function addItemToCart () {
         if ($productID1 == $productID && isset($_SESSION['cart'][$productID])) {
             $_SESSION['cart'][$productID]['count'] = $_SESSION['cart'][$productID]['count'] + 1;
         } else if ($productID1 == $productID && !isset($_SESSION['cart'][$productID])) {
+            $_SESSION['cart'][$productID]['productID'] = $productID;
             $_SESSION['cart'][$productID]['count'] = 1;
         } else {
             echo "Error when adding your item to the cart";
