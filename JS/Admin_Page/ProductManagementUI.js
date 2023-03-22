@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log("Loading");
     $(".category-dropdown-item").click(function () {
         let selected_category = $(this).text();
         $("#detail-selected-category").text(selected_category);
@@ -53,7 +52,6 @@ $(document).ready(function () {
 
         }).then(response => response.text()).then(response => {
             let product = JSON.parse(response);
-            console.log(product.productName);
             $("#detail-item-form input").prop('disabled', true);
             $("#detail-selected-status").prop('disabled', true);
             $("#detail-selected-category").prop('disabled', true);
@@ -72,9 +70,7 @@ $(document).ready(function () {
 
 });
 function fileValue2(value) {
-    console.log('hi');
     var path = value.value;
-    console.log(path);
     var extenstion = path.split('.').pop();
     if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
         document.getElementById('detail-image-preview').src = window.URL.createObjectURL(value.files[0]);
@@ -86,8 +82,6 @@ function fileValue2(value) {
 }
 
 function fileValue(value) {
-    console.log('hi2');
-
     var path = value.value;
     var extenstion = path.split('.').pop();
     if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
