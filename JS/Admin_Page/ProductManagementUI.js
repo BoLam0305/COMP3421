@@ -1,25 +1,49 @@
 $(document).ready(function () {
+    console.log("Loading");
     $(".category-dropdown-item").click(function () {
         let selected_category = $(this).text();
-        $("#selected-category").text(selected_category);
+        $("#detail-selected-category").text(selected_category);
     });
 
     $(".promotion-dropdown-item").click(function () {
         let selected_promotion = $(this).text();
-        $("#selected-promotion").text(selected_promotion);
+        $("#detail-selected-promotion").text(selected_promotion);
     });
 
     $(".status-dropdown-item").click(function () {
         let selected_status = $(this).text();
-        $("#selected-status").text(selected_status);
+        $("#detail-selected-status").text(selected_status);
+    });
+
+    // add-status-dropdown on click
+    $(".add-status-dropdown").click(function () {
+        let selected_status = $(this).text();
+        $("#add-status-msg").text("");
+        $("#add_status").text(selected_status);
+    });
+
+    // add-userType-dropdown on click
+    $(".add-userType-dropdown").click(function () {
+        let selected_userType = $(this).text();
+        $("#add-type-msg").text("");
+        $("#add_userType").text(selected_userType);
+    });
+
+    // Edit btn on click
+    $(".modal-form-edit-btn").click(function () {
+        $("#item-form input").prop('disabled', false);
+        $("#detail-selected-status").prop('disabled', false);
+        $("#detail-selected-promotion").prop('disabled', false);
+        $("#detail-selected-category").prop('disabled', false);
+
     });
 
 
     // Detail Modal Get Product By ID
     $(".detail-modal-btn").click(function () {
         let productID = $(this).attr("value");
-        $("#detail-email-msg").text("");
-        $("#detail-phone-msg").text("");
+        // $("#detail-email-msg").text("");
+        // $("#detail-phone-msg").text("");
         let data = {
             productID: productID
         }
@@ -28,36 +52,50 @@ $(document).ready(function () {
             body: JSON.stringify(data),
 
         }).then(response => response.text()).then(response => {
-            console.log(response);
             let product = JSON.parse(response);
-            console.log(product);
-            $("#detail-form input").prop('disabled', true);
-            $("#detail-status").prop('disabled', true);
-            $("#detail-category").prop('disabled', true);
-            $("#detail-promote").prop('disabled', true);
+            console.log(product.productName);
+            $("#item-form input").prop('disabled', true);
+            $("#detail-selected-status").prop('disabled', true);
+            $("#detail-selected-category").prop('disabled', true);
+            $("#detail-selected-promotion").prop('disabled', true);
             $("#detail-productName").val(product.productName);
-            $("#detail-price").val(product.Price);
+            $("#detail-productPrice").val(product.Price);
             $("#detail-stock").val(product.Stock);
-            $("#detail-status").text(product.status);
-            $("#detail-category").text(product.category);
-            $("#detail-promote").text(product.isPromoted);
+            $("#detail-selected-status").text(product.status);
+            $("#detail-selected-category").text(product.category);
+            $("#detail-selected-promotion").text(product.isPromoted);
             $("#modal-product_id").text(product.id);
         }).catch(error => console.log(error));
     });
 
 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr("src", e.target.result);
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
+    $("#imageUpload").change(function () {
+        readURL(this);
+    });
+
+
+    function fileValue(value) {
+        var path = value.value;
+        var extenstion = path.split('.').pop();
+        if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
+            document.getElementById('image-preview').src = window.URL.createObjectURL(value.files[0]);
+            var filename = path.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
+            document.getElementById("filename").innerHTML = filename;
+        } else {
+            alert("File not supported. Kindly Upload the Image of below given extension ")
+        }
+    }
 
 });
-
-function fileValue(value) {
-    var path = value.value;
-    var extenstion = path.split('.').pop();
-    if (extenstion == "jpg" || extenstion == "svg" || extenstion == "jpeg" || extenstion == "png" || extenstion == "gif") {
-        document.getElementById('image-preview').src = window.URL.createObjectURL(value.files[0]);
-        var filename = path.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
-        document.getElementById("filename").innerHTML = filename;
-    } else {
-        alert("File not supported. Kindly Upload the Image of below given extension ")
-    }
-}
