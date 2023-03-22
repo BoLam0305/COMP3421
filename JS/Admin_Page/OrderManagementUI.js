@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $("#voidReason-div").hide();
     // Detail Modal Get Order By ID
     $(".detail-modal-btn").click(function () {
 
@@ -26,6 +27,8 @@ $(document).ready(function () {
             }
         });
     });
+
+
 
     function createItemHTML(products) {
         let html = '';
@@ -58,6 +61,16 @@ $(document).ready(function () {
     });//End of create main table
     $('#example tbody').on('click', 'tr', function () {
         alert(table.row(this).data()[0]);
+    });
 
+    $(".detail-status-item").click(function () {
+       let selected_status = $(this).text();
+       $("#detail-status").text(selected_status);
+
+       if (selected_status === 'Void'){
+           $("#voidReason-div").show();
+       }else{
+           $("#voidReason-div").hide();
+       }
     });
 });

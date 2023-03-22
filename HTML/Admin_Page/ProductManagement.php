@@ -96,7 +96,7 @@
                     <div>
                         <input type="text" id="productName">
                     </div>
-                    <div id="add-productName-msg"></div>
+                    <div id="add-productName-msg" class="err-msg"></div>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -146,12 +146,14 @@
                         <div>
                             <input type="number" id="productPrice">
                         </div>
+                        <div id="add-price-msg" class="err-msg"></div>
                     </div>
                     <div class="col">
                         <div>Stock</div>
                         <div>
                             <input type="number" id="stock">
                         </div>
+                        <div id="add-stock-msg" class="err-msg"></div>
                     </div>
 
                 </div>
@@ -246,12 +248,14 @@
                         <div>
                             <input type="number" id="detail-productPrice">
                         </div>
+
                     </div>
                     <div class="col">
                         <div>Stock</div>
                         <div>
                             <input type="number" id="detail-stock">
                         </div>
+
                     </div>
 
                 </div>

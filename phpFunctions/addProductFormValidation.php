@@ -6,6 +6,10 @@ date_default_timezone_set('Asia/Hong_Kong');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['method'] == 'checkProductIsExist') {
         echo checkProductIsExist($_POST['value']);
+    }else if ($_POST['method'] == 'checkPrice'){
+        echo checkPrice($_POST['value']);
+    }else if($_POST['method'] == 'checkStock'){
+        echo checkStock($_POST['value']);
     }
 
 
@@ -38,6 +42,28 @@ function checkProductIsExist($productName)
 
     return json_encode($myObj, JSON_PRETTY_PRINT);
 
+}
+
+function checkPrice($price)
+{
+    $myObj = new stdClass();
+    if ($price <= 0) {
+        $myObj->status = 'fail';
+        $myObj->msg = 'price must larger than 1';
+    } else {
+        $myObj->status = 'success';
+    }
+}
+
+function checkStock($stock)
+{
+    $myObj = new stdClass();
+    if ($stock <= 0) {
+        $myObj->status = 'fail';
+        $myObj->msg = 'price must larger than 1';
+    } else {
+        $myObj->status = 'success';
+    }
 }
 
 

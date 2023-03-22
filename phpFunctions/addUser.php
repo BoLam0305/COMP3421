@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $user = new User();
     $user->email = $_POST['email'];
-    $user->password = $_POST['password'];
+    $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $user->userName = $_POST['userName'];
     $user->phone = $_POST['phone'];
     $user->setType($_POST['userType']);

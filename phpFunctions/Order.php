@@ -9,5 +9,6 @@ class Order
     public $total;
     public $status;
     public $products;
+    public $voidReason;
 
 }
