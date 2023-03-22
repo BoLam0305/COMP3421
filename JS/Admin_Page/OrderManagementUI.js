@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("#voidReason-div").hide();
     // Detail Modal Get Order By ID
     $(".detail-modal-btn").click(function () {
-
+        $("#get-voidReason").text('');
         let orderID = $(this).attr("value");
         var form_data = new FormData();
         form_data.append("order_id", orderID);
@@ -24,6 +24,10 @@ $(document).ready(function () {
                 $("#detail-total-text").text(json[0].total);
                 $("#detail-item-container").html(createItemHTML(json[0].products));
 
+                if (json[0].voidReason != ''){
+                    $("#get-voidReason").text('Void Reason: '+json[0].voidReason);
+
+                }
             }
         });
     });

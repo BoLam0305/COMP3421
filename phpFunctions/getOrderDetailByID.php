@@ -34,6 +34,7 @@ function getOrderDetailByID($orderID)
                 $order->orderDate = $orderDate;
                 $order->total = $total;
                 $order->status = $status;
+                $order->voidReason = $voidReason;
                 $order_list[] = $order;
                 $order->products = getProductsByOrderID($orderID);
             }

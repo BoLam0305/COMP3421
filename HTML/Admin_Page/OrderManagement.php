@@ -30,9 +30,9 @@
 <div>Menu-bar</div>
 <div id="main-container" class="row">
     <div class="col-2 h-100" id="left-menu">
-        <div class="row-3">Menu Management</div>
-        <div class="row-3 left-menu-target">Order Management</div>
-        <div class="row-3">User Management</div>
+        <div class="row-3"><a href="./ProductManagement.php">Menu Management</a></div>
+        <div class="row-3 left-menu-target"><a href="./OrderManagement.php">Order Management</a> </div>
+        <div class="row-3"><a href="./UserManagement.php">User Management</a></div>
     </div>
     <div id="right-content" class="col-10">
         <div class="container">
@@ -101,6 +101,9 @@
                             </div>
                             </p>
                         </div>
+                    </div>
+                    <div class="row">
+                        <p id="get-voidReason"></p>
                     </div>
                     <div class="row" id="voidReason-div">
                         <p>Reason</p>
