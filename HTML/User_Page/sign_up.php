@@ -18,7 +18,7 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-lg-8 col-xl-6">
                     <div class="card rounded-3" style="box-shadow:0px 5px 15px rgb(0 0 0 / 10%);">
-                        <img src="../../img/VA1.jpg" class="w-100"
+                        <img src="../../img/VA1.jpeg" class="w-100"
                             style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;" alt="Sample photo">
                         <div class="card-body p-4 p-md-5">
                             <h3 class="mb-2 pb-2 pb-md-0 mb-md-4 px-md-2">Sign up</h3>
