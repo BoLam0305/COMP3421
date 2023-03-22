@@ -165,6 +165,8 @@ function addItemToCart(id) {
             alert('Item had been added to cart successfully');
         } else if (response === 'Out of stock') {
             alert('Item is out of stock, please try again later.');
+        } else if (response === 'Max amount in cart') {
+            alert('You have reached the maximum number of this item in your cart, please checkout or remove some items.');
         } else {
             alert('There was an error adding the item to cart, please try again later.');
         }
