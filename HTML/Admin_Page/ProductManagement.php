@@ -96,6 +96,7 @@
                     <div>
                         <input type="text" id="productName">
                     </div>
+                    <div id="add-productName-msg"></div>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -103,7 +104,7 @@
                         <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false" id="selected-category">
-                                Select a type
+                                Food
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item category-dropdown-item" href="#">Food</a></li>
@@ -117,7 +118,7 @@
                         <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false" id="selected-status">
-                                Select a type
+                                Enable
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item status-dropdown-item" href="#">Disable</a></li>
@@ -130,7 +131,7 @@
                         <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false" id="selected-promotion">
-                                Select a type
+                                Not Promoted
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item promotion-dropdown-item" href="#">Promote</a></li>

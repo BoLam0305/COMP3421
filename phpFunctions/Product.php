@@ -11,6 +11,7 @@ class Product
     public $isPromoted;
     public $icon;
     public $category;
+    public $img_path;
 
 
 
