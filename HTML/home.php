@@ -51,7 +51,8 @@
                                               </button>";
                                     }
                                     else {
-                                        echo "<a type='button' class='btn btn-outline-secondary viewBtn w-100' id='OrderBtn' href=''>
+                                        echo "<a type=\"button\" class=\"btn btn-outline-secondary viewBtn w-100\" id=\"OrderBtn\"
+                                                >
                                                 Order
                                               </a>";
                                     } ?>

@@ -53,7 +53,7 @@ function getAllProducts()
         } else {
             $noProducts = array();
             $noProducts['error'] = 'No products found';
-            echo json_encode($noProducts, JSON_PRETTY_PRINT);
+            return json_encode($noProducts, JSON_PRETTY_PRINT);
         }
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";

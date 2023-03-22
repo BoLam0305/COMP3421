@@ -60,6 +60,7 @@ async function getFoods() {
                 } else if (isOrderButtonExist) {
                     cardClone.querySelector('#OrderBtn').classList.remove('disabled');
                     cardClone.querySelector('#OrderBtn').innerText = 'Order';
+                    cardClone.querySelector('#OrderBtn').setAttribute('item', foodID);
                 }
 
                 // set the product's stock label
@@ -85,7 +86,7 @@ async function getFoods() {
                 cardClone.querySelector('#price').innerText = foodPrice;
 
                 if (isOrderButtonExist)
-                    cardClone.querySelector('#OrderBtn').href = `foodDetails.php?foodID=${foodID}`;
+                    cardClone.setAttribute('onclick', `addItemToCart(${foodID})`);
 
                 wrapper.appendChild(cardClone);
             }
@@ -150,4 +151,23 @@ async function setCarouselHighLight(items) {
         carouselItem.appendChild(caption);
         carouselItems.appendChild(carouselItem);
     }
+}
+
+function addItemToCart(id) {
+    let formData = new FormData();
+    formData.append('id', id);
+
+    fetch('../phpFunctions/addProductToCart.php', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.text()).then(response => {
+        if(response === 'Item added to cart'){
+            alert('Item had been added to cart successfully');
+        } else if (response === 'Out of stock') {
+            alert('Item is out of stock, please try again later.');
+        } else {
+            alert('There was an error adding the item to cart, please try again later.');
+        }
+        console.log(response);
+    }).catch(error => console.log(error));
 }
