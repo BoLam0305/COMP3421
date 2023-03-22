@@ -23,9 +23,10 @@ $product->productName = $_POST['productName'];
 // $product->isPromoted = $product->getIsPromoted($isPromoted);
 // $product->category = $category;
 // $product->status = $product->getStatus($status);
+echo json_encode($product);
 
-echo updateUserByID($user);
-function updateUserByID($user)
+// echo updateUserByID($product);
+function updateProductByID($product)
 {
     $conn = getDBConnection();
     $arr['msg'] = '';
@@ -34,7 +35,7 @@ function updateUserByID($user)
                 SET email = ?, userName = ?, icon = ?, phone = ?, status = ?
                 WHERE userID = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssisi", $user->email, $user->userName, $user->icon, $user->phone, $user->status, $user->id);
+        $stmt->bind_param("sssisi", $product->email, $product->userName, $product->icon, $product->phone, $product->status, $product->id);
         $stmt->execute();
         mysqli_close($conn);
         $arr['msg'] = 'success';
