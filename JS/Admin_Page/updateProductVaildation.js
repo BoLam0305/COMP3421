@@ -1,0 +1,184 @@
+$(document).ready(function () {
+    console.log('updata ready');
+    // Detail Modal Update User By ID
+    $("#detain-save-btn").click(function () {
+        let productID = $("#modal-product_id").text();
+        let productName = $("#detail-productName").val();
+        let price = $("#detail-productPrice").val();
+        let stock = $("#detail-stock").val();
+        let promote = $("#detail-selected-promotion").text();
+        let status = $("#detail-selected-status").text();
+        let category = $("#detail-selected-category").text();
+
+        if(promote == 'Promoting'){
+            promote = 1;
+        }else{
+            promote = 0;
+        }
+
+        let data = {
+            productID: productID,
+            productName: productName,
+            price: price,
+            stock: stock,
+            promote: promote,
+            status: status,
+            category: category,
+        };
+        console.log(data);
+
+        if (formValidation(data)){
+            fetch('../../phpFunctions/updataProductByID.php', {
+                method: 'POST',
+                body: JSON.stringify(data),
+
+            }).then(response => response.text()).then(response => {
+                if (response == 'success') {
+                    location.reload();
+                } else {
+                    console.log(response);
+                }
+            }).catch(error => console.log(error));
+        }
+
+    });
+
+    // form validation
+    function formValidation(data) {
+        let form = true;
+        let detail_product_msg = $("#detail-productName-msg").text();
+        let detail_price_msg = $("#detail-price-msg").text();
+        let detail_stock_msg = $("#detail-stock-msg").text();
+
+        if (detail_product_msg !== '' || data.productName === '') {
+            $("#detail-productName-msg").text('Please enter an valid Name');
+
+            form = false;
+        }
+        if (detail_price_msg !== '' || data.price === '') {
+            $("#detail-productName-msg").text('Please enter an valid Price');
+
+            form = false;
+        }
+        if (detail_stock_msg !== '' || data.stock === '') {
+            $("#detail-productName-msg").text('Please enter an valid Stock');
+
+            form = false;
+        }
+
+        return form;
+    }
+
+    //Name checking If Exist
+    $("#detail-productName").keyup(function () {
+        let enter_text = $(this).val();
+        let productID = $("#modal-product_id").text();
+        if (enter_text == "") {
+            $("#detail-productName-msg").text('Please enter a product name');
+        } else {
+            let value = {
+                method: 'checkName',
+                value: enter_text,
+                productID: productID,
+            }
+            console.log(value);
+            $.ajax({
+                type: "POST",
+                url: '../../phpFunctions/updateProductFromValidation.php',
+                data: value,
+                success: function (response) {
+                    let msg = JSON.parse(response);
+                    console.log(msg);
+                    if (msg.status == 'fail') {
+                        $("#detail-productName-msg").text(msg.msg);
+                    } else {
+                        $("#detail-productName-msg").text('');
+                    }
+                }
+            });
+        }
+
+    });
+
+    $("#detail-productPrice").keyup(function () {
+        let enter_text = $(this).val();
+        if (enter_text == "") {
+            $("#detail-price-msg").text('Please enter Price');
+        } else {
+            $("#detail-price-msg").text('');
+        }
+
+    });
+
+    $("#detail-stock").keyup(function () {
+        let enter_text = $(this).val();
+        if (enter_text == "") {
+            $("#detail-stock-msg").text('Please enter Stock');
+        } else {
+            $("#detail-stock-msg").text('');
+        }
+
+    });
+
+    // email checking If Exist
+    // $("#detail-email").keyup(function () {
+    //     let enter_text = $(this).val();
+    //     let userID = $("#modal-user_id").text();
+    //     if (enter_text == "") {
+    //         $("#add-email-msg").text('please enter your email');
+    //     } else {
+    //         let value = {
+    //             method: 'checkEmailIsExist',
+    //             value: enter_text,
+    //             formUserID: userID
+    //         };
+    //         $.ajax({
+    //             type: "POST",
+    //             url: '../../phpFunctions/updateUserFromValidation.php',
+    //             data: value,
+    //             success: function (response) {
+    //                 let msg = JSON.parse(response);
+    //                 console.log(msg);
+    //                 if (msg.status == 'fail') {
+    //                     $("#detail-email-msg").text(msg.msg);
+    //                 } else {
+    //                     $("#detail-email-msg").text('');
+    //                 }
+    //             }
+    //         });
+    //     }
+
+    // });
+
+    // email phone If Exist
+    // $("#detail-price").keyup(function () {
+    //     let enter_text = $(this).val();
+    //     let userID = $("#modal-user_id").text();
+    //     if (enter_text == "") {
+    //         $("#detail-price-msg").text('Please enter the price');
+    //     } else {
+    //         let value = {
+    //             method: 'checkPhone',
+    //             value: enter_text,
+    //             formUserID: userID
+    //         }
+    //         $.ajax({
+    //             type: "POST",
+    //             url: '../../phpFunctions/updateUserFromValidation.php',
+    //             data: value,
+    //             success: function (response) {
+    //                 let msg = JSON.parse(response);
+    //                 console.log(msg);
+    //                 if (msg.status == 'fail') {
+    //                     $("#detail-phone-msg").text(msg.msg);
+    //                 } else {
+    //                     $("#detail-phone-msg").text('');
+    //                 }
+    //             }
+    //         });
+    //     }
+
+    // });
+
+
+});

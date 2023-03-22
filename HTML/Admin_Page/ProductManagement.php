@@ -14,6 +14,8 @@
 
     <!--local Js-->
     <script src="../../JS/Admin_Page/ProductManagementUI.js"></script>
+    <script src="../../JS/Admin_Page/addProductValidation.js"></script>
+    <script src="../../JS/Admin_Page/updateProductVaildation.js"></script>
 
     <!--Bosstrap-->
     <script src="https://kit.fontawesome.com/ceae024db6.js" crossorigin="anonymous"></script>
@@ -93,27 +95,63 @@
                     <div class="row">
                         <div>Name</div>
                         <div>
-                            <input type="text">
+                            <input type="text" id="productName">
+                        </div>
+                        <div id="add-productName-msg"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div>Category</div>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="selected-category">
+                                    Food
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item category-dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item category-dropdown-item" href="#">Drink</a></li>
+                                    <li><a class="dropdown-item category-dropdown-item" href="#">Main</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>Status</div>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="selected-status">
+                                    Enable
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item status-dropdown-item" href="#">Disable</a></li>
+                                    <li><a class="dropdown-item status-dropdown-item" href="#">Enable</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>Promotion</div>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="selected-promotion">
+                                    Not Promoted
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item promotion-dropdown-item" href="#">Promote</a></li>
+                                    <li><a class="dropdown-item promotion-dropdown-item" href="#">Not Promoted</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div>Category</div>
-                        <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Select a type
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Food</a></li>
-                                <li><a class="dropdown-item" href="#">Drink</a></li>
-                                <li><a class="dropdown-item" href="#">Main</a></li>
-                            </ul>
+                        <div class="col">
+                            <div>Price</div>
+                            <div>
+                                <input type="number" id="productPrice">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div>Price</div>
-                        <div>
-                            <input type="text">
+                        <div class="col">
+                            <div>Stock</div>
+                            <div>
+                                <input type="number" id="stock">
+                            </div>
                         </div>
+
                     </div>
                     <div class="row">
                         <div>Image</div>
@@ -133,7 +171,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="add-btn">Save changes</button>
                 </div>
             </div>
         </div>
@@ -144,81 +182,195 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-hamburger"></i>Product Detail#<span id="modal-product_id"></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-hamburger"></i>Product #<span id="modal-product_id"></span></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body modal-form" id="detail-form">
+                <div class="modal-body modal-form" id="detail-item-form">
                     <div class="row text-end modal-form-edit-btn">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </div>
                     <div class="row">
-                        <div class="modal-form-img-div">
-                            <img src="../../img/TestImage01.jpeg" alt="">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>Product Name</div>
+                        <div>Name</div>
                         <div>
-                            <input type="text" disabled id="detail-productName">
+                            <input type="text" id="detail-productName">
+                        </div>
+                        <div id="detail-productName-msg" class="text-danger"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div>Category</div>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-category">
+                                    Select a type
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item category-dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item category-dropdown-item" href="#">Drink</a></li>
+                                    <li><a class="dropdown-item category-dropdown-item" href="#">Main</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>Status</div>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-status">
+                                    Select a type
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item status-dropdown-item" href="#">Disable</a></li>
+                                    <li><a class="dropdown-item status-dropdown-item" href="#">Enable</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>Promotion</div>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-promotion">
+                                    Select a type
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item promotion-dropdown-item" href="#">Promote</a></li>
+                                    <li><a class="dropdown-item promotion-dropdown-item" href="#">Not Promoted</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div>Price</div>
-                        <div>
-                            <input type="number" disabled id="detail-price">
+                        <div class="col">
+                            <div>Price</div>
+                            <div>
+                                <input type="number" id="detail-productPrice">
+                            </div>
+                            <div id="detail-price-msg" class="text-danger"></div>
                         </div>
+                        <div class="col">
+                            <div>Stock</div>
+                            <div>
+                                <input type="number" id="detail-stock">
+                            </div>
+                            <div id="detail-stock-msg" class="text-danger"></div>
+                        </div>
+
                     </div>
                     <div class="row">
-                        <div>Stock</div>
-                        <div>
-                            <input type="text" disabled id="detail-stock">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>Is Promoted</div>
-                        <div class="dropdown">
-                            <button disabled id="detail-promote" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item detail-promote-dropdown" href="#">Promoting</a></li>
-                                <li><a class="dropdown-item detail-promote-dropdown" href="#">Not Promoting</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>Status</div>
-                        <div class="dropdown">
-                            <button disabled id="detail-status" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item detail-status-dropdown" href="#">Enable</a></li>
-                                <li><a class="dropdown-item detail-status-dropdown" href="#">Disable</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>Category</div>
-                        <div class="dropdown">
-                            <button disabled id="detail-category" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item detail-category-dropdown" href="#">Main</a></li>
-                                <li><a class="dropdown-item detail-category-dropdown" href="#">Category 2</a></li>
-                                <li><a class="dropdown-item detail-category-dropdown" href="#">Category 3</a></li>
-                            </ul>
+                        <div>Image</div>
+                        <div class="image-upload">
+                            <input type="file" name="logo" id="logo2" onchange="fileValue2(this)">
+                            <label for="logo" class="upload-field" id="file-label2">
+                                <div class="file-thumbnail">
+                                    <img id="detail-image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png" alt="">
+                                    <h3 id="detail-filename">
+                                        Drag and Drop
+                                    </h3>
+                                    <p>Supports JPG, PNG, SVG</p>
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Detail Modal -->
+    <!-- <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a user <i class="fas fa-hamburger"></i></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-form" id="item-form">
+                <div class="row">
+                    <div>Name</div>
+                    <div>
+                        <input type="text" id="productName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>Category</div>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="selected-category">
+                                Select a type
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item category-dropdown-item" href="#">Food</a></li>
+                                <li><a class="dropdown-item category-dropdown-item" href="#">Drink</a></li>
+                                <li><a class="dropdown-item category-dropdown-item" href="#">Main</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>Status</div>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="selected-status">
+                                Select a type
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item status-dropdown-item" href="#">Disable</a></li>
+                                <li><a class="dropdown-item status-dropdown-item" href="#">Enable</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>Promotion</div>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="selected-promotion">
+                                Select a type
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item promotion-dropdown-item" href="#">Promote</a></li>
+                                <li><a class="dropdown-item promotion-dropdown-item" href="#">Not Promoted</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>Price</div>
+                        <div>
+                            <input type="number" id="productPrice">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>Stock</div>
+                        <div>
+                            <input type="number" id="stock">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div>Image</div>
+                    <div class="image-upload">
+                        <input type="file" name="" id="logo" onchange="fileValue(this)">
+                        <label for="logo" class="upload-field" id="file-label">
+                            <div class="file-thumbnail">
+                                <img id="image-preview" src="https://www.btklsby.go.id/images/placeholder/basic.png"
+                                     alt="">
+                                <h3 id="filename">
+                                    Drag and Drop
+                                </h3>
+                                <p>Supports JPG, PNG, SVG</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="add-btn">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> -->
 
 </body>
 <style>
