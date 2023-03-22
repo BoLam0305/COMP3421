@@ -76,34 +76,46 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Order Detail #<span id="modal-order-id"></span></h5>
-                <p id="detail-status">Status</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-form">
                 <div id="detail_img_name" style="display: none"></div>
-                <div class="row detail-same-row">
-                    <p><i class="fas fa-user"></i>User: <span id="detail-userName"></span>(#<span
+
+                <div class="row">
+                    <p class="col"><i class="fas fa-user"></i>Buyer: <span id="detail-userName"></span>(#<span
                                 id="detail-userID"></span>)</p>
+                    <div class="col text-end">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="detail-status"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown button
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Complete</a></li>
+                                <li><a class="dropdown-item" href="#">In Progress</a></li>
+                                <li><a class="dropdown-item" href="#">Void</a></li>
+                            </ul>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p><i class='fas fa-calendar-check'></i>Order Date: <span id="detail-orderDate"></span></p>
+                    </div>
+                    <div class="row">
+                        <h5><i class='fas fa-hamburger'></i>Items:</h5>
+                        <div class="detail-item-container-header">$Price</div>
+                        <div id="detail-item-container"></div>
+                        <div id="detail-total">Total: <span id="detail-total-text"></span></div>
+                    </div>
 
                 </div>
-                <div class="row">
-                    <p><i class='fas fa-calendar-check'></i>Order Date: <span id="detail-orderDate"></span></p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
                 </div>
-                <div class="row">
-                    <h5><i class='fas fa-hamburger'></i>Items:</h5>
-                    <div class="detail-item-container-header">$Price</div>
-                    <div id="detail-item-container"></div>
-                    <div id="detail-total">Total: <span id="detail-total-text"></span></div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
