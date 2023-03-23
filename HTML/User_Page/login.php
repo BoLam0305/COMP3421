@@ -1,3 +1,18 @@
+<?php
+session_start();
+extract($_SESSION);
+if (isset($email)){
+    if ($Identity == 'admin'){
+        header('Location: ../Admin_Page/ProductManagement.php');
+    }else if ($Identity == 'user'){
+        header('Location: ../User_Page/home.php');
+    }
+}else{
+    header('Location: ../User_Page/login.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

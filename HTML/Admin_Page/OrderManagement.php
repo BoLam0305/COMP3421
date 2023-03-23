@@ -1,3 +1,16 @@
+<?php
+session_start();
+extract($_SESSION);
+if (isset($email)){
+    if ($Identity != 'admin'){
+        header('Location: ../User_Page/login.php');
+    }
+}else{
+    header('Location: ../User_Page/login.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,17 +37,11 @@
     <script src="../../JS/Admin_Page/OrderManagementUI.js"></script>
     <script src="../../JS/Admin_Page/updateOrderVaildation.js"></script>
 
-
+    <?php include_once '../header.php'; ?>
 </head>
 <body>
-<div>Menu-bar</div>
 <div id="main-container" class="row">
-    <div class="col-2 h-100" id="left-menu">
-        <div class="row-3"><a href="./ProductManagement.php">Menu Management</a></div>
-        <div class="row-3 left-menu-target"><a href="./OrderManagement.php">Order Management</a> </div>
-        <div class="row-3"><a href="./UserManagement.php">User Management</a></div>
-    </div>
-    <div id="right-content" class="col-10">
+    <div id="right-content" >
         <div class="container">
             <table class="table caption-top table-hover" id="myTable">
                 <div id="table-header">
@@ -64,7 +71,7 @@
                     echo ' <td class="align-middle">' . $orders[$i]->userName . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->total . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->orderDate . '</td>';
-                    echo ' <td class="align-middle">' . $orders[$i]->status . '</td>';
+                    echo ' <td class="align-middle td-status">' . $orders[$i]->status . '</td>';
                     echo '<td class="align-middle"><button value="' . $orders[$i]->orderID . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
                     echo '</tr>';
                 }

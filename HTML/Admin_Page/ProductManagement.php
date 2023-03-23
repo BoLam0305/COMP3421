@@ -1,3 +1,15 @@
+<?php
+session_start();
+extract($_SESSION);
+if (isset($email)){
+    if ($Identity != 'admin'){
+        header('Location: ../User_Page/login.php');
+    }
+}else{
+    header('Location: ../User_Page/login.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,17 +43,13 @@
             margin: 0;
         }
     </style>
+    <?php include_once '../header.php'; ?>
+
 </head>
 
 <body>
-<div>Menu-bar</div>
 <div id="main-container" class="row">
-    <div class="col-2 h-100" id="left-menu">
-        <div class="row-3 left-menu-target"><a href="./ProductManagement.php"> Menu Management</a></div>
-        <div class="row-3"> <a href="./OrderManagement.php">Order Management</a></div>
-        <div class="row-3"><a href="./UserManagement.php">User Management</a></div>
-    </div>
-    <div id="right-content" class="col-10">
+    <div id="right-content" class="col-12">
         <div class="container">
             <table class="table caption-top table-hover" id="myTable">
                 <div id="table-header">
@@ -73,7 +81,7 @@
                     echo ' <td class="align-middle">' . $productes[$i]->category . '</td>';
                     echo ' <td class="align-middle">' . $productes[$i]->Price . '</td>';
                     echo ' <td class="align-middle">' . $productes[$i]->isPromoted . '</td>';
-                    echo ' <td class="align-middle">' . $productes[$i]->Stock . '</td>';
+                    echo ' <td class="align-middle td-stock">' . $productes[$i]->Stock . '</td>';
                     echo ' <td class="align-middle td-status">' . $productes[$i]->status . '</td>';
                     echo '<td class="align-middle"><button value="' . $productes[$i]->id . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
                     echo '</tr>';

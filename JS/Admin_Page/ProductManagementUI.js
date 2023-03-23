@@ -1,14 +1,30 @@
 $(document).ready(function () {
-    $(".td-status").each(function() {
+    $(".td-status").each(function () {
         let status = $(this).text();
         console.log(status);
-        if (status==='Disable'){
+        if (status === 'Disable') {
             $(this).addClass("status-disable");
         }
 
-        if (status==='Enable'){
+        if (status === 'Enable') {
             $(this).addClass("status-enable");
         }
+    });
+
+    $(".td-stock").each(function () {
+        var stock = parseInt($(this).text());
+        if (stock < 5) {
+            $(this).addClass("status-disable");
+            $(this).html('<i class=\'fas fa-exclamation-circle\'></i>\n' + stock );
+        } else if (stock < 20) {
+            $(this).addClass("status-in-progress");
+            $(this).html('<i class=\'fas fa-bell\'></i>\n'+ stock );
+        }else{
+            $(this).addClass("status-enable");
+            $(this).html('<i class="fa fa-check-square"></i>\n' + stock);
+
+        }
+
     });
 
     $(".category-dropdown-item").click(function () {
