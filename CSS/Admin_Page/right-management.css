@@ -1,5 +1,7 @@
 /* Right Menu Management */
-
+body{
+    padding: 5px;
+}
 #myTable_filter{
     margin-bottom: 5px;
 }
@@ -99,3 +101,37 @@ i{
 #voidReason{
     margin-bottom: 10px;
 }
+
+.status-disable, .status-void{
+    color: red;
+    font-weight: bold;
+}
+.status-enable, .status-complete{
+    color: limegreen;
+    font-weight: bold;
+}
+
+.status-in-progress{
+    color: darkorange;
+    font-weight: bold;
+}
+
+.status-disable i, .status-in-progress i{
+}
+
+.admin-bar-function{
+    color: white;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.admin-bar-function a{
+    color: white;
+    font-weight: bold;
+}
+
+.admin-bar-function a:hover{
+    color: #FF9800;
+}
+
+

@@ -24,14 +24,24 @@ function addItemToCart () {
         mysqli_free_result($rs);
         mysqli_close($conn);
 
+        // check if the item is out of stock
         if($stock == 0) {
             echo "Out of stock";
             return;
         }
 
+        // check if the user has added the maximum amount of this item to their cart
+        if ($_SESSION['cart'][$productID1]['count'] == $stock) {
+            echo "Max amount in cart";
+            return;
+        }
+
+        // check if the item is already in the cart
+        // if it is, add 1 to the count, if not, add the item to the cart
         if ($productID1 == $productID && isset($_SESSION['cart'][$productID])) {
             $_SESSION['cart'][$productID]['count'] = $_SESSION['cart'][$productID]['count'] + 1;
         } else if ($productID1 == $productID && !isset($_SESSION['cart'][$productID])) {
+            $_SESSION['cart'][$productID]['productID'] = $productID;
             $_SESSION['cart'][$productID]['count'] = 1;
         } else {
             echo "Error when adding your item to the cart";
@@ -41,8 +51,4 @@ function addItemToCart () {
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
-
-//// set product id to session cart
-//    $_SESSION['cart'][$productID] = $productID;
-
 }

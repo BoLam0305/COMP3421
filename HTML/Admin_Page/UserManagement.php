@@ -1,3 +1,15 @@
+<?php
+session_start();
+extract($_SESSION);
+if (isset($email)) {
+    if ($Identity != 'admin') {
+        header('Location: ../User_Page/login.php');
+    }
+} else {
+    header('Location: ../User_Page/login.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +17,10 @@
     <title>User Management</title>
 
     <!--local CSS-->
-    <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
+
     <link href="../../CSS/Admin_Page/right-management.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
+    <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
@@ -25,17 +38,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <?php include_once '../header.php'; ?>
 
 </head>
 <body>
-<div>Menu-bar</div>
-<div id="main-container" class="row">
-    <div class="col-2 h-100" id="left-menu">
-        <div class="row-3"><a href="./ProductManagement.php">Menu Management</a></div>
-        <div class="row-3"><a href="./OrderManagement.php">Order Management</a></div>
-        <div class="row-3  left-menu-target"><a href="./UserManagement.php"> User Management</a></div>
-    </div>
-    <div id="right-content" class="col-10">
+<div id="main-container" class="container">
+    <div id="right-content" class="col-12">
         <table class="table caption-top table-hover" id="myTable">
             <div id="table-header">
                 <div>User Management</div>
@@ -44,6 +52,7 @@
             </div>
             <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope="col">#ID</th>
                 <th scope="col"><i class="fas fa-user"></i>Name</th>
                 <th scope="col"><i class="fas fa-envelope"></i>Email</th>
@@ -59,10 +68,11 @@
             for ($i = 0; $i < count($users); $i++) {
                 echo '<tr>';
                 echo ' <td class="align-middle">' . $users[$i]->id . '</td>';
+                echo ' <td class="align-middle">' . $users[$i]->id . '</td>';
                 echo ' <td class="align-middle">' . $users[$i]->userName . '</td>';
                 echo ' <td class="align-middle">' . $users[$i]->email . '</td>';
                 echo ' <td class="align-middle">' . $users[$i]->phone . '</td>';
-                echo ' <td class="align-middle">' . $users[$i]->status . '</td>';
+                echo ' <td class="align-middle td-status">' . $users[$i]->status . '</td>';
                 echo '<td class="align-middle"><button value="' . $users[$i]->id . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
                 echo '</tr>';
             }
