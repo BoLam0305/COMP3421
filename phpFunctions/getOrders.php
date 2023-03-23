@@ -3,6 +3,8 @@ include_once ('getDBConnection_bo.php');
 include_once ('Order.php');
 date_default_timezone_set('Asia/Hong_Kong');
 
+get_all_products();
+
 function get_all_products(){
     $json = '';
     $order_list = array();
@@ -37,6 +39,7 @@ function get_all_products(){
     }
 
     $json = json_encode($order_list, JSON_PRETTY_PRINT);
+    echo $json;
     return $json;
 
 }
