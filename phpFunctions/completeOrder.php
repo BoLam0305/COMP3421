@@ -18,7 +18,7 @@ function updateOrderStatus($order){
                 SET status = ?
                 WHERE orderID = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssi", $order->status, $order->orderID);
+        $stmt->bind_param("si", $order->status, $order->orderID);
         $stmt->execute();
         mysqli_close($conn);
         $myObj->status = 'success';

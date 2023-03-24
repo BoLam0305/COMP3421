@@ -39,7 +39,10 @@ $(document).ready(function () {
             form_data.append("status", status);
             form_data.append("category", category);
             form_data.append("file", file);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
             fetch('../../phpFunctions/updataProductByID.php', {
                 method: 'POST',
                 body: form_data
