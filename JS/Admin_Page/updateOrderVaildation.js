@@ -57,6 +57,7 @@ $(document).ready(function () {
                 method: 'POST',
                 body: form_data
             }).then(response => response.text()).then(async (response) => {
+                
                 console.log(response);
                 let json = JSON.parse(response);
 

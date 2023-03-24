@@ -14,11 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileTmpName = $file["tmp_name"];
         $fileName = uniqid() . $fileName;
         move_uploaded_file($fileTmpName, getProductPath() . $fileName);
-        echo "File uploaded successfully.";
     } else {
         $fileName = 'default_product.png';
     }
-
 
     $product = new  Product();
     $product->id = $_POST['productID'];
@@ -29,8 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product->category = $_POST['category'];
     $product->productName = $_POST['productName'];
     $product->img_path = $fileName;
-
-    echo json_encode($product);
     echo updateProductByID($product);
 }
 
@@ -51,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function updateProductByID($product)
 {
     $conn = getDBConnection();
-    $arr['msg'] = '';
+    $myObj = new stdClass();
     try {
         $sql = "UPDATE product 
                 SET productName = ?, Price = ?, Stock = ?, status = ?, isPromoted = ?, category = ?, img_path = ?
@@ -60,13 +56,12 @@ function updateProductByID($product)
         $stmt->bind_param("siisissi", $product->productName, $product->Price, $product->Stock, $product->status, $product->isPromoted, $product->category, $product->img_path,$product->id);
         $stmt->execute();
         mysqli_close($conn);
-        $arr['msg'] = 'success';
+        $myObj->status = 'success';
     } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-        $arr['msg'] = 'fail';
+        $myObj->status = 'fail';
     }
 
-    return $arr['msg'];
+    return json_encode($myObj);
 }
 
 ?>

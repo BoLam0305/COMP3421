@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileTmpName = $file["tmp_name"];
         $fileName = uniqid() . $fileName;
         move_uploaded_file($fileTmpName, getProfilePath() . $fileName);
-        echo "File uploaded successfully.";
     } else {
         $fileName = $_POST['file'];
     }
@@ -43,7 +42,6 @@ function updateUserByID($user)
         mysqli_close($conn);
         $myObj->status = 'success';
     } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
         $myObj->status = 'fail';
     }
 

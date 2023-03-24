@@ -45,11 +45,20 @@ $(document).ready(function () {
                 body: form_data
 
             }).then(response => response.text()).then(response => {
-                if (response == 'success') {
-                    console.log(response);
-                    //location.reload();
+                console.log(response);
+                let json = JSON.parse(response);
+
+                if (json.status == 'success') {
+                    $("#detail-result-msg").text('record update success');
+                    $("#detail-result-msg").addClass("status-enable");
+
+                    setTimeout(function () {
+                        // Reload the page
+                        window.location.href = '../../HTML/Admin_Page/ProductManagement.php';
+                    }, 2000);
                 } else {
-                    console.log(response);
+                    $("#detail-result-msg").text('record update fail');
+                    $("#detail-result-msg").addClass("status-disable");
                 }
             }).catch(error => console.log(error));
         }

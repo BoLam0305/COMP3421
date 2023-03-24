@@ -35,7 +35,7 @@ $(document).ready(function () {
     // add-status-dropdown on click
     $(".add-status-dropdown-item").click(function () {
         let selected_status = $(this).text();
-        $("#add-selected-status").text(selected_status);
+        $("#add_status").text(selected_status);
     });
 
     $(".add-promotion-dropdown-item").click(function () {
