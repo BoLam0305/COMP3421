@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Order Management</title>
 
     <!--local CSS-->
-    <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/right-management.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
 
@@ -14,34 +14,36 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
-
     <!--Bosstrap-->
     <script src="https://kit.fontawesome.com/ceae024db6.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
     <!--local Js-->
     <script src="../../JS/Admin_Page/OrderManagementUI.js"></script>
     <script src="../../JS/Admin_Page/updateOrderVaildation.js"></script>
+    <?php include_once '../header_for_admin.php'; ?>
 
 
 </head>
+
 <body>
-<div>Menu-bar</div>
-<div id="main-container" class="row">
-    <div class="col-2 h-100" id="left-menu">
-        <div class="row-3"><a href="./ProductManagement.php">Menu Management</a></div>
-        <div class="row-3 left-menu-target"><a href="./OrderManagement.php">Order Management</a> </div>
-        <div class="row-3"><a href="./UserManagement.php">User Management</a></div>
-    </div>
-    <div id="right-content" class="col-10">
+<div id="main-container" class="row" style="padding-top: 3%;">
+
+    <div id="right-content">
         <div class="container">
             <table class="table caption-top table-hover" id="myTable">
+
+                <br>
                 <div id="table-header">
+
                     <div>Order Management</div>
                 </div>
                 <thead>
                 <tr>
+                    <th scope="col">#ID</th>
                     <th scope="col">#ID</th>
                     <th scope="col"><i class="fas fa-user"></i>Buyer ID</th>
                     <th scope="col"><i class="fas fa-user"></i>Buyer</th>
@@ -58,11 +60,12 @@
                 for ($i = 0; $i < count($orders); $i++) {
                     echo '<tr>';
                     echo ' <td class="align-middle">' . $orders[$i]->orderID . '</td>';
+                    echo ' <td class="align-middle">' . $orders[$i]->orderID . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->userID . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->userName . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->total . '</td>';
                     echo ' <td class="align-middle">' . $orders[$i]->orderDate . '</td>';
-                    echo ' <td class="align-middle">' . $orders[$i]->status . '</td>';
+                    echo ' <td class="align-middle td-status">' . $orders[$i]->status . '</td>';
                     echo '<td class="align-middle"><button value="' . $orders[$i]->orderID . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
                     echo '</tr>';
                 }
@@ -85,12 +88,10 @@
                 <div id="detail_img_name" style="display: none"></div>
                 <div class="row">
                     <div class="row">
-                        <p class="col"><i class="fas fa-user"></i>Buyer: <span id="detail-userName"></span>(#<span
-                                    id="detail-userID"></span>)</p>
+                        <p class="col"><i class="fas fa-user"></i>Buyer: <span id="detail-userName"></span>(#<span id="detail-userID"></span>)</p>
                         <div class="col text-end">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="detail-status"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="detail-status" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown button
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

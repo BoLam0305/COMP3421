@@ -22,13 +22,30 @@
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm header">
         <div class="container">
-            <a href="/HTML/home.php" class="navbar-brand d-flex align-items-center">
+            <?php
+            extract($_SESSION);
+            if (!isset($email)) {
+                if ($Identity == 'admin') {
+                    echo '<a href="../home.php" class="navbar-brand d-flex align-items-center">
                 <i class="fa-solid fa-cubes headerCubes"></i>
                 <strong>PolyFood</strong>
-            </a>
+            </a>';
+                }
+            } else {
+                echo '<a href="/HTML/home.php" class="navbar-brand d-flex align-items-center">
+                <i class="fa-solid fa-cubes headerCubes"></i>
+                <strong>PolyFood</strong>
+                 </a>';
+            }
+            ?>
+
 
             <?php
             extract($_SESSION);
+
+            //            if(isset($email)){
+            //                $balance = getUserBalance($email);
+            //            }
 
             // Show the login and register button if the user is not logged in
             if (!isset($email)) {
@@ -36,8 +53,15 @@
                         <a type="button" class="btn btn-secondary loginBtn" href="/HTML/User_Page/login.php">Login</a>
                         <a type="button" class="btn btn-secondary registerBtn" href="/HTML/User_Page/sign_up.php">Register</a>
                       </div> ';
-            } else { // signed in
-                echo "<div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
+            } else {
+                if ($Identity == 'admin') {
+                    echo "
+                <div class='admin-bar-function'><a href='./ProductManagement.php'> Menu Management</a></div>
+                <div class='admin-bar-function'><a href='./OrderManagement.php'>Order Management</a> </div>
+                <div class='admin-bar-function'><a href='./UserManagement.php'>User Management</a> </div>
+                <div class='admin-bar-function'><a href='./showOrder.php'>Order</a> </div>
+                
+                <div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
                         <ul class=\"navbar-nav\">
                             <li class=\"nav-item dropdown\">
                                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDarkDropdownMenuLink\"
@@ -50,7 +74,30 @@
                                     <a class=\"dropdown-item\" href=\"/HTML/User_Page/userProfile.php\">My Profile</a>
                                   </li>
                                   <li>
-                                    <a class=\"dropdown-item\" href=\"/HTML/User_Page/shopping_cart.php\">Cart</a>
+                                    <a class=\"dropdown-item\" href=\"../HTML/User_Page/shopping_cart.php\">Cart</a>
+                                  </li>
+                                  <li><hr class=\"dropdown-divider\"></li>
+                                  <li><a class=\"dropdown-item\" href=\"/phpFunctions/logout.php\">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                     </div>";
+                } else { // signed in
+                    echo "
+                    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
+                        <ul class=\"navbar-nav\">
+                            <li class=\"nav-item dropdown\">
+                                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDarkDropdownMenuLink\"
+                                role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                    <i class=\"fa-regular fa-circle-user userIco\"></i>
+                                    $email
+                                </a>
+                                <ul class=\"dropdown-menu dropdown-menu-dark\" aria-labelledby=\"navbarDarkDropdownMenuLink\">
+                                  <li>
+                                    <a class=\"dropdown-item\" href=\"/HTML/User_Page/userProfile.php\">My Profile</a>
+                                  </li>
+                                  <li>
+                                    <a class=\"dropdown-item\" href=\"../HTML/User_Page/shopping_cart.php\">Cart</a>
                                   </li>
                                   <li>
                                     <a class=\"dropdown-item\" href=\"/HTML/User_Page/orderHistory.php\">Order History</a>
@@ -61,7 +108,9 @@
                             </li>
                         </ul>
                      </div>";
-            } ?>
+                }
+            }
+            ?>
         </div>
     </nav>
 </header>

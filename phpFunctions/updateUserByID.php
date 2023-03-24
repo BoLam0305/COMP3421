@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileTmpName = $file["tmp_name"];
         $fileName = uniqid() . $fileName;
         move_uploaded_file($fileTmpName, getProfilePath() . $fileName);
-        echo "File uploaded successfully.";
     } else {
         $fileName = $_POST['file'];
     }
@@ -32,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function updateUserByID($user)
 {
     $conn = getDBConnection();
-    $arr['msg'] = '';
+    $myObj = new stdClass();
     try {
         $sql = "UPDATE users 
                 SET email = ?, userName = ?, phone = ?, status = ?, imgPath = ?
@@ -41,13 +40,11 @@ function updateUserByID($user)
         $stmt->bind_param("ssissi", $user->email, $user->userName, $user->phone, $user->status, $user->img_path, $user->id);
         $stmt->execute();
         mysqli_close($conn);
-        $arr['msg'] = 'success';
+        $myObj->status = 'success';
     } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-        $arr['msg'] = 'fail';
+        $myObj->status = 'fail';
     }
 
-    return $arr['msg'];
-}
+    return json_encode($myObj);}
 
 ?>

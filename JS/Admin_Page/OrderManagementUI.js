@@ -1,4 +1,20 @@
 $(document).ready(function () {
+    $(".td-status").each(function () {
+        let status = $(this).text();
+        console.log(status);
+        if (status === 'Complete') {
+            $(this).addClass("status-complete");
+        }
+
+        if (status === 'Void') {
+            $(this).addClass("status-void");
+        }
+
+        if (status == 'In Progress'){
+            $(this).addClass("status-in-progress");
+
+        }
+    });
     $("#voidReason-div").hide();
     // Detail Modal Get Order By ID
     $(".detail-modal-btn").click(function () {
@@ -24,14 +40,13 @@ $(document).ready(function () {
                 $("#detail-total-text").text(json[0].total);
                 $("#detail-item-container").html(createItemHTML(json[0].products));
 
-                if (json[0].voidReason != ''){
-                    $("#get-voidReason").text('Void Reason: '+json[0].voidReason);
+                if (json[0].voidReason != '') {
+                    $("#get-voidReason").text('Void Reason: ' + json[0].voidReason);
 
                 }
             }
         });
     });
-
 
 
     function createItemHTML(products) {
@@ -45,7 +60,7 @@ $(document).ready(function () {
                 '                                    <div class="detail-same-row col-10">\n' +
                 '                                        <div>Product Category:  <span>' + products[i].category + '</span></div>\n' +
                 '                                    </div>\n' +
-                '                                    <div class="detail-price-end">' + products[i].Price+ '</div>\n' +
+                '                                    <div class="detail-price-end">' + products[i].Price + '</div>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
                 '                        </div>';
@@ -68,13 +83,13 @@ $(document).ready(function () {
     });
 
     $(".detail-status-item").click(function () {
-       let selected_status = $(this).text();
-       $("#detail-status").text(selected_status);
+        let selected_status = $(this).text();
+        $("#detail-status").text(selected_status);
 
-       if (selected_status === 'Void'){
-           $("#voidReason-div").show();
-       }else{
-           $("#voidReason-div").hide();
-       }
+        if (selected_status === 'Void') {
+            $("#voidReason-div").show();
+        } else {
+            $("#voidReason-div").hide();
+        }
     });
 });

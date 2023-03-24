@@ -1,16 +1,16 @@
 $(document).ready(function () {
 
     $("#add-btn").click(function () {
-        let file = document.getElementById("logo").files[0];
+        let file = document.getElementById("imageUpload").files[0];
         let productName = $("#productName").val();
         let productPrice = $("#productPrice").val();
-        let productCategory = $("#selected-category").text();
-        let productPromotion = $("#selected-category").text();
-        let productStatus = $("#selected-category").text();
+        let productCategory = $("#add-selected-category").text();
+        let productPromotion = $("#add-selected-promotion").text();
+        let productStatus = $("#add_status").text();
         let productStock = $("#stock").val();
 
-       console.log(formValidation(productName, productPrice, productStock));
-        if (formValidation(productName, productPrice, productStock)){
+        console.log(formValidation(productName, productPrice, productStock));
+        if (formValidation(productName, productPrice, productStock)) {
             var form_data = new FormData();
             form_data.append("productName", productName);
             form_data.append("productPrice", productPrice);
@@ -27,7 +27,22 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    let json = JSON.parse(response);
+                    console.log(json.status);
+                    if (json.status == 'success') {
+                        $("#result-msg").text('record update success');
+                        $("#result-msg").addClass("status-enable");
+
+                        setTimeout(function () {
+                            // Reload the page
+                            window.location.href = '../../HTML/Admin_Page/ProductManagement.php';
+
+                        }, 2000);
+                    } else {
+                        $("#result-msg").text('record update fail');
+                        $("#result-msg").addClass("status-disable");
+                    }
+
                 }
             });
         }
@@ -41,19 +56,19 @@ $(document).ready(function () {
         let add_productName_msg = $("#add-productName-msg").text();
         let add_stock_msg = $("#add-stock-msg").text();
 
-        if (add_price_msg !== '' || productPrice === ''){
+        if (add_price_msg !== '' || productPrice === '') {
             $("#add-price-msg").text('please enter a price');
             console.log('add-price-msg');
             form = false;
         }
 
-        if (add_productName_msg !== '' || productName === ''){
+        if (add_productName_msg !== '' || productName === '') {
             $("#add-productName-msg").text('please enter a product name');
             console.log('add-productName-msg');
             form = false;
         }
 
-        if (add_stock_msg !== '' || stock === ''){
+        if (add_stock_msg !== '' || stock === '') {
             $("#add-stock-msg").text('please enter a price');
             console.log('add-stock-msg');
             form = false;
@@ -129,4 +144,21 @@ $(document).ready(function () {
             $("#add-stock-msg").text('');
         }
     }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr("src", e.target.result);
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imageUpload").change(function () {
+        readURL(this);
+    });
+
 });

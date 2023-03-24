@@ -1,19 +1,38 @@
 <?php
 include_once('getDBConnection_bo.php');
 include_once('Product.php');
+include_once('LocalPath.php');
 date_default_timezone_set('Asia/Hong_Kong');
 
-$_POST = json_decode(file_get_contents('php://input'), true);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fileName = '';
+    if (isset($_FILES["file"])) {
+        $file = $_FILES["file"];
+        $fileName = $file["name"];
+        $fileType = $file["type"];
+        $fileSize = $file["size"];
+        $fileTmpName = $file["tmp_name"];
+        $fileName = uniqid() . $fileName;
+        move_uploaded_file($fileTmpName, getProductPath() . $fileName);
+    } else {
+        $fileName = 'default_product.png';
+    }
+
+    $product = new  Product();
+    $product->id = $_POST['productID'];
+    $product->Price = $_POST['price'];
+    $product->Stock = $_POST['stock'];
+    $product->isPromoted = $_POST['promote'];
+    $product->status = $_POST['status'];
+    $product->category = $_POST['category'];
+    $product->productName = $_POST['productName'];
+    $product->img_path = $fileName;
+    echo updateProductByID($product);
+}
 
 
-$product = new  Product();
-$product->id = $_POST['productID'];
-$product->Price = $_POST['price'];
-$product->Stock = $_POST['stock'];
-$product->isPromoted = $_POST['promote'];
-$product->status = $_POST['status'];
-$product->category = $_POST['category'];
-$product->productName = $_POST['productName'];
+
+
 
 // $product->id = $productID;
 // $product->productName = $productName;
@@ -24,26 +43,25 @@ $product->productName = $_POST['productName'];
 // $product->category = $category;
 // $product->status = $product->getStatus($status);
 
-echo updateProductByID($product);
+
 function updateProductByID($product)
 {
     $conn = getDBConnection();
-    $arr['msg'] = '';
+    $myObj = new stdClass();
     try {
         $sql = "UPDATE product 
-                SET productName = ?, Price = ?, Stock = ?, status = ?, isPromoted = ?, category = ?
+                SET productName = ?, Price = ?, Stock = ?, status = ?, isPromoted = ?, category = ?, img_path = ?
                 WHERE productID = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("siisisi", $product->productName, $product->Price, $product->Stock, $product->status, $product->isPromoted, $product->category, $product->id);
+        $stmt->bind_param("siisissi", $product->productName, $product->Price, $product->Stock, $product->status, $product->isPromoted, $product->category, $product->img_path,$product->id);
         $stmt->execute();
         mysqli_close($conn);
-        $arr['msg'] = 'success';
+        $myObj->status = 'success';
     } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-        $arr['msg'] = 'fail';
+        $myObj->status = 'fail';
     }
 
-    return $arr['msg'];
+    return json_encode($myObj);
 }
 
 ?>

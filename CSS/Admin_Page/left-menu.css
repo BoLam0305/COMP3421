@@ -1,28 +1,14 @@
-/* Left Menu */
-#main-container {
-    height: 100vh;
-    border: 1px solid;
+a{
+    color: white;
 }
 
-#left-menu {
-    height: 100%;
-    border-radius: 4px;
-    box-shadow: 0px 5px 15px rgb(0 0 0 / 20%);
-}
-
-#left-menu > div {
-    height: 10vh;
+.bar{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin-left: 2px;
+    width: 100%;
+
 }
 
-#left-menu div:hover {
-    color: #ff9800;
-}
+.bar a{
+    margin-right: 20px;
 
-.left-menu-target {
-    font-weight: bold;
 }

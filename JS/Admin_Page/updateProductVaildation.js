@@ -10,6 +10,8 @@ $(document).ready(function () {
         let status = $("#detail-selected-status").text();
         let category = $("#detail-selected-category").text();
 
+        let file = document.getElementById("imageUpload").files[0];
+
         if (promote == 'Promoting') {
             promote = 1;
         } else {
@@ -28,15 +30,35 @@ $(document).ready(function () {
         console.log(data);
 
         if (formValidation(data)) {
+            var form_data = new FormData();
+            form_data.append("productID", productID);
+            form_data.append("productName", productName);
+            form_data.append("price", price);
+            form_data.append("stock", stock);
+            form_data.append("promote", promote);
+            form_data.append("status", status);
+            form_data.append("category", category);
+            form_data.append("file", file);
+
             fetch('../../phpFunctions/updataProductByID.php', {
                 method: 'POST',
-                body: JSON.stringify(data),
+                body: form_data
 
             }).then(response => response.text()).then(response => {
-                if (response == 'success') {
-                    location.reload();
+                console.log(response);
+                let json = JSON.parse(response);
+
+                if (json.status == 'success') {
+                    $("#detail-result-msg").text('record update success');
+                    $("#detail-result-msg").addClass("status-enable");
+
+                    setTimeout(function () {
+                        // Reload the page
+                        window.location.href = '../../HTML/Admin_Page/ProductManagement.php';
+                    }, 2000);
                 } else {
-                    console.log(response);
+                    $("#detail-result-msg").text('record update fail');
+                    $("#detail-result-msg").addClass("status-disable");
                 }
             }).catch(error => console.log(error));
         }
@@ -125,6 +147,21 @@ $(document).ready(function () {
 
     });
 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#detail_imagePreview').attr("src", e.target.result);
+                $('#detail_imagePreview').hide();
+                $('#detail_imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imageUpload").change(function () {
+        readURL(this);
+    });
     // email checking If Exist
     // $("#detail-email").keyup(function () {
     //     let enter_text = $(this).val();

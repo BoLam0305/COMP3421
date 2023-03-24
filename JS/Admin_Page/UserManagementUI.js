@@ -1,5 +1,16 @@
 $(document).ready(function () {
+    $(".td-status").each(function () {
+        let status = $(this).text();
+        console.log(status);
+        if (status === 'Enable') {
+            $(this).addClass("status-enable");
+        }
 
+        if (status === 'Disable') {
+            $(this).addClass("status-disable");
+        }
+
+    });
     // add-status-dropdown on click
     $(".add-status-dropdown").click(function () {
         let selected_status = $(this).text();
@@ -49,6 +60,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
+                console.log(response);
                 let json = JSON.parse(response);
                 $("#detail-form input").prop('disabled', true);
                 $("#detail-status").prop('disabled', true);

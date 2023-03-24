@@ -68,6 +68,7 @@ $(document).ready(function () {
 
     // Add user
     $("#add-btn").click(function () {
+        console.log('add btn click');
         let userName = document.getElementById("add_userName").value;
         let password = document.getElementById("add_password").value;
         let email = document.getElementById("add_email").value;
@@ -75,7 +76,6 @@ $(document).ready(function () {
         let userType = document.getElementById("add_userType").textContent;
         let status = $("#add_status").text();
         let file = document.getElementById("imageUpload").files[0];
-
 
         if (formValidation(email, phone)) {
             var form_data = new FormData();
@@ -95,7 +95,22 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    console.log('return res: ' +response);
+                    let json = JSON.parse(response);
+                    console.log('return:'+json);
+                    if (json.status == 'success') {
+                        $("#result-msg").text('record update success');
+                        $("#result-msg").addClass("status-enable");
+                        setTimeout(function () {
+                            // Reload the page
+                            window.location.href = '../../HTML/Admin_Page/UserManagement.php';
+
+                        }, 2000);
+                    } else {
+                        $("#result-msg").text('record update fail');
+                        $("#result-msg").addClass("status-disable");
+                    }
+
                 }
             });
         }
