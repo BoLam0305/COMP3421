@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php include_once '../header_for_admin.php'; ?>
 
 <head>
     <meta charset="UTF-8">
     <title>Product Management</title>
 
-    <!--local CSS-->
-    <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
-    <link href="../../CSS/Admin_Page/right-management.css" rel="stylesheet">
-    <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
+
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
@@ -24,15 +22,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
 
-
+    <!--local CSS-->
+    <link href="../../CSS/Admin_Page/right-management.css" rel="stylesheet">
+    <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
 </head>
 
 <body>
@@ -40,6 +33,7 @@
     <div id="right-content" class="col-12">
         <div class="container">
             <table class="table caption-top table-hover" id="myTable">
+                <br>
                 <div id="table-header">
                     <div>Items Management</div>
                     <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
@@ -233,7 +227,8 @@
                         <div>Status</div>
                         <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-status">Select a type</a>
+                               data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-status">Select a
+                                type</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item status-dropdown-item" href="#">Disable</a></li>
                                 <li><a class="dropdown-item status-dropdown-item" href="#">Enable</a></li>

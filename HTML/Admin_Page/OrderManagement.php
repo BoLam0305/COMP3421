@@ -6,7 +6,6 @@
     <title>Order Management</title>
 
     <!--local CSS-->
-    <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/right-management.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
 
@@ -25,16 +24,21 @@
     <!--local Js-->
     <script src="../../JS/Admin_Page/OrderManagementUI.js"></script>
     <script src="../../JS/Admin_Page/updateOrderVaildation.js"></script>
+    <?php include_once '../header_for_admin.php'; ?>
 
 
 </head>
 
 <body>
 <div id="main-container" class="row" style="padding-top: 3%;">
+
     <div id="right-content">
         <div class="container">
             <table class="table caption-top table-hover" id="myTable">
+
+                <br>
                 <div id="table-header">
+
                     <div>Order Management</div>
                 </div>
                 <thead>
