@@ -13,6 +13,13 @@ getShoppingCartItems();
 function getShoppingCartItems(){
     $cartItems = array();
     $idx = 0;
+
+    if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+        $cartItems['error'] = 'No items in cart';
+        echo json_encode($cartItems, JSON_PRETTY_PRINT);
+        return;
+    }
+
     foreach ($_SESSION['cart'] as $item) {
         $itemID = $item['productID'];
         $item = getItemsDetailsByID($itemID);
@@ -22,10 +29,6 @@ function getShoppingCartItems(){
         $cartItems[$idx]['quantity'] = $_SESSION['cart'][$itemID]['count'];
         $cartItems[$idx]['totalPrice'] = $item['price'] * $_SESSION['cart'][$itemID]['count'];
         $idx++;
-    }
-
-    if (count($cartItems) == 0) {
-        $cartItems['error'] = 'No items in cart';
     }
 
     echo json_encode($cartItems, JSON_PRETTY_PRINT);

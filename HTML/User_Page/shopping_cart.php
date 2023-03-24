@@ -9,8 +9,8 @@
         }
     </style>
     <link rel="stylesheet" href="../../CSS/shopping_cart.css">
-    <script src="../../JS/getShoppingCart.js" defer></script>
-    <script src="../../JS/checkout.js" defer></script>
+    <script src="../../JS/getShoppingCart.js" async defer></script>
+    <script src="../../JS/checkout.js" async defer></script>
     <title>Shopping Cart</title>
     <?php include_once '../header.php'; ?>
 
@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <div>
-                    <h2 id="totalPrice">Total:$103</h2>
+                    <h2 id="totalPrice">Total:</h2>
                 </div>
             </div>
         </div>
@@ -121,6 +121,13 @@
         <h1 class="fw-light loadingText d-flex justify-content-center">Loading...</h1>
     </div>
 </div>
+
+<script>
+    let scriptName = "checkout.js";
+    console.log(document.querySelector("script[src*='"+scriptName+"']"));
+</script>
+
+
 </body>
 
 </html>

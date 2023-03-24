@@ -2,8 +2,7 @@ let method ='';
 
 const checkOutCart = async () => {
     const formData = new FormData();
-    console.log(method);
-    formData.append('method', '');
+    formData.append('method', method);
 
     await fetch('../../phpFunctions/doCheckOut.php', {
         method: 'POST',
@@ -14,6 +13,8 @@ const checkOutCart = async () => {
 
         if(message.message === "Checkout success"){
             await fireReceipt(message.orderID);
+        } else if (message.error){
+            await fireCheckoutError(message.error);
         }
         console.log(message);
     }).catch((error) => { console.log(error) });
@@ -42,16 +43,16 @@ const fireReceipt = async (orderID) => {
     });
 }
 
-const fireError = async (message) => {
+const fireCheckoutError = async (message) => {
     await Swal.fire({
         title: 'Error',
         html: message,
         icon: 'error',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Return to Home Page'
+        confirmButtonText: 'Close'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = '../home.php';
+            Swal.close();
         }
     });
 }
@@ -59,4 +60,4 @@ const fireError = async (message) => {
 // add a page onload event listener
 window.addEventListener('load', () => {
     console.log('Page loaded');
-}
+});
