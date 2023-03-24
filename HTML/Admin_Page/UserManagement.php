@@ -1,13 +1,13 @@
 <?php
-session_start();
-extract($_SESSION);
-if (isset($email)) {
-    if ($Identity != 'admin') {
-        header('Location: ../User_Page/login.php');
-    }
-} else {
-    header('Location: ../User_Page/login.php');
-}
+//session_start();
+//extract($_SESSION);
+//if (isset($email)) {
+//    if ($Identity != 'admin') {
+//        header('Location: ../User_Page/login.php');
+//    }
+//} else {
+//    header('Location: ../User_Page/login.php');
+//}
 
 ?>
 <!DOCTYPE html>
@@ -37,9 +37,6 @@ if (isset($email)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <?php include_once '../header.php'; ?>
-
 </head>
 <body>
 <div id="main-container" class="container">
@@ -155,14 +152,16 @@ if (isset($email)) {
                         </ul>
                     </div>
                     <div id="add-type-msg" class="text-danger"></div>
-
                 </div>
-
-
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="add-btn">Save changes</button>
+                <div class="col">
+                    <div id="result-msg"></div>
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="add-btn">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
@@ -229,8 +228,13 @@ if (isset($email)) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
+                <div class="col">
+                    <div id="detail-result-msg"></div>
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
+                </div>
             </div>
         </div>
     </div>

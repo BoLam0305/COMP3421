@@ -54,7 +54,7 @@ session_start();
             } else {
                 if ($Identity == 'admin') {
                     echo "
-                <div class='admin-bar-function'><a href='./ ProductManagement.php'> Menu Management</a></div>
+                <div class='admin-bar-function'><a href='./ProductManagement.php'> Menu Management</a></div>
                 <div class='admin-bar-function'><a href='./OrderManagement.php'>Order Management</a> </div>
                 <div class='admin-bar-function'><a href='./UserManagement.php'>User Management</a> </div>
                 <div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">

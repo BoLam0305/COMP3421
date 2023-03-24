@@ -10,7 +10,7 @@ $(document).ready(function () {
         let status = $("#detail-status").text();
 
         let file = document.getElementById("imageUpload").files[0];
-        if (file==null) {
+        if (file == null) {
             file = $('#detail_img_name').text();
             console.log('No file selected');
         }
@@ -31,7 +31,21 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    let json = JSON.parse(response);
+                    console.log(json.status);
+                    if (json.status == 'success') {
+                        $("#detail-result-msg").text('record update success');
+                        $("#detail-result-msg").addClass("status-enable");
+
+                        setTimeout(function () {
+                            // Reload the page
+                            window.location.href = '../../HTML/Admin_Page/UserManagement.php';
+
+                        }, 2000);
+                    } else {
+                        $("#detail-result-msg").text('record update fail');
+                        $("#detail-result-msg").addClass("status-disable");
+                    }
                 }
             });
         }

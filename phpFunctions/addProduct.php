@@ -28,19 +28,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product->category = $_POST['productCategory'];
     $product->img_path = $fileName;
 
-    echo add_product($product);
+
+   echo add_product($product);
 }
 
 
 function add_product($product){
-    $conn = getDBConnection();
-    $sql = "INSERT INTO product (productName, Price, Stock, status, isPromoted, category, img_path)
+    $myObj = new stdClass();
+    try{
+        $conn = getDBConnection();
+        $sql = "INSERT INTO product (productName, Price, Stock, status, isPromoted, category, img_path)
         VALUES (?,?,?,?,?,?,?)";
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("siisiss", $product->productName,
-        $product->Price, $product->Stock, $product->status, $product->isPromoted, $product->category, $product->img_path);
-    $stmt->execute();
-    mysqli_close($conn);
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("siisiss", $product->productName,
+            $product->Price, $product->Stock, $product->status, $product->isPromoted, $product->category, $product->img_path);
+        $stmt->execute();
+        mysqli_close($conn);
+        $myObj->status = 'success';
+    }catch (Exception $e){
+        $myObj->status = 'fail';
+        echo $e;
+    }
+    return json_encode($myObj);
+
 }
 ?>

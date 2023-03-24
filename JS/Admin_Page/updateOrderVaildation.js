@@ -58,6 +58,21 @@ $(document).ready(function () {
                 body: form_data
             }).then(response => response.text()).then(async (response) => {
                 console.log(response);
+                let json = JSON.parse(response);
+
+                if (json.status == 'success') {
+                    $("#result-msg").text('record update success');
+                    $("#result-msg").addClass("status-enable");
+
+                    setTimeout(function () {
+                        // Reload the page
+                        window.location.href = '../../HTML/Admin_Page/OrderManagement.php';
+
+                    }, 2000);
+                } else {
+                    $("#result-msg").text('record update fail');
+                    $("#result-msg").addClass("status-disable");
+                }
             });
         }
     });

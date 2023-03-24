@@ -28,21 +28,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user->status = $_POST['status'];
     $user->img_path = $fileName;
 
-    add_user($user);
-    
-}
+    echo add_user($user);
 
+}
 
 
 function add_user($user)
 {
-    $conn = getDBConnection();
-    $sql = "INSERT INTO users (email, password, userName, userTypeID, phone, status, imgPath)
+    $myObj = new stdClass();
+    try {
+        $conn = getDBConnection();
+        $sql = "INSERT INTO users (email, password, userName, userTypeID, phone, status, imgPath)
         VALUES (?,?,?,?,?,?,?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssiiss", $user->email, $user->password, $user->userName,  $user->type, $user->phone, $user->status, $user->img_path);
-    $stmt->execute();
-    mysqli_close($conn);
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssiiss", $user->email, $user->password, $user->userName, $user->type, $user->phone, $user->status, $user->img_path);
+        $stmt->execute();
+        mysqli_close($conn);
+        $myObj->status = 'success';
+    }catch (Exception $e){
+        $myObj->status = 'fail';
+    }
+    return json_encode($myObj);
 }
 
 

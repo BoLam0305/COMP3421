@@ -1,13 +1,13 @@
 <?php
-session_start();
-extract($_SESSION);
-if (isset($email)){
-    if ($Identity != 'admin'){
-        header('Location: ../User_Page/login.php');
-    }
-}else{
-    header('Location: ../User_Page/login.php');
-}
+//session_start();
+//extract($_SESSION);
+//if (isset($email)) {
+//    if ($Identity != 'admin') {
+//        header('Location: ../User_Page/login.php');
+//    }
+//} else {
+//    header('Location: ../User_Page/login.php');
+//}
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,6 @@ if (isset($email)){
             margin: 0;
         }
     </style>
-    <?php include_once '../header.php'; ?>
 
 </head>
 
@@ -54,7 +53,8 @@ if (isset($email)){
             <table class="table caption-top table-hover" id="myTable">
                 <div id="table-header">
                     <div>Items Management</div>
-                    <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus-square"></i></div>
+                    <div id="add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                class="fas fa-plus-square"></i></div>
                 </div>
                 <thead>
                 <tr>
@@ -127,37 +127,34 @@ if (isset($email)){
                     <div class="col">
                         <div>Category</div>
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="selected-category">
-                                Food
-                            </a>
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="add-selected-category">Food</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item category-dropdown-item" href="#">Food</a></li>
-                                <li><a class="dropdown-item category-dropdown-item" href="#">Drink</a></li>
-                                <li><a class="dropdown-item category-dropdown-item" href="#">Main</a></li>
+                                <li><a class="dropdown-item add-category-dropdown-item" href="#">Food</a></li>
+                                <li><a class="dropdown-item add-category-dropdown-item" href="#">Drink</a></li>
+                                <li><a class="dropdown-item add-category-dropdown-item" href="#">Main</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col">
                         <div>Status</div>
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="selected-status">
-                                Enable
-                            </a>
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="add-selected-status">Enable</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item status-dropdown-item" href="#">Disable</a></li>
-                                <li><a class="dropdown-item status-dropdown-item" href="#">Enable</a></li>
+                                <li><a class="dropdown-item add-status-dropdown-item" href="#">Disable</a></li>
+                                <li><a class="dropdown-item add-status-dropdown-item" href="#">Enable</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col">
                         <div>Promotion</div>
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="selected-promotion">
-                                Not Promoted
-                            </a>
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="add-selected-promotion">Not Promoted</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item promotion-dropdown-item" href="#">Promote</a></li>
-                                <li><a class="dropdown-item promotion-dropdown-item" href="#">Not Promoted</a></li>
+                                <li><a class="dropdown-item add-promotion-dropdown-item" href="#">Promote</a></li>
+                                <li><a class="dropdown-item add-promotion-dropdown-item" href="#">Not Promoted</a></li>
                             </ul>
                         </div>
                     </div>
@@ -182,8 +179,13 @@ if (isset($email)){
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="add-btn">Save changes</button>
+                <div class="col">
+                    <div id="result-msg"></div>
+                </div>
+                <div class="col text-end">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="add-btn">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
@@ -194,7 +196,8 @@ if (isset($email)){
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-hamburger"></i>Product #<span id="modal-product_id"></span></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-hamburger"></i>Product #<span
+                            id="modal-product_id"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-form" id="detail-item-form">
@@ -225,7 +228,8 @@ if (isset($email)){
                     <div class="col">
                         <div>Category</div>
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-category">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-category">
                                 Select a type
                             </a>
                             <ul class="dropdown-menu">
@@ -238,7 +242,8 @@ if (isset($email)){
                     <div class="col">
                         <div>Status</div>
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-status">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-status">
                                 Select a type
                             </a>
                             <ul class="dropdown-menu">
@@ -250,7 +255,8 @@ if (isset($email)){
                     <div class="col">
                         <div>Promotion</div>
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-promotion">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" id="detail-selected-promotion">
                                 Select a type
                             </a>
                             <ul class="dropdown-menu">

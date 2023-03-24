@@ -60,6 +60,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
+                console.log(response);
                 let json = JSON.parse(response);
                 $("#detail-form input").prop('disabled', true);
                 $("#detail-status").prop('disabled', true);

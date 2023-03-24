@@ -76,7 +76,6 @@ $(document).ready(function () {
         let status = $("#add_status").text();
         let file = document.getElementById("imageUpload").files[0];
 
-
         if (formValidation(email, phone)) {
             var form_data = new FormData();
 
@@ -95,7 +94,22 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    let json = JSON.parse(response);
+                    console.log(json.status);
+                    if (json.status == 'success') {
+                        $("#result-msg").text('record update success');
+                        $("#result-msg").addClass("status-enable");
+
+                        setTimeout(function () {
+                            // Reload the page
+                            window.location.href = '../../HTML/Admin_Page/OrderManagement.php';
+
+                        }, 2000);
+                    } else {
+                        $("#result-msg").text('record update fail');
+                        $("#result-msg").addClass("status-disable");
+                    }
+
                 }
             });
         }

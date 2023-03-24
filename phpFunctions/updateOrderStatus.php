@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $order->status = $_POST['status'];
     $order->voidReason = $_POST['voidReason'];
     $order->orderID = $_POST['orderID'];
-    echo json_encode($order);
     echo updateOrderStatus($order);
 }
 function updateOrderStatus($order){
@@ -25,7 +24,6 @@ function updateOrderStatus($order){
         $myObj->status = 'success';
     }catch (Exception $e){
         echo "Error: " . $e->getMessage();
-
         $myObj->status = 'fail';
     }
 

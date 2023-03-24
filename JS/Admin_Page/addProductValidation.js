@@ -4,9 +4,9 @@ $(document).ready(function () {
         let file = document.getElementById("imageUpload").files[0];
         let productName = $("#productName").val();
         let productPrice = $("#productPrice").val();
-        let productCategory = $("#selected-category").text();
-        let productPromotion = $("#selected-category").text();
-        let productStatus = $("#selected-category").text();
+        let productCategory = $("#add-selected-category").text();
+        let productPromotion = $("#add-selected-promotion").text();
+        let productStatus = $("#add-selected-status").text();
         let productStock = $("#stock").val();
 
         console.log(formValidation(productName, productPrice, productStock));
@@ -27,7 +27,22 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    let json = JSON.parse(response);
+                    console.log(json.status);
+                    if (json.status == 'success') {
+                        $("#result-msg").text('record update success');
+                        $("#result-msg").addClass("status-enable");
+
+                        setTimeout(function () {
+                            // Reload the page
+                            window.location.href = '../../HTML/Admin_Page/ProductManagement.php';
+
+                        }, 2000);
+                    } else {
+                        $("#result-msg").text('record update fail');
+                        $("#result-msg").addClass("status-disable");
+                    }
+
                 }
             });
         }

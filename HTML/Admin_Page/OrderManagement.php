@@ -1,15 +1,4 @@
-<?php
-session_start();
-extract($_SESSION);
-if (isset($email)){
-    if ($Identity != 'admin'){
-        header('Location: ../User_Page/login.php');
-    }
-}else{
-    header('Location: ../User_Page/login.php');
-}
 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +16,6 @@ if (isset($email)){
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
-
     <!--Bosstrap-->
     <script src="https://kit.fontawesome.com/ceae024db6.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +25,6 @@ if (isset($email)){
     <script src="../../JS/Admin_Page/OrderManagementUI.js"></script>
     <script src="../../JS/Admin_Page/updateOrderVaildation.js"></script>
 
-    <?php include_once '../header.php'; ?>
 </head>
 <body>
 <div id="main-container" class="row">
@@ -131,8 +118,13 @@ if (isset($email)){
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
+                    <div class="col">
+                        <div id="result-msg"></div>
+                    </div>
+                    <div class="col text-end">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
