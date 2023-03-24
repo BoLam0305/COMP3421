@@ -33,10 +33,23 @@ session_start();
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm header">
         <div class="container">
-            <a href="/HTML/home.php" class="navbar-brand d-flex align-items-center">
+            <?php
+            extract($_SESSION);
+            if (!isset($email)) {
+                if ($Identity == 'admin') {
+                    echo '<a href="../home.php" class="navbar-brand d-flex align-items-center">
                 <i class="fa-solid fa-cubes headerCubes"></i>
                 <strong>PolyFood</strong>
-            </a>
+            </a>';
+                }
+            } else {
+                echo '<a href="/HTML/home.php" class="navbar-brand d-flex align-items-center">
+                <i class="fa-solid fa-cubes headerCubes"></i>
+                <strong>PolyFood</strong>
+                 </a>';
+            }
+            ?>
+
 
             <?php
             extract($_SESSION);
@@ -54,17 +67,11 @@ session_start();
             } else {
                 if ($Identity == 'admin') {
                     echo "
-<<<<<<< HEAD
                 <div class='admin-bar-function'><a href='./ProductManagement.php'> Menu Management</a></div>
                 <div class='admin-bar-function'><a href='./OrderManagement.php'>Order Management</a> </div>
                 <div class='admin-bar-function'><a href='./UserManagement.php'>User Management</a> </div>
-=======
-                <div class='admin-bar-function'><a href='/HTML/Admin_Page/ProductManagement.php'> Menu Management</a></div>
-                <div class='admin-bar-function'><a href='/HTML/Admin_Page/OrderManagement.php'>Order Management</a> </div>
-                <div class='admin-bar-function'><a href='/HTML/Admin_Page/UserManagement.php'>User Management</a> </div>
-                <div class='admin-bar-function'><a href='/HTML/Admin_Page/showOrder.php'>Order</a> </div>
+                <div class='admin-bar-function'><a href='./showOrder.php'>Order</a> </div>
                 
->>>>>>> origin/main
                 <div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
                         <ul class=\"navbar-nav\">
                             <li class=\"nav-item dropdown\">
@@ -110,8 +117,6 @@ session_start();
                      </div>";
                 }
             }
-
-
             ?>
         </div>
     </nav>
