@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileTmpName = $file["tmp_name"];
         $fileName = uniqid() . $fileName;
         move_uploaded_file($fileTmpName, getProductPath() . $fileName);
-        echo "File uploaded successfully.";
     } else {
         $fileName = 'default_product.png';
     }
@@ -48,7 +47,6 @@ function add_product($product){
         $myObj->status = 'success';
     }catch (Exception $e){
         $myObj->status = 'fail';
-        echo $e;
     }
     return json_encode($myObj);
 

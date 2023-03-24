@@ -1,3 +1,47 @@
-.content{
-    margin-top: 5%;
+.cartContainer{
+    margin: 5% !important;
+    display: none;
+}
+
+.loadingWrapper {
+    min-height: calc(100vh - 3.5rem - 7.75rem);
+}
+
+#visaBtn, #masterBtn {
+    height:10rem !important;
+}
+
+.visaLogo, .masterLogo{
+    font-size: 4rem !important;
+}
+
+.visaText, .masterText{
+    margin-top: 1rem !important;
+    font-size: 1.5rem !important;
+}
+
+/* Hide the radio buttons */
+.custom-radio input[type="radio"] {
+    display: none;
+}
+
+/* Style the labels */
+.custom-radio label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem !important;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Style the active label */
+.custom-radio input[type="radio"]:checked + label {
+    background-color: #f0f0f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }

@@ -4,11 +4,19 @@ window.addEventListener('load', async () => {
     }).then(response => response.text()).then(async (response) => {
         console.log(response);
         let shoppingCart = JSON.parse(response);
+        let spinner = document.getElementById('loadingWrapper');
+        let cartContainer = document.getElementById('cartContainer');
         let tableRowContainer = document.getElementById('tableRowContainer');
         let shoppingCartRow = document.getElementById('shoppingCartRows');
         let totalCartPrice = document.getElementById('totalPrice');
         let rowClone = shoppingCartRow.cloneNode(true);
         let itemName, itemPrice, itemQuantity, itemTotalPrice = 0;
+
+        // If shopping cart is empty, fire error
+        if (shoppingCart.error === "No items in cart") {
+            await fireError();
+            return;
+        }
 
         for (let i = 0; i < shoppingCart.length; i++) {
             if (i > 0) {
@@ -34,7 +42,23 @@ window.addEventListener('load', async () => {
         }
         totalCartPrice.innerText = `Total: $${itemTotalPrice}`;
 
+        spinner.remove();
+        cartContainer.setAttribute('style', 'display: block');
+
         console.log(shoppingCart);
     }).catch((error) => { console.log(error) });
-
 });
+
+const fireError = async (message) => {
+    await Swal.fire({
+        title: 'Error',
+        html: `Your shopping cart is empty. <br><br> Please add items to your cart before checking out.`,
+        icon: 'error',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Return to Home Page'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '../home.php';
+        }
+    });
+}

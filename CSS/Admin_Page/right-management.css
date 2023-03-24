@@ -7,7 +7,9 @@ body{
 }
 #right-content > div {
     padding: 10px;
+
 }
+
 
 #right-content caption {
     color: black;
@@ -133,5 +135,8 @@ i{
 .admin-bar-function a:hover{
     color: #FF9800;
 }
+
+
+
 
 

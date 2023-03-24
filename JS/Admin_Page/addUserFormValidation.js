@@ -68,6 +68,7 @@ $(document).ready(function () {
 
     // Add user
     $("#add-btn").click(function () {
+        console.log('add btn click');
         let userName = document.getElementById("add_userName").value;
         let password = document.getElementById("add_password").value;
         let email = document.getElementById("add_email").value;
@@ -94,15 +95,15 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (response) {
+                    console.log('return res: ' +response);
                     let json = JSON.parse(response);
-                    console.log(json.status);
+                    console.log('return:'+json);
                     if (json.status == 'success') {
                         $("#result-msg").text('record update success');
                         $("#result-msg").addClass("status-enable");
-
                         setTimeout(function () {
                             // Reload the page
-                            window.location.href = '../../HTML/Admin_Page/OrderManagement.php';
+                            window.location.href = '../../HTML/Admin_Page/UserManagement.php';
 
                         }, 2000);
                     } else {

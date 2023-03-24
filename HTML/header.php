@@ -1,29 +1,18 @@
-<?php
-session_start();
-//require 'phpFunctions/checkSessionExpire.php';
-//require 'phpFunctions/queryUserBalance.php';
-
-// ask if the user wants to login again after session expire
-//if(checkSessionExpire()){
-//    echo ("<SCRIPT LANGUAGE='JavaScript'>
-//           if(confirm('Session expired, please login again.')){
-//               window.location.href='login2.php';
-//           }
-//           </SCRIPT>");
-//}
-//?>
-<!--CSS Files-->
-<link href="../CSS/header.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<?php session_start(); ?>
 
 <!--JS Files-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/ceae024db6.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
 
+<!--CSS Files-->
+<link href="../CSS/header.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 <meta name="google-signin-client_id"
       content="896534143716-5d67cdf7rmrj09m70otueq582efiej25.apps.googleusercontent.com">
@@ -110,6 +99,9 @@ session_start();
                                   <li>
                                     <a class=\"dropdown-item\" href=\"../HTML/User_Page/shopping_cart.php\">Cart</a>
                                   </li>
+                                  <li>
+                                    <a class=\"dropdown-item\" href=\"/HTML/User_Page/orderHistory.php\">Order History</a>
+                                  </li>   
                                   <li><hr class=\"dropdown-divider\"></li>
                                   <li><a class=\"dropdown-item\" href=\"/phpFunctions/logout.php\">Logout</a></li>
                                 </ul>

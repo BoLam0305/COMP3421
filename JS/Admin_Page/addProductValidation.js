@@ -6,7 +6,7 @@ $(document).ready(function () {
         let productPrice = $("#productPrice").val();
         let productCategory = $("#add-selected-category").text();
         let productPromotion = $("#add-selected-promotion").text();
-        let productStatus = $("#add-selected-status").text();
+        let productStatus = $("#add_status").text();
         let productStock = $("#stock").val();
 
         console.log(formValidation(productName, productPrice, productStock));

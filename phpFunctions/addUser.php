@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileTmpName = $file["tmp_name"];
         $fileName = uniqid() . $fileName;
         move_uploaded_file($fileTmpName, getProfilePath() . $fileName);
-        echo "File uploaded successfully.";
     } else {
         $fileName = 'default_profile.jpg';
     }
@@ -27,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user->setType($_POST['userType']);
     $user->status = $_POST['status'];
     $user->img_path = $fileName;
-
     echo add_user($user);
 
 }
@@ -47,6 +45,7 @@ function add_user($user)
         $myObj->status = 'success';
     }catch (Exception $e){
         $myObj->status = 'fail';
+        echo $e;
     }
     return json_encode($myObj);
 }
