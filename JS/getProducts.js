@@ -86,7 +86,7 @@ async function getFoods() {
                 cardClone.querySelector('#price').innerText = foodPrice;
 
                 if (isOrderButtonExist)
-                    cardClone.setAttribute('onclick', `addItemToCart(${foodID})`);
+                    cardClone.querySelector('#OrderBtn').setAttribute('onclick', `addItemToCart(${foodID})`);
 
                 wrapper.appendChild(cardClone);
             }
