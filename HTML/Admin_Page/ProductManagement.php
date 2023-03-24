@@ -36,8 +36,10 @@
     extract($_SESSION);
     if (isset($email)) {
         if ($Identity != 'admin') {
-            header('Location: ../User_Page/login.php');
+            header('Location: /HTML/User_Page/login.php');
         }
+    }else{
+        header('Location: /HTML/User_Page/login.php');
     }
 
     ?>

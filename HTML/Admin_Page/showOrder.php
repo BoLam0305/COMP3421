@@ -53,6 +53,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <?php include_once '../header.php'; ?>
+    <?php
+    extract($_SESSION);
+    if (isset($email)) {
+        if ($Identity != 'admin') {
+            header('Location: /HTML/User_Page/login.php');
+        }
+    }else{
+        header('Location: /HTML/User_Page/login.php');
+    }
+
+    ?>
 </head>
 
 <body>

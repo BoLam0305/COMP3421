@@ -1,18 +1,6 @@
-<?php
-// session_start();
-// extract($_SESSION);
-// if (isset($email)){
-//     if ($Identity != 'admin'){
-//         header('Location: ../User_Page/login.php');
-//     }
-// }else{
-//     header('Location: ../User_Page/login.php');
-// }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Order Management</title>
@@ -24,7 +12,7 @@
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
 
@@ -38,105 +26,115 @@
     <script src="../../JS/Admin_Page/updateOrderVaildation.js"></script>
 
     <?php include_once '../header.php'; ?>
+    <?php
+    extract($_SESSION);
+    if (isset($email)) {
+        if ($Identity != 'admin') {
+            header('Location: /HTML/User_Page/login.php');
+        }
+    } else {
+        header('Location: /HTML/User_Page/login.php');
+    }
+
+    ?>
 </head>
+
 <body>
-<div id="main-container" class="row" style="padding-top: 3%;">
-    <div id="right-content" >
-        <div class="container">
-            <table class="table caption-top table-hover" id="myTable">
-                <div id="table-header">
-                    <div>Order Management</div>
-                </div>
-                <thead>
-                <tr>
-                    <th scope="col">#ID</th>
-                    <th scope="col">#ID</th>
-                    <th scope="col"><i class="fas fa-user"></i>Buyer ID</th>
-                    <th scope="col"><i class="fas fa-user"></i>Buyer</th>
-                    <th scope="col">$ Price</th>
-                    <th scope="col"><i class="fas fa-calendar-alt"></i>Order-Date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Details</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                include_once('../../phpFunctions/getOrders.php');
-                $orders = json_decode(get_all_products(), false);
-                for ($i = 0; $i < count($orders); $i++) {
-                    echo '<tr>';
-                    echo ' <td class="align-middle">' . $orders[$i]->orderID . '</td>';
-                    echo ' <td class="align-middle">' . $orders[$i]->orderID . '</td>';
-                    echo ' <td class="align-middle">' . $orders[$i]->userID . '</td>';
-                    echo ' <td class="align-middle">' . $orders[$i]->userName . '</td>';
-                    echo ' <td class="align-middle">' . $orders[$i]->total . '</td>';
-                    echo ' <td class="align-middle">' . $orders[$i]->orderDate . '</td>';
-                    echo ' <td class="align-middle td-status">' . $orders[$i]->status . '</td>';
-                    echo '<td class="align-middle"><button value="' . $orders[$i]->orderID . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
-                    echo '</tr>';
-                }
-                ?>
-            </table>
-        </div>
-
-    </div>
-</div>
-</div>
-<!-- Detail Modal -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Order Detail #<span id="modal-order-id"></span></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div id="main-container" class="row" style="padding-top: 3%;">
+        <div id="right-content">
+            <div class="container">
+                <table class="table caption-top table-hover" id="myTable">
+                    <div id="table-header">
+                        <div>Order Management</div>
+                    </div>
+                    <thead>
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">#ID</th>
+                            <th scope="col"><i class="fas fa-user"></i>Buyer ID</th>
+                            <th scope="col"><i class="fas fa-user"></i>Buyer</th>
+                            <th scope="col">$ Price</th>
+                            <th scope="col"><i class="fas fa-calendar-alt"></i>Order-Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        include_once('../../phpFunctions/getOrders.php');
+                        $orders = json_decode(get_all_products(), false);
+                        for ($i = 0; $i < count($orders); $i++) {
+                            echo '<tr>';
+                            echo ' <td class="align-middle">' . $orders[$i]->orderID . '</td>';
+                            echo ' <td class="align-middle">' . $orders[$i]->orderID . '</td>';
+                            echo ' <td class="align-middle">' . $orders[$i]->userID . '</td>';
+                            echo ' <td class="align-middle">' . $orders[$i]->userName . '</td>';
+                            echo ' <td class="align-middle">' . $orders[$i]->total . '</td>';
+                            echo ' <td class="align-middle">' . $orders[$i]->orderDate . '</td>';
+                            echo ' <td class="align-middle td-status">' . $orders[$i]->status . '</td>';
+                            echo '<td class="align-middle"><button value="' . $orders[$i]->orderID . '" class="btn btn-warning detail-modal-btn" data-bs-toggle="modal" data-bs-target="#detailModal">View</button></td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                </table>
             </div>
-            <div class="modal-body modal-form">
-                <div id="detail_img_name" style="display: none"></div>
-                <div class="row">
+
+        </div>
+    </div>
+    </div>
+    <!-- Detail Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Order Detail #<span id="modal-order-id"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-form">
+                    <div id="detail_img_name" style="display: none"></div>
                     <div class="row">
-                        <p class="col"><i class="fas fa-user"></i>Buyer: <span id="detail-userName"></span>(#<span
-                                    id="detail-userID"></span>)</p>
-                        <div class="col text-end">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="detail-status"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown button
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item detail-status-item" href="#">Complete</a></li>
-                                    <li><a class="dropdown-item detail-status-item" href="#">In Progress</a></li>
-                                    <li><a class="dropdown-item detail-status-item" href="#">Void</a></li>
-                                </ul>
+                        <div class="row">
+                            <p class="col"><i class="fas fa-user"></i>Buyer: <span id="detail-userName"></span>(#<span id="detail-userID"></span>)</p>
+                            <div class="col text-end">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="detail-status" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Dropdown button
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item detail-status-item" href="#">Complete</a></li>
+                                        <li><a class="dropdown-item detail-status-item" href="#">In Progress</a></li>
+                                        <li><a class="dropdown-item detail-status-item" href="#">Void</a></li>
+                                    </ul>
+                                </div>
+                                </p>
                             </div>
-                            </p>
                         </div>
-                    </div>
-                    <div class="row">
-                        <p id="get-voidReason"></p>
-                    </div>
-                    <div class="row" id="voidReason-div">
-                        <p>Reason</p>
-                        <div><input type="text" id="voidReason"></div>
-                        <div id="voidReason-msg"></div>
-                    </div>
-                    <div class="row">
-                        <p><i class='fas fa-calendar-check'></i>Order Date: <span id="detail-orderDate"></span></p>
-                    </div>
-                    <div class="row">
-                        <p><i class='fas fa-hamburger'></i>Items:</p>
-                        <div class="detail-item-container-header">$Price</div>
-                        <div id="detail-item-container"></div>
-                        <div id="detail-total">Total: <span id="detail-total-text"></span></div>
-                    </div>
+                        <div class="row">
+                            <p id="get-voidReason"></p>
+                        </div>
+                        <div class="row" id="voidReason-div">
+                            <p>Reason</p>
+                            <div><input type="text" id="voidReason"></div>
+                            <div id="voidReason-msg"></div>
+                        </div>
+                        <div class="row">
+                            <p><i class='fas fa-calendar-check'></i>Order Date: <span id="detail-orderDate"></span></p>
+                        </div>
+                        <div class="row">
+                            <p><i class='fas fa-hamburger'></i>Items:</p>
+                            <div class="detail-item-container-header">$Price</div>
+                            <div id="detail-item-container"></div>
+                            <div id="detail-total">Total: <span id="detail-total-text"></span></div>
+                        </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
