@@ -39,7 +39,6 @@ function get_all_products(){
     }
 
     $json = json_encode($order_list, JSON_PRETTY_PRINT);
-    echo $json;
     return $json;
 
 }
