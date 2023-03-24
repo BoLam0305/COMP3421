@@ -24,9 +24,9 @@ function addItemToCart () {
         mysqli_free_result($rs);
         mysqli_close($conn);
 
-        if(isset($_SESSION['cart'][$productID]['count'])){
-        }else{
+        if(!isset($_SESSION['cart'][$productID]['count'])){
             $_SESSION['cart'][$productID]['count'] = 0;
+            $_SESSION['cart'][$productID]['productID'] = 0;
         }
 
         // check if the item is out of stock
@@ -44,6 +44,7 @@ function addItemToCart () {
         // check if the item is already in the cart
         // if it is, add 1 to the count, if not, add the item to the cart
         if ($productID1 == $productID && isset($_SESSION['cart'][$productID])) {
+            $_SESSION['cart'][$productID]['productID'] = $productID;
             $_SESSION['cart'][$productID]['count'] = $_SESSION['cart'][$productID]['count'] + 1;
         } else if ($productID1 == $productID && !isset($_SESSION['cart'][$productID])) {
             $_SESSION['cart'][$productID]['productID'] = $productID;
