@@ -29,7 +29,6 @@ function getAllProducts()
                 $products[$count]['productID'] = $rc['productID'];
                 $products[$count]['productName'] = $rc['productName'];
                 $products[$count]['Price'] = $rc['Price'];
-                $products[$count]['isPromoted'] = $rc['isPromoted'];
                 $products[$count]['category'] = $rc['category'];
                 $products[$count]['Stock'] = $stockLevel;
                 $products[$count]['isPromoted'] = $rc['isPromoted'];
