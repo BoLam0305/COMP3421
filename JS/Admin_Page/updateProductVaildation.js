@@ -10,11 +10,8 @@ $(document).ready(function () {
         let status = $("#detail-selected-status").text();
         let category = $("#detail-selected-category").text();
 
-<<<<<<< HEAD
         let file = document.getElementById("imageUpload").files[0];
 
-=======
->>>>>>> origin/main
         if (promote == 'Promoting') {
             promote = 1;
         } else {
@@ -33,7 +30,6 @@ $(document).ready(function () {
         console.log(data);
 
         if (formValidation(data)) {
-<<<<<<< HEAD
             var form_data = new FormData();
             form_data.append("productID", productID);
             form_data.append("productName", productName);
@@ -43,8 +39,6 @@ $(document).ready(function () {
             form_data.append("status", status);
             form_data.append("category", category);
             form_data.append("file", file);
-=======
->>>>>>> origin/main
             fetch('../../phpFunctions/updataProductByID.php', {
                 method: 'POST',
                 body: form_data
