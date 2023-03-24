@@ -46,9 +46,9 @@
                             <div class="viewButton">
                                 <?php
                                     if (!isset($_SESSION['email'])) {
-                                        echo "<button class='btn btn-outline-secondary viewBtn w-100' id='LoginBtn' href='login.php'>
+                                        echo "<a type='button' class='btn btn-outline-secondary viewBtn w-100' id='LoginBtn' href='/HTML/User_Page/login.php'>
                                                 Login to Order
-                                              </button>";
+                                              </a>";
                                     }
                                     else {
                                         echo "<a type=\"button\" class=\"btn btn-outline-secondary viewBtn w-100\" id=\"OrderBtn\"

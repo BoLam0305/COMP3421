@@ -5,7 +5,7 @@ date_default_timezone_set('Asia/Hong_Kong');
 
 if (session_status() === PHP_SESSION_NONE) {
     // start session if session not start
-    session_start();
+    session_start(); 
 }
 
 addItemToCart();
@@ -23,6 +23,11 @@ function addItemToCart () {
         $stmt->close();
         mysqli_free_result($rs);
         mysqli_close($conn);
+
+        if(isset($_SESSION['cart'][$productID]['count'])){
+        }else{
+            $_SESSION['cart'][$productID]['count'] = 0;
+        }
 
         // check if the item is out of stock
         if($stock == 0) {
