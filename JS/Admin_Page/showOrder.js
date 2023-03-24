@@ -38,7 +38,7 @@ function loadOrder(ID) {
                             <div class="card">
                                 <div class="card-header">
                                     Order#${order.orderID}
-                                    <button type="button" class="btn btn-success float-end" id="completeBtn" value="${order.orderID}">Complete</button>
+                                    <button type="button" class="btn btn-success float-end" id="completeBtn" value="${order.orderID}" onclick="completeOrder(this)">Complete</button>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                 `

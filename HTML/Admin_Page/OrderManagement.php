@@ -1,13 +1,13 @@
 <?php
-session_start();
-extract($_SESSION);
-if (isset($email)){
-    if ($Identity != 'admin'){
-        header('Location: ../User_Page/login.php');
-    }
-}else{
-    header('Location: ../User_Page/login.php');
-}
+// session_start();
+// extract($_SESSION);
+// if (isset($email)){
+//     if ($Identity != 'admin'){
+//         header('Location: ../User_Page/login.php');
+//     }
+// }else{
+//     header('Location: ../User_Page/login.php');
+// }
 
 ?>
 
@@ -40,7 +40,7 @@ if (isset($email)){
     <?php include_once '../header.php'; ?>
 </head>
 <body>
-<div id="main-container" class="row">
+<div id="main-container" class="row" style="padding-top: 3%;">
     <div id="right-content" >
         <div class="container">
             <table class="table caption-top table-hover" id="myTable">
