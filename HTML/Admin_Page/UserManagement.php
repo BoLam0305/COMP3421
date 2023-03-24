@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<?php
-//session_start();
-//extract($_SESSION);
-//if (isset($email)) {
-//    if ($Identity != 'admin') {
-//        header('Location: ../User_Page/login.php');
-//    }
-//} else {
-//    header('Location: ../User_Page/login.php');
-//}
-
-?>
-=======
->>>>>>> origin/main
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,23 +26,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<<<<<<< HEAD
-=======
 
     <?php include_once '../header.php'; ?>
     <?php
     extract($_SESSION);
     if (isset($email)) {
         if ($Identity != 'admin') {
-            header('Location: /HTML/User_Page/login.php');
+            header('Location: ../User_Page/login.php');
         }
     }else{
-        header('Location: /HTML/User_Page/login.php');
+        header('Location: ../User_Page/login.php');
     }
 
     ?>
 
->>>>>>> origin/main
 </head>
 
 <body>
@@ -161,28 +143,6 @@
                         </div>
                         <div id="add-status-msg" class="text-danger"></div>
                     </div>
-<<<<<<< HEAD
-                    <div id="add-status-msg" class="text-danger"></div>
-                </div>
-                <div class="row">
-                    <div>User Type</div>
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false" id="add_userType">User</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item add-userType-dropdown" href="#">Admin</a></li>
-                            <li><a class="dropdown-item add-userType-dropdown" href="#">User</a></li>
-                        </ul>
-                    </div>
-                    <div id="add-type-msg" class="text-danger"></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="col">
-                    <div id="result-msg"></div>
-                </div>
-                <div class="col text-end">
-=======
                     <div class="row">
                         <div>User Type</div>
                         <div class="dropdown">
@@ -199,7 +159,6 @@
 
                 </div>
                 <div class="modal-footer">
->>>>>>> origin/main
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="add-btn">Save changes</button>
                 </div>
@@ -270,38 +229,6 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
                 </div>
-<<<<<<< HEAD
-                <div class="row">
-                    <div>Phone</div>
-                    <div>
-                        <input type="number" disabled id="detail-phone">
-                    </div>
-                    <div id="detail-phone-msg" class="text-danger"></div>
-                </div>
-                <div class="row">
-                    <div>Status</div>
-                    <div class="dropdown">
-                        <button disabled id="detail-status" class="btn btn-secondary dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item detail-status-dropdown" href="#">Enable</a></li>
-                            <li><a class="dropdown-item detail-status-dropdown" href="#">Disable</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="col">
-                    <div id="detail-result-msg"></div>
-                </div>
-                <div class="col text-end">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
-                </div>
-=======
->>>>>>> origin/main
             </div>
         </div>
     </div>

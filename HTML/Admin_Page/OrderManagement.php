@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/main
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,21 +24,18 @@
     <script src="../../JS/Admin_Page/OrderManagementUI.js"></script>
     <script src="../../JS/Admin_Page/updateOrderVaildation.js"></script>
 
-<<<<<<< HEAD
-=======
     <?php include_once '../header.php'; ?>
     <?php
     extract($_SESSION);
     if (isset($email)) {
         if ($Identity != 'admin') {
-            header('Location: /HTML/User_Page/login.php');
+            header('Location: ../User_Page/login.php');
         }
     } else {
-        header('Location: /HTML/User_Page/login.php');
+        header('Location: ../User_Page/login.php');
     }
 
     ?>
->>>>>>> origin/main
 </head>
 
 <body>
@@ -134,17 +126,8 @@
                             <div id="detail-total">Total: <span id="detail-total-text"></span></div>
                         </div>
 
-<<<<<<< HEAD
-                </div>
-                <div class="modal-footer">
-                    <div class="col">
-                        <div id="result-msg"></div>
-                    </div>
-                    <div class="col text-end">
-=======
                     </div>
                     <div class="modal-footer">
->>>>>>> origin/main
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="detain-save-btn">Save changes</button>
                     </div>

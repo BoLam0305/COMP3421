@@ -23,9 +23,9 @@
     <!--local Js-->
     <script src="../../JS/Admin_Page/showOrder.js"></script>
     <script src="../../JS/Admin_Page/completeOrder.js"></script>
+    
     <script>
         function completeOrder(order) {
-            console.log(order.value);
             var form_data = new FormData();
             form_data.append('orderID', order.value);
             form_data.append('status', 'Complete');
@@ -41,8 +41,9 @@
                 //     alert("Order Failed");
                 // }
             });
+            order.parentNode.parentNode.parentElement.remove();
         }
-        // setInterval(loadOrders, 100000);
+        // setInterval(loadOrders, 5000);
     </script>
 
 
@@ -57,17 +58,16 @@
     extract($_SESSION);
     if (isset($email)) {
         if ($Identity != 'admin') {
-            header('Location: /HTML/User_Page/login.php');
+            header('Location: ../User_Page/login.php');
         }
-    }else{
-        header('Location: /HTML/User_Page/login.php');
+    } else {
+        header('Location: ../User_Page/login.php');
     }
 
     ?>
 </head>
 
 <body>
-    <div>Menu-bar</div>
     <div id="main-container" class="row" style="padding-top:3%;">
         <div id="right-content" class="col-12">
             <div class="row orders">

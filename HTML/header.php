@@ -54,17 +54,11 @@ session_start();
             } else {
                 if ($Identity == 'admin') {
                     echo "
-<<<<<<< HEAD
-                <div class='admin-bar-function'><a href='./ProductManagement.php'> Menu Management</a></div>
-                <div class='admin-bar-function'><a href='./OrderManagement.php'>Order Management</a> </div>
-                <div class='admin-bar-function'><a href='./UserManagement.php'>User Management</a> </div>
-=======
                 <div class='admin-bar-function'><a href='/HTML/Admin_Page/ProductManagement.php'> Menu Management</a></div>
                 <div class='admin-bar-function'><a href='/HTML/Admin_Page/OrderManagement.php'>Order Management</a> </div>
                 <div class='admin-bar-function'><a href='/HTML/Admin_Page/UserManagement.php'>User Management</a> </div>
                 <div class='admin-bar-function'><a href='/HTML/Admin_Page/showOrder.php'>Order</a> </div>
                 
->>>>>>> origin/main
                 <div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
                         <ul class=\"navbar-nav\">
                             <li class=\"nav-item dropdown\">
@@ -87,7 +81,8 @@ session_start();
                         </ul>
                      </div>";
                 } else { // signed in
-                    echo "<div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
+                    echo "
+                    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
                         <ul class=\"navbar-nav\">
                             <li class=\"nav-item dropdown\">
                                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDarkDropdownMenuLink\"

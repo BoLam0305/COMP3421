@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/main
 <!DOCTYPE html>
 <html lang="en">
 
