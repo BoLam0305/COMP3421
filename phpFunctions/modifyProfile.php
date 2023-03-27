@@ -6,21 +6,22 @@ extract($_SESSION);
 $SQL = "SELECT * FROM `users` WHERE `userID` = '$ID'";
 $result = mysqli_query($conn, $SQL);
 $row = mysqli_fetch_assoc($result);
-extract($_POST);
+echo extract($_POST);
 
-if (empty($name) || empty($phone)) {
+if (empty($userName) || empty($phone)) {
+    echo $userName;
     $warning = "Please enter";
-    if (empty($name)) {
-        $warning .= " FirstName";
+    if (empty($userName)) {
+        $warning .= " Name";
     }
     if (empty($phone)) {
-        $warning .= " LastName";
+        $warning .= " Phone Number";
     }
-    header("location:/HTML/User_Page/userProfile.php?Empty=$warning");
+    // header("location:/HTML/User_Page/userProfile.php?Empty=$warning");
 } else {
     $sql = "UPDATE `users` SET `userName`=?, `phone` = ? WHERE `userID`=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sii', $name, $phone,$ID);
+    $stmt->bind_param('sii', $userName, $phone,$ID);
     $stmt->execute();
     if ($stmt->error) {
         header("location:/HTML/User_Page/userProfile.php?Empty=Update Failed");
@@ -30,6 +31,6 @@ if (empty($name) || empty($phone)) {
         mysqli_close($conn);
         $stmt->close();
         $message = "update success";
-        header("location:/HTML/User_Page/userProfile.php?Empty=$message");
+        // header("location:/HTML/User_Page/userProfile.php?Empty=$message");
     }
 }

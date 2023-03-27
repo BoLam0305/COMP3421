@@ -38,7 +38,7 @@
         }
     </script>
     <?php
-    session_start();
+
     require_once("../../phpFunctions/getDBConnection_bo.php");
     $conn = getDBConnection();
     extract($_SESSION);
@@ -52,6 +52,8 @@
     $_STATEMENT->free_result();
     $_STATEMENT->close();
     extract($result);
+    echo $userName;
+    echo $email;
     // extract($row);
     ?>
     <div class="content">
@@ -122,7 +124,7 @@
                                             <label class="mb-0">Full Name</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input class="text-muted mb-0 nameQWE" type="text" value="<?php echo $userName ?>">
+                                            <input class="text-muted mb-0 nameQWE" type="text" name="userName" value="<?php echo $userName ?>">
                                         </div>
                                     </div>
                                     <hr>

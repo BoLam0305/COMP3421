@@ -8,6 +8,7 @@ function loadOrders() {
         method: 'POST',
 
     }).then(response => response.json()).then(async (response) => {
+        console.log(response);
         orders = response;
         orders.forEach(order => {
             console.log(order.orderID);

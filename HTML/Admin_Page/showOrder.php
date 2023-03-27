@@ -23,7 +23,7 @@
     <!--local Js-->
     <script src="../../JS/Admin_Page/showOrder.js"></script>
     <script src="../../JS/Admin_Page/completeOrder.js"></script>
-    
+
     <script>
         function completeOrder(order) {
             var form_data = new FormData();
@@ -34,12 +34,6 @@
                 body: form_data
             }).then(response => response.text()).then(async (response) => {
                 console.log(response);
-                // if (response == "success") {
-                //     alert("Order Completed");
-                //     location.reload();
-                // } else {
-                //     alert("Order Failed");
-                // }
             });
             order.parentNode.parentNode.parentElement.remove();
         }
