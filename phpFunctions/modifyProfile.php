@@ -17,7 +17,7 @@ if (empty($userName) || empty($phone)) {
     if (empty($phone)) {
         $warning .= " Phone Number";
     }
-    // header("location:/HTML/User_Page/userProfile.php?Empty=$warning");
+    header("location:/HTML/User_Page/userProfile.php?Empty=$warning");
 } else {
     $sql = "UPDATE `users` SET `userName`=?, `phone` = ? WHERE `userID`=?";
     $stmt = $conn->prepare($sql);
@@ -31,6 +31,6 @@ if (empty($userName) || empty($phone)) {
         mysqli_close($conn);
         $stmt->close();
         $message = "update success";
-        // header("location:/HTML/User_Page/userProfile.php?Empty=$message");
+        header("location:/HTML/User_Page/userProfile.php?Empty=$message");
     }
 }
