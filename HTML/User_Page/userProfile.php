@@ -14,6 +14,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../CSS/profile.css">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <!--local Js-->
+    <script src="../../JS/modifyProfile.js"></script>
     <?php include_once '../header.php'; ?>
 </head>
 
@@ -52,25 +58,23 @@
     $_STATEMENT->free_result();
     $_STATEMENT->close();
     extract($result);
-    echo $userName;
-    echo $email;
     // extract($row);
     ?>
     <div class="content">
         <section style="background-color: #eee;">
             <div class="container py-5">
-
+                <!-- <form action="../../phpFunctions/modifyProfile.php" class="form_control" method="post"> -->
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="card mb-4">
                             <div class="card-body text-center">
                                 <div class="avatar-upload">
                                     <div class="avatar-edit">
-                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" name="imageUpload" value="" />
                                         <label for="imageUpload"></label>
                                     </div>
                                     <div class="avatar-preview">
-                                        <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                        <div id="imagePreview" style="background-image: url(../../img/Profile/<?php echo $imgPath ?>);">
                                         </div>
                                     </div>
                                 </div>
@@ -90,62 +94,57 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <form action="../../phpFunctions/modifyProfile.php" class="form_control" method="post">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h6 class="text-center">Your Information</h6>
-                                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6 class="text-center">Your Information</h6>
                                     </div>
-                                    <?php
-                                    if (isset($_GET['Empty'])) {
-                                    ?>
-                                        <div class="text-center text-danger"><?php
-                                                                                echo $_GET['Empty'];
-                                                                                ?></div><br>
-                                    <?php
-                                    }
-                                    ?>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-2">
-                                            <label class="mb-0">Email</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input class="text-muted mb-0" type="text" name="email" value="<?php echo $email ?>" disabled>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <h6 class="text-center" id="result-msg"></h6>
                                     </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-2">
-                                            <label class="mb-0">Full Name</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input class="text-muted mb-0 nameQWE" type="text" name="userName" value="<?php echo $userName ?>">
-                                        </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-2">
+                                        <label class="mb-0">Email</label>
                                     </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-2">
-                                            <label class="mb-0">Phone</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input class="text-muted mb-0" type="number" name="phone" value="<?php echo $phone ?>">
-                                        </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="id" value="<?php echo $userID ?>" id="userID" hidden>
+                                        <input class="text-muted mb-0" type="text" name="email" value="<?php echo $email ?>" id="userEmail" disabled>
                                     </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <button type="submit" value="Submit" class="button-36" role="button">Modify</button>
-                                        </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-2">
+                                        <label class="mb-0">Full Name</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input class="text-muted mb-0 nameQWE" type="text" name="userName" id="userName" value="<?php echo $userName ?>">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-2">
+                                        <label class="mb-0">Phone</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input class="text-muted mb-0" type="number" name="phone" id="userPhone" value="<?php echo $phone ?>">
+                                    </div>
+                                    <div id="add-number-msg" class="text-danger"></div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" value="Submit" class="button-36 submitBtn" id="submitBtn" name="submitBtn">Modify</button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <!-- </form> -->
                         <form action="../../phpFunctions/modifyPassword.php" class="form_control" method="post">
                             <div class="card mb-4">
                                 <div class="card-body">
