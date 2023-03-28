@@ -61,9 +61,7 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                <div>
-                    <h2 id="totalPrice">Total:</h2>
-                </div>
+                <h3>Subtotal: $<span id="totalPrice"></span></h3>
             </div>
         </div>
         <div class="row">

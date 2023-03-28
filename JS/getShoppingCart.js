@@ -51,7 +51,7 @@ window.addEventListener('load', async () => {
             orderTotal += itemTotalPrice;
             tableRowContainer.appendChild(rowClone);
         }
-        totalCartPrice.innerText = `Total: $${orderTotal}`;
+        totalCartPrice.innerText = orderTotal;
 
         spinner.remove();
         cartContainer.setAttribute('style', 'display: block');

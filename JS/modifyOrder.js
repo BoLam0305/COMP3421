@@ -5,11 +5,7 @@ const modifyOrder = async (e, action, productID) => {
     const itemTotal = targetRow.querySelector('#cartItemTotalPrice');
     const orderTotal = document.querySelector('#totalPrice');
 
-    console.log(targetRow);
-    console.log(itemQty);
-    console.log(itemPrice);
-    console.log(itemTotal);
-    console.log(orderTotal);
+    // TODO: Add Fetch API Call to Update Cart Session Storage
 
     if (action === 'increase') {
         itemQty.innerText = parseInt(itemQty.innerText) + 1;
@@ -31,7 +27,7 @@ const modifyOrder = async (e, action, productID) => {
     if (action === 'remove') {
         const confirmationResults = await fireConfirm();
         if (confirmationResults) { targetRow.remove(); }
-        orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemPrice.innerText);
+        orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemTotal.innerText);
     }
 }
 
