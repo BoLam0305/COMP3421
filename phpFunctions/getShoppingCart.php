@@ -27,6 +27,7 @@ function getShoppingCartItems(){
         $cartItems[$idx]['productID'] = $item['productID'];
         $cartItems[$idx]['productName'] = $item['productName'];
         $cartItems[$idx]['quantity'] = $_SESSION['cart'][$itemID]['count'];
+        $cartItems[$idx]['price'] = $item['price'];
         $cartItems[$idx]['totalPrice'] = $item['price'] * $_SESSION['cart'][$itemID]['count'];
         $idx++;
     }

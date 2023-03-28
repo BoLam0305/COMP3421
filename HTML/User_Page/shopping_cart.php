@@ -26,6 +26,7 @@
                 <tr>
                     <td scope="col">Item ID</td>
                     <td scope="col">Name</td>
+                    <td scope="col">Item Price</td>
                     <td scope="col">Item Total Price</td>
                     <td scope="col">Quantity</td>
                     <td scope="col">Remove From Cart</td>
@@ -36,6 +37,7 @@
                     <td class="text-center" scope="row" id="cartItemID"></td>
                     <td id="cartItemName"></td>
                     <td id="cartItemPrice"></td>
+                    <td id="cartItemTotalPrice"></td>
                     <td id="cartItemQuantity">
                         <div class="row">
                             <div class="col-3">

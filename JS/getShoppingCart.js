@@ -10,7 +10,7 @@ window.addEventListener('load', async () => {
         let shoppingCartRow = document.getElementById('shoppingCartRows');
         let totalCartPrice = document.getElementById('totalPrice');
         let rowClone = shoppingCartRow.cloneNode(true);
-        let itemName, itemPrice, itemQuantity, itemID, itemTotalPrice = 0;
+        let itemName, itemPrice, itemQuantity, itemID, itemTotalPrice, orderTotal = 0;
 
         // If shopping cart is empty, fire error
         if (shoppingCart.error === "No items in cart") {
@@ -26,12 +26,14 @@ window.addEventListener('load', async () => {
             }
 
             itemName = shoppingCart[i].productName;
-            itemPrice = shoppingCart[i].totalPrice;
+            itemPrice = shoppingCart[i].price;
+            itemTotalPrice = shoppingCart[i].totalPrice;
             itemQuantity = shoppingCart[i].quantity;
             itemID = shoppingCart[i].productID;
 
             rowClone.querySelector('#cartItemID').innerText = itemID
             rowClone.querySelector('#cartItemName').innerText = itemName;
+            rowClone.querySelector('#cartItemTotalPrice').innerText = itemTotalPrice;
             rowClone.querySelector('#cartItemPrice').innerText = itemPrice;
             rowClone.querySelector('#itemQty').innerText = itemQuantity;
 
@@ -46,10 +48,10 @@ window.addEventListener('load', async () => {
             rowClone.setAttribute('class', 'shoppingCartRows');
             rowClone.setAttribute('style', 'display: table-row');
 
-            itemTotalPrice += itemPrice;
+            orderTotal += itemTotalPrice;
             tableRowContainer.appendChild(rowClone);
         }
-        totalCartPrice.innerText = `Total: $${itemTotalPrice}`;
+        totalCartPrice.innerText = `Total: $${orderTotal}`;
 
         spinner.remove();
         cartContainer.setAttribute('style', 'display: block');

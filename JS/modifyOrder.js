@@ -1,25 +1,37 @@
 const modifyOrder = async (e, action, productID) => {
-    let itemQty = e.target.parentElement.parentElement.querySelector('#itemQty');
     const targetRow = e.target.closest('.shoppingCartRows');
+    let itemQty = targetRow.querySelector('#itemQty');
+    const itemPrice = targetRow.querySelector('#cartItemPrice');
+    const itemTotal = targetRow.querySelector('#cartItemTotalPrice');
+    const orderTotal = document.querySelector('#totalPrice');
+
+    console.log(targetRow);
+    console.log(itemQty);
+    console.log(itemPrice);
+    console.log(itemTotal);
+    console.log(orderTotal);
 
     if (action === 'increase') {
         itemQty.innerText = parseInt(itemQty.innerText) + 1;
+        itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
+        orderTotal.innerText = parseInt(orderTotal.innerText) + parseInt(itemPrice.innerText);
     }
 
     if (action === 'decrease') {
         if (parseInt(itemQty.innerText) === 1) {
             const confirmationResults = await fireConfirm();
-
             if (confirmationResults) { targetRow.remove(); }
         } else {
             itemQty.innerText = parseInt(itemQty.innerText) - 1;
+            itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
         }
+        orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemPrice.innerText);
     }
 
     if (action === 'remove') {
         const confirmationResults = await fireConfirm();
-
         if (confirmationResults) { targetRow.remove(); }
+        orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemPrice.innerText);
     }
 }
 

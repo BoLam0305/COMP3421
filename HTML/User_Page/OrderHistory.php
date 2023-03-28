@@ -8,6 +8,7 @@
     <link href="../../CSS/Admin_Page/left-menu.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/right-management.css" rel="stylesheet">
     <link href="../../CSS/Admin_Page/add_modam.css" rel="stylesheet">
+    <link href="../../CSS/OrderHistory.css" rel="stylesheet">
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -24,13 +25,14 @@
 
 </head>
 <body>
+<?php include_once '../header.php'; ?>
 <div>Menu-bar</div>
 <div id="main-container" class="row">
     <div id="right-content" class="col-12">
         <div class="container">
             <table class="table caption-top table-hover" id="myTable">
                 <div id="table-header">
-                    <div>Order Management</div>
+                    <div>My Orders</div>
                 </div>
                 <thead>
                 <tr>
