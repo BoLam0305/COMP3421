@@ -5,45 +5,124 @@ const modifyOrder = async (e, action, productID) => {
     const itemTotal = targetRow.querySelector('#cartItemTotalPrice');
     const orderTotal = document.querySelector('#totalPrice');
 
-    // TODO: Add Fetch API Call to Update Cart Session Storage
+    let formData = new FormData();
+    formData.append('productID', productID);
+    formData.append('action', action);
 
     if (action === 'increase') {
-        itemQty.innerText = parseInt(itemQty.innerText) + 1;
-        itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
-        orderTotal.innerText = parseInt(orderTotal.innerText) + parseInt(itemPrice.innerText);
+        const response = await executeFetch(formData);
+        if (response.status === 'success') {
+            itemQty.innerText = parseInt(itemQty.innerText) + 1;
+            itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
+            orderTotal.innerText = parseInt(orderTotal.innerText) + parseInt(itemPrice.innerText);
+        } else {
+            await fireAlert(
+                'Error',
+                'There was an error while trying to update your cart. Please try again later.',
+                'error',
+                false
+            );
+        }
     }
 
     if (action === 'decrease') {
         if (parseInt(itemQty.innerText) === 1) {
-            const confirmationResults = await fireConfirm();
-            if (confirmationResults) { targetRow.remove(); }
+            const confirmationResults = await fireAlert(
+                'Confirmation required',
+                'Please confirm if you want to remove this item from your cart',
+                'warning',
+                true
+            );
+            if (confirmationResults) {
+                const response = await executeFetch(formData);
+                if (response.status === 'success') {
+                    targetRow.remove();
+                } else {
+                    await fireAlert(
+                        'Error',
+                        'There was an error while trying to update your cart. Please try again later.',
+                        'error',
+                        false
+                    );
+                }
+            }
         } else {
-            itemQty.innerText = parseInt(itemQty.innerText) - 1;
-            itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
+            const response = await executeFetch(formData);
+            if (response.status === 'success') {
+                itemQty.innerText = parseInt(itemQty.innerText) - 1;
+                itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
+            } else {
+                await fireAlert(
+                    'Error',
+                    'There was an error while trying to update your cart. Please try again later.',
+                    'error',
+                    false
+                );
+            }
         }
         orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemPrice.innerText);
     }
 
     if (action === 'remove') {
-        const confirmationResults = await fireConfirm();
-        if (confirmationResults) { targetRow.remove(); }
+        const confirmationResults = await fireAlert(
+            'Confirmation required',
+            'Please confirm if you want to remove this item from your cart',
+            'warning',
+            true
+        );
+        if (confirmationResults) {
+            const response = await executeFetch(formData);
+            if (response.status === 'success') {
+                targetRow.remove();
+            } else {
+                await fireAlert(
+                    'Error',
+                    'There was an error while trying to update your cart. Please try again later.',
+                    'error',
+                    false
+                );
+            }
+        }
         orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemTotal.innerText);
+    }
+
+    await checkEmptyCart();
+}
+
+const fireAlert = async (title, text, icon, buttonText, showCancel) => {
+    const result = await Swal.fire({
+        title: title,
+        html: text,
+        icon: icon,
+        showCancelButton: showCancel,
+        confirmButtonText: buttonText || "Confirm",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+    });
+    return result.isConfirmed;
+}
+
+const checkEmptyCart = async () => {
+    const cartRows = document.querySelectorAll('.shoppingCartRows');
+    if (cartRows.length === 0) {
+        const dialogResults = await fireAlert(
+            "Your cart is empty",
+            "Please add some items to your cart before proceeding to checkout, ",
+            "info",
+            "Continue shopping",
+            false
+        );
+
+        if (dialogResults) {
+            window.location.href = "../../index.php";
+        }
     }
 }
 
-const fireConfirm = async () => {
-    const result = await Swal.fire({
-        title: 'Confirmation required',
-        text: 'Please confirm if you want to remove this item from your cart',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, remove it!'
+const executeFetch = async (formData) => {
+    const response = await fetch("../../phpFunctions/doModifyOrder.php", {
+        method: 'POST',
+        body: formData
     });
-    return result.isConfirmed;
-};
-
-const queryResults = async (query) => {
-
+    return response.json();
 }

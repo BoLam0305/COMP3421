@@ -66,7 +66,9 @@ const fireError = async (message) => {
         html: `Your shopping cart is empty. <br><br> Please add items to your cart before checking out.`,
         icon: 'error',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Return to Home Page'
+        confirmButtonText: 'Return to Home Page',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
     }).then((result) => {
         if (result.isConfirmed) {
             window.location.href = '../home.php';
