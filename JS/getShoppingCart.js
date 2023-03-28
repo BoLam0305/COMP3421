@@ -32,7 +32,7 @@ window.addEventListener('load', async () => {
             rowClone.querySelector('#cartItemID').innerText = i+1;
             rowClone.querySelector('#cartItemName').innerText = itemName;
             rowClone.querySelector('#cartItemPrice').innerText = itemPrice;
-            rowClone.querySelector('#cartItemQuantity').innerText = itemQuantity;
+            rowClone.querySelector('#itemQty').innerText = itemQuantity;
 
             rowClone.setAttribute('id', `shoppingCartRows${i}`);
             rowClone.setAttribute('style', 'display: table-row');

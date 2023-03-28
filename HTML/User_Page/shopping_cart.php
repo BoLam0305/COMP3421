@@ -35,7 +35,19 @@
                     <td class="text-center" scope="row" id="cartItemID"></td>
                     <td id="cartItemName"></td>
                     <td id="cartItemPrice"></td>
-                    <td id="cartItemQuantity"></td>
+                    <td id="cartItemQuantity">
+                        <div class="row">
+                            <div class="col-3">
+                                <button type="button" class="btn btn-secondary" id="increaseItem">+</button>
+                            </div>
+                            <div class="col-6">
+                                <div id="itemQty"></div>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-secondary" id="decreaseItem">-</button>
+                            </div>
+                        </div>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-danger" id="cartRemoveItem">Remove</button>
                     </td>
