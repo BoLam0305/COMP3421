@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../CSS/shopping_cart.css">
     <script src="../../JS/getShoppingCart.js" async defer></script>
     <script src="../../JS/checkout.js" async defer></script>
+    <script src="../../JS/modifyOrder.js" async defer></script>
     <title>Shopping Cart</title>
     <?php include_once '../header.php'; ?>
 
@@ -23,7 +24,7 @@
             <table class="table table-bordered text-center">
                 <thead style="background-color: #ff9800;">
                 <tr>
-                    <td scope="col">#</td>
+                    <td scope="col">Item ID</td>
                     <td scope="col">Name</td>
                     <td scope="col">Item Total Price</td>
                     <td scope="col">Quantity</td>
@@ -38,13 +39,13 @@
                     <td id="cartItemQuantity">
                         <div class="row">
                             <div class="col-3">
-                                <button type="button" class="btn btn-secondary" id="increaseItem">+</button>
+                                <button type="button" class="btn btn-secondary" id="decreaseItem">-</button>
                             </div>
                             <div class="col-6">
                                 <div id="itemQty"></div>
                             </div>
                             <div class="col-3">
-                                <button type="button" class="btn btn-secondary" id="decreaseItem">-</button>
+                                <button type="button" class="btn btn-secondary" id="increaseItem">+</button>
                             </div>
                         </div>
                     </td>
