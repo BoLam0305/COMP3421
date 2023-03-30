@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 doCheckout();
 
 function doCheckout(){
-    $error = array();
+    $error = $orderNotices = array();
     $userID = $_SESSION['ID'];
     $orderDate = date("Y-m-d H:i:s");
     $paymentMethod = $_POST['method'];
@@ -52,20 +52,48 @@ function doCheckout(){
         $orderID = mysqli_insert_id($conn);
         mysqli_close($conn);
 
+        // TODO: Limit order item size of the quantity in the order was larger than the available stock
+        // TODO: Reduce the stock of the product after checkout if the order was successful
+
         foreach ($cartItems as $item) {
             $conn1 = getDBConnection();
             $itemID = $item['productID'];
             $quantity = $item['quantity'];
 
+            // check the available stock of the product
+            $checkStock = $conn1->prepare("SELECT stock, productName FROM product WHERE productID = ?");
+            $checkStock->bind_param("i", $itemID);
+            $checkStock->execute();
+            $rs = $checkStock->get_result();
+            $rc = mysqli_fetch_assoc($rs);
+            extract($rc);
+            $checkStock->close();
+
+            // if the order quantity is larger than the available stock
+            // set the order quantity to the available stock, and add a notice to the order
+            if ($stock < $quantity) {
+                $quantity = $stock;
+                $orderNotices['exceedStock'][$itemID]['productName'] = $productName;
+                $orderNotices['exceedStock'][$itemID]['Avail_Stock'] = $stock;
+            }
+
+            // add the order to the order_product table
             $stmt = $conn1->prepare("INSERT INTO order_product (orderID, productID, qty) VALUES (?, ?, ?)");
             $stmt->bind_param("sss",$orderID, $itemID , $quantity);
             $stmt->execute();
             $stmt->close();
+
+            // reduce the stock of the product
+            $reduceStock = $conn1->prepare("UPDATE product SET stock = stock - ? WHERE productID = ?");
+            $reduceStock->bind_param("ii", $quantity, $itemID);
+            $reduceStock->execute();
+            $reduceStock->close();
         }
 
         mysqli_close($conn1);
         $message['message'] = 'Checkout success';
         $message['orderID'] = $orderID;
+        $message['orderNotices'] = $orderNotices;
 
         foreach ($cartItems as $item) {
             $itemID = $item['productID'];

@@ -7,12 +7,30 @@
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
       <user-name>21026633d</user-name>
       <schema-mapping>
         <introspection-scope>
           <node kind="schema">
             <name qname="@" />
             <name qname="21026633d" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="comp3421_1@localhost" uuid="070f0b43-a6de-445f-b950-c22066f5c534">
+      <database-info product="MariaDB" version="10.4.27-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.0.7" dbms="MARIADB" exact-version="10.4.27" exact-driver-version="3.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="comp3421_1" />
           </node>
         </introspection-scope>
       </schema-mapping>

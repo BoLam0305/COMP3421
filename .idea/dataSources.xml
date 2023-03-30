@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mariadb://mysql.comp.polyu.edu.hk:3306/21026633d</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="comp3421_1@localhost" uuid="070f0b43-a6de-445f-b950-c22066f5c534">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://localhost:3306/comp3421_1</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

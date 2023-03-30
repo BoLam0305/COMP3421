@@ -11,18 +11,11 @@ const modifyOrder = async (e, action, productID) => {
 
     if (action === 'increase') {
         const response = await executeFetch(formData);
-        if (response.status === 'success') {
+        if (response.status === true) {
             itemQty.innerText = parseInt(itemQty.innerText) + 1;
             itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
             orderTotal.innerText = parseInt(orderTotal.innerText) + parseInt(itemPrice.innerText);
-        } else {
-            await fireAlert(
-                'Error',
-                'There was an error while trying to update your cart. Please try again later.',
-                'error',
-                false
-            );
-        }
+        } else { return; }
     }
 
     if (action === 'decrease') {
@@ -31,36 +24,24 @@ const modifyOrder = async (e, action, productID) => {
                 'Confirmation required',
                 'Please confirm if you want to remove this item from your cart',
                 'warning',
+                "Confirm",
                 true
             );
             if (confirmationResults) {
                 const response = await executeFetch(formData);
-                if (response.status === 'success') {
+                if (response === true) {
                     targetRow.remove();
-                } else {
-                    await fireAlert(
-                        'Error',
-                        'There was an error while trying to update your cart. Please try again later.',
-                        'error',
-                        false
-                    );
+                    orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemPrice.innerText);
                 }
-            }
+            } else { return; }
         } else {
             const response = await executeFetch(formData);
-            if (response.status === 'success') {
+            if (response.status === true) {
                 itemQty.innerText = parseInt(itemQty.innerText) - 1;
                 itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
-            } else {
-                await fireAlert(
-                    'Error',
-                    'There was an error while trying to update your cart. Please try again later.',
-                    'error',
-                    false
-                );
-            }
+                orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemPrice.innerText);
+            } else { return; }
         }
-        orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemPrice.innerText);
     }
 
     if (action === 'remove') {
@@ -68,22 +49,16 @@ const modifyOrder = async (e, action, productID) => {
             'Confirmation required',
             'Please confirm if you want to remove this item from your cart',
             'warning',
+            "Confirm",
             true
         );
         if (confirmationResults) {
             const response = await executeFetch(formData);
-            if (response.status === 'success') {
+            if (response.status === true) {
                 targetRow.remove();
-            } else {
-                await fireAlert(
-                    'Error',
-                    'There was an error while trying to update your cart. Please try again later.',
-                    'error',
-                    false
-                );
-            }
+                orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemTotal.innerText);
+            } else { return; }
         }
-        orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemTotal.innerText);
     }
 
     await checkEmptyCart();
@@ -124,5 +99,16 @@ const executeFetch = async (formData) => {
         method: 'POST',
         body: formData
     });
-    return response.json();
+
+    const responseJson = await response.json();
+    if (responseJson.status !== 'success') {
+        await fireAlert(
+            'Error',
+            'There was an error while trying to update your cart. Please try again later.',
+            'error',
+            false
+        );
+        return false;
+    }
+    return true;
 }
