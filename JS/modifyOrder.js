@@ -11,7 +11,8 @@ const modifyOrder = async (e, action, productID) => {
 
     if (action === 'increase') {
         const response = await executeFetch(formData);
-        if (response.status === true) {
+        console.log(response);
+        if (response === true) {
             itemQty.innerText = parseInt(itemQty.innerText) + 1;
             itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
             orderTotal.innerText = parseInt(orderTotal.innerText) + parseInt(itemPrice.innerText);
@@ -36,7 +37,7 @@ const modifyOrder = async (e, action, productID) => {
             } else { return; }
         } else {
             const response = await executeFetch(formData);
-            if (response.status === true) {
+            if (response === true) {
                 itemQty.innerText = parseInt(itemQty.innerText) - 1;
                 itemTotal.innerText = parseInt(itemQty.innerText) * parseInt(itemPrice.innerText);
                 orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemPrice.innerText);
@@ -54,7 +55,7 @@ const modifyOrder = async (e, action, productID) => {
         );
         if (confirmationResults) {
             const response = await executeFetch(formData);
-            if (response.status === true) {
+            if (response === true) {
                 targetRow.remove();
                 orderTotal.innerText = parseInt(orderTotal.innerText) - parseInt(itemTotal.innerText);
             } else { return; }

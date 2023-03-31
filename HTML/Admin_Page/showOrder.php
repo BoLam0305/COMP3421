@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <div id="main-container" class="row" style="padding-top:3%;">
+    <div id="main-container" class="row" style="margin: 5% !important;">
         <div id="right-content" class="col-12">
             <div class="row orders">
 

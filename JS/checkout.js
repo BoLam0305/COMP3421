@@ -11,9 +11,9 @@ const checkOutCart = async () => {
         console.log(response);
         let message = JSON.parse(response);
         if(message.message === "Checkout success"){
-            await fireReceipt(message.orderID, message.orderNotices.exceedStock);
-        } else if (message.error){
-            await fireCheckoutError(message.error);
+            await fireReceipt(message.orderID, message.orderNotices.exceedStock, message.orderNotices.outOfStock);
+        } else if (message.status === "error"){
+            await fireCheckoutError(message.message, message.action, message.actionText);
         }
         console.log(message);
     }).catch((error) => { console.log(error) });
@@ -25,25 +25,29 @@ const setMethod = (m) => {
     method = m;
 }
 
-const fireReceipt = async (orderID, notices) => {
-
-    let noticesHTML = notices || '';
+const fireReceipt = async (orderID, exceedStockNotices, outStockNotices) => {
+    let noticesHTML = exceedStockNotices || outStockNotices || '';
     let itemString = '';
 
     // append the notices to the HTML if there are any
     if (noticesHTML !== '') {
         noticesHTML = `<br><br><br><h4>Special Notices Regarding Your Order</h4><br>
                         The following items does not have enough stock to fulfill your order, 
-                        we had set the quantity of those items to the maximum available.<br><br>`;
+                        the items below and order total had been adjusted accordingly.<br><br>`;
 
-        for (let key in notices) {
-            itemString += `<li>Quantity of item ${notices[key].productName} had been set to ${notices[key].Avail_Stock} </li>`;
+        for (let key in exceedStockNotices) {
+            itemString += `<li>Quantity of item ${exceedStockNotices[key].productName} 
+                            had been set to ${exceedStockNotices[key].Avail_Stock} </li>`;
+        }
+
+        for (let key in outStockNotices) {
+            itemString += `<li>Item ${outStockNotices[key].productName} was out of stock and
+                            had been removed from your order </li>`;
         }
 
         noticesHTML += `<ul>${itemString}</ul>`;
         noticesHTML += `We apologize for the inconvenience caused.`;
     }
-
 
     await Swal.fire({
         title: 'Your order has been placed.',
@@ -60,15 +64,17 @@ const fireReceipt = async (orderID, notices) => {
     });
 }
 
-const fireCheckoutError = async (message) => {
+const fireCheckoutError = async (message, action, btnText) => {
     await Swal.fire({
         title: 'Error',
         html: message,
         icon: 'error',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Close'
+        confirmButtonText: btnText || 'Close'
     }).then((result) => {
-        if (result.isConfirmed) {
+        if (result.isConfirmed && action === 'redirect') {
+            window.location.href = '../home.php';
+        } else if (result.isConfirmed) {
             Swal.close();
         }
     });

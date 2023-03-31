@@ -16,12 +16,23 @@
             if (!isset($email)) {
                 header('Location: ../User_Page/login.php');
             } else { // signed in
-                echo "<div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNavDarkDropdown\">
-                        <div class='bar'>                        
-                        <a href='./UserManagement.php'>User Management</a>
-                        <a href='./OrderManagement.php'>Order Management</a>
-                        <a href='./ProductManagement.php'>Product Management</a>
-                      </div>
+                echo "
+                        <div class='collapse navbar-collapse' id='navbarNav'>
+                            <ul class='navbar-nav'>
+                                <li class='nav-item active'>
+                                    <a class='nav-link' href='/HTML/Admin_Page/UserManagement.php'>User Management</a>
+                                </li>
+                                <li class='nav-item'>
+                                    <a class='nav-link' href='/HTML/Admin_Page/OrderManagement.php'>Order Management</a>
+                                </li>
+                                <li class='nav-item'>
+                                    <a class='nav-link' href='/HTML/Admin_Page/ProductManagement.php'>Product Management</a>
+                                </li>                                
+                                <li class='nav-item'>
+                                    <a class='nav-link' href='/HTML/Admin_Page/showOrder.php'>All Orders</a>
+                                </li>
+                            </ul>
+                        </div>
 
                         <ul class=\"navbar-nav\">
                             <li class=\"nav-item dropdown\">
@@ -31,7 +42,6 @@
                                     $email
                                 </a>
                                 <ul class=\"dropdown-menu dropdown-menu-dark\" aria-labelledby=\"navbarDarkDropdownMenuLink\">
-      
                                   <li><a class=\"dropdown-item\" href=\"/phpFunctions/logout.php\">Logout</a></li>
                                 </ul>
                             </li>
