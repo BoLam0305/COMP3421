@@ -24,21 +24,21 @@ function addItemToCart () {
         mysqli_free_result($rs);
         mysqli_close($conn);
 
+        // check if the item is out of stock
+        if($stock == 0) {
+            echo "Out of stock";
+            exit;
+        }
+
         if(!isset($_SESSION['cart'][$productID]['count'])){
             $_SESSION['cart'][$productID]['count'] = 0;
             $_SESSION['cart'][$productID]['productID'] = 0;
         }
 
-        // check if the item is out of stock
-        if($stock == 0) {
-            echo "Out of stock";
-            return;
-        }
-
         // check if the user has added the maximum amount of this item to their cart
         if ($_SESSION['cart'][$productID1]['count'] == $stock) {
             echo "Max amount in cart";
-            return;
+            exit;
         }
 
         // check if the item is already in the cart
