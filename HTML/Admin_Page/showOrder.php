@@ -37,6 +37,17 @@
             });
             order.parentNode.parentNode.parentElement.remove();
         }
+        $(document).ready(function() {
+            console.log('ready');
+            $("#loopcheck").click(function() {
+                if ($('#loopcheck').is(":checked")) {
+                    console.log('checked');
+                    setInterval(loadOrders, 5000);
+                } else {
+                    console.log('unchecked');
+                }
+            });
+        });
         // setInterval(loadOrders, 5000);
     </script>
 
@@ -63,6 +74,7 @@
 
 <body>
     <div id="main-container" class="row" style="margin: 5% !important;">
+        <div class="col-12 d-flex justify-content-center"><input type="checkbox" id="loopcheck">In Real Time</div>
         <div id="right-content" class="col-12">
             <div class="row orders">
 

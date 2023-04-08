@@ -1,0 +1,5 @@
+addProductToCart
+doModifyOrder
+getShoppingCart
+queryImage
+queryProducts
