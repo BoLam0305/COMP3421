@@ -38,13 +38,14 @@
             order.parentNode.parentNode.parentElement.remove();
         }
         $(document).ready(function() {
-            console.log('ready');
+            var interval;
             $("#loopcheck").click(function() {
                 if ($('#loopcheck').is(":checked")) {
-                    console.log('checked');
-                    setInterval(loadOrders, 5000);
+                    interval = setInterval(loadOrders, 5000);
+                    console.log(interval);
                 } else {
-                    console.log('unchecked');
+                    window.clearInterval(interval);
+                    console.log(interval);
                 }
             });
         });
